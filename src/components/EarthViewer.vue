@@ -1,13 +1,27 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
+import useSketches from '@/modules/useSketches';
 
 export default defineComponent({
   name: 'EarthViewer',
+  setup() {
+    const sketchContainer = ref({} as HTMLElement);
+
+    onMounted(() => {
+      if (sketchContainer.value) {
+        useSketches(sketchContainer.value);
+      }
+    });
+
+    return {
+      sketchContainer,
+    };
+  },
 });
 </script>
 
 <template>
-  <div class="sketch-container" />
+  <div class="sketch-container" ref="sketchContainer" />
 </template>
 
 <style lang="scss" scoped>

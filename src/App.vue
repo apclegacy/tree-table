@@ -1,19 +1,19 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import Background from '@/components/Background.vue';
+import EarthViewer from '@/components/EarthViewer.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    Background,
+    EarthViewer,
   },
 });
 </script>
 
 <template>
   <div>
-    <background />
+    <earth-viewer />
   </div>
 </template>
 
