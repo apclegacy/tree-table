@@ -15,7 +15,8 @@ Description will follow.
 ### Switch Branch
 
 ``` git pull ```
-``` git git checkout <branch> ```
+
+``` git checkout <branch> ```
 
 ### Commit
 
