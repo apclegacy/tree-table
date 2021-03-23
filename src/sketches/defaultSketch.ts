@@ -9,8 +9,8 @@ const defaultSketch = (height: number, width: number) => ((p: P5) => {
     p.createCanvas(width, height);
   };
   p.draw = () => {
-    p.background(220);
-    p.ellipse(50, 50, 80, 80);
+    p.background(20);
+    p.ellipse(0, 50, 80, 80);
   };
 });
 
