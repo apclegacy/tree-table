@@ -7,6 +7,7 @@ import P5 from 'p5';
 const defaultSketch = (height: number, width: number) => ((p: P5) => {
   p.setup = () => {
     p.createCanvas(width, height);
+    p.pixelDensity(0.25);
   };
   p.draw = () => {
     p.background(20);

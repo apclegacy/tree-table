@@ -31,11 +31,12 @@ body {
   color: white;
 
   p {
-    font-size: 250%;
+    font-size: 200%;
   }
 
   h2 {
-    font-size: 350%;
+    font-size: 300%;
+    font-weight: 100;
   }
 }
 </style>
