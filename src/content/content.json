@@ -1,0 +1,77 @@
+[
+  {
+    "category": "About This Table",
+    "cards" : [
+      {
+        "title": "About Card 1",
+        "active": false
+      },
+      {
+        "title": "About Card 2",
+        "active": false
+      },
+      {
+        "title": "About Card 3",
+        "active": true
+      },
+      {
+        "title": "About Card 4",
+        "active": false
+      },
+      {
+        "title": "About Card 5",
+        "active": false
+      }
+    ]
+  },
+  {
+    "category": "Interactive Projects",
+    "cards" : [
+      {
+        "title": "Interactive Projects Card 1",
+        "active": false
+      },
+      {
+        "title": "Interactive Projects Card 2",
+        "active": true
+      },
+      {
+        "title": "Interactive Projects Card 3",
+        "active": false
+      },
+      {
+        "title": "Interactive Projects Card 4",
+        "active": false
+      },
+      {
+        "title": "Interactive Projects Card 5",
+        "active": false
+      }
+    ]
+  },
+  {
+    "category": "Projects",
+    "cards" : [
+      {
+        "title": "Projects Card 1",
+        "active": false
+      },
+      {
+        "title": "Projects Card 2",
+        "active": false
+      },
+      {
+        "title": "Projects Card 3",
+        "active": false
+      },
+      {
+        "title": "Projects Card 4",
+        "active": true
+      },
+      {
+        "title": "Projects Card 5",
+        "active": false
+      }
+    ]
+  }
+]
