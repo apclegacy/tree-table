@@ -11,7 +11,7 @@ export default defineComponent({
     Category,
   },
   setup() {
-    enum Categories { None, About, InteractiveProjects, Projects }
+    enum Categories { About, InteractiveProjects, Projects, None }
     const menuOpen = ref(false);
     const openCategory = ref(Categories.None);
 
