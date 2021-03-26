@@ -9,6 +9,8 @@ import addScreenPosition from '@/helpers/addScreenPosition';
 const defaultSketch = (height: number, width: number) => ((p: p5) => {
   p.setup = () => {
     p.createCanvas(width, height, p.WEBGL);
+    // 0.25 is 1080p
+    p.pixelDensity(0.25);
     document.oncontextmenu = () => false;
     p.createEasyCam();
     addScreenPosition(p);
