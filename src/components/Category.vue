@@ -17,8 +17,8 @@ export default defineComponent({
 
     const transitionName = ref('');
     const previousCard = ref(0);
-    const currentCard = ref(0);
-    const nextCard = ref(0);
+    const currentCard = ref(1);
+    const nextCard = ref(2);
 
     const slide = (forward: boolean) => {
       transitionName.value = forward ? 'slide-next' : 'slide-prev';
