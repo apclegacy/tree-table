@@ -55,8 +55,18 @@ export default defineComponent({
         <div class="card next">
           <h1>{{ cards[nextCard].title }}</h1>
         </div>
-      <div class="previous arrow" @click="slide(false)" />
-      <div class="next arrow" @click="slide(true)" />
+      <div class="previous arrow" @click="slide(false)">
+        <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30.6932 1.95585L2.79688 27.8798L30.6932 53.8037"
+            stroke="white" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="next arrow" @click="slide(true)">
+        <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.30676 54.0432L30.2031 28.1192L2.30676 2.19531"
+            stroke="white" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
     </div>
   </div>
 </template>
@@ -90,7 +100,6 @@ export default defineComponent({
   .arrow {
     position: absolute;
     height: 100%;
-    border: 1px solid red;
     width: 264px;
     &.previous {
       left: 368px;
@@ -98,6 +107,11 @@ export default defineComponent({
     &.next {
       left: calc(((100vw - 2576px) / 2) + 2576px);
     }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
