@@ -41,10 +41,11 @@ export default defineComponent({
     return {
       categoryClass,
       transitionName,
-      previousCard,
-      currentCard,
-      nextCard,
+      previousCardIndex,
+      currentCardIndex,
+      nextCardIndex,
       slide,
+      cards,
     };
   },
 });
@@ -54,17 +55,15 @@ export default defineComponent({
   <div class="menu-item open-category" :class="categoryClass" @click="$emit('setOpenCategory')">
     <h2>{{ title }}</h2>
     <div class="category" :class="categoryClass">
-      <transition-group :name="transitionName" class='slide-transition' tag="div">
-        <div class="card previous" :key="previousCard.title">
-          <h1>{{ previousCard.title }}</h1>
+        <div class="card previous">
+          <h1>{{ cards[previousCardIndex].title }}</h1>
         </div>
-        <div class="card" :key="currentCard.title">
-          <h1>{{ currentCard.title }}</h1>
+        <div class="card current">
+          <h1>{{ cards[currentCardIndex].title }}</h1>
         </div>
-        <div class="card next" :key="nextCard.title">
-          <h1>{{ nextCard.title }}</h1>
+        <div class="card next">
+          <h1>{{ cards[nextCardIndex].title }}</h1>
         </div>
-      </transition-group>
       <div class="previous arrow" @click="slide(false)" />
       <div class="next arrow" @click="slide(true)" />
     </div>
@@ -101,12 +100,12 @@ export default defineComponent({
     position: absolute;
     height: 100%;
     border: 1px solid red;
-    width: calc((100vw - 2576px)/2);
+    width: 264px;
     &.previous {
-      left: 0;
+      left: 368px;
     }
     &.next {
-      left: calc(((100vw - 2576px)/2) + 2576px);
+      left: calc(((100vw - 2576px) / 2) + 2576px);
     }
   }
 }
@@ -117,33 +116,19 @@ export default defineComponent({
   min-width: 2576px;
 
   position: absolute;
-  left: calc((100vw - 2576px)/2);
+  left: calc((100vw - 2576px) / 2);
 
   background: linear-gradient(
     135deg, rgba(120, 120, 120, 0.4) 18.62%, rgba(56, 56, 56, 0.4) 97.79%);
   backdrop-filter: blur(400px);
   border-radius: 60px;
-}
 
-.slide-next-enter-active,
-.slide-next-leave-active {
-  transition: transform 0.5s ease-in-out;
-}
-.slide-next-enter-from {
-  transform: translate(150%);
-}
-.slide-next-leave-to {
-  transform: translate(-150%);
-}
+  &.previous {
+    left: -2208px;
+  }
 
-.slide-prev-enter-active,
-.slide-prev-leave-active {
-  transition: transform 0.5s ease-in-out;
-}
-.slide-prev-enter-from {
-  transform: translate(-150%);
-}
-.slide-prev-leave-to {
-  transform: translate(150%);
+  &.next {
+    left: 3472px;
+  }
 }
 </style>
