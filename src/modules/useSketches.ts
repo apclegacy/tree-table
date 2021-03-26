@@ -8,4 +8,6 @@ const useSketches = (container: HTMLElement) => new P5(
   defaultSketch(container.offsetHeight, container.offsetWidth), container,
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any).p5 = P5;
 export default useSketches;
