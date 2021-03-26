@@ -3,8 +3,13 @@ import { defineComponent, computed, ref } from 'vue';
 
 import useContent from '@/modules/useContent';
 
+import Card from '@/components/Card.vue';
+
 export default defineComponent({
   name: 'Category',
+  components: {
+    Card,
+  },
   props: {
     title: { type: String, required: true },
     category: { type: Number, required: true },
@@ -46,15 +51,9 @@ export default defineComponent({
   <div class="menu-item open-category" :class="categoryClass" @click="$emit('setOpenCategory')">
     <h2>{{ title }}</h2>
     <div class="category" :class="categoryClass">
-        <div class="card previous">
-          <h1>{{ cards[previousCard].title }}</h1>
-        </div>
-        <div class="card current">
-          <h1>{{ cards[currentCard].title }}</h1>
-        </div>
-        <div class="card next">
-          <h1>{{ cards[nextCard].title }}</h1>
-        </div>
+        <card class="previous" :title="cards[previousCard].title" />
+        <card class="current" :title="cards[previousCard].title" />
+        <card class="next" :title="cards[previousCard].title" />
       <div class="previous arrow" @click="slide(false)">
         <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M30.6932 1.95585L2.79688 27.8798L30.6932 53.8037"
