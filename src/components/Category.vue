@@ -1,7 +1,5 @@
 <script lang="ts">
-import {
-  defineComponent, computed, ref, watchEffect,
-} from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 
 import useContent from '@/modules/useContent';
 
@@ -18,32 +16,25 @@ export default defineComponent({
     const cards = ref(getCards(props.category));
 
     const transitionName = ref('');
-    const currentCardIndex = ref(0);
-    const previousCardIndex = ref(0);
-    const nextCardIndex = ref(0);
-    const previousCard = ref({});
-    const currentCard = ref({});
-    const nextCard = ref({});
-
-    watchEffect(() => { previousCard.value = cards.value[previousCardIndex.value]; });
-    watchEffect(() => { currentCard.value = cards.value[currentCardIndex.value]; });
-    watchEffect(() => { nextCard.value = cards.value[nextCardIndex.value]; });
+    const previousCard = ref(0);
+    const currentCard = ref(0);
+    const nextCard = ref(0);
 
     const slide = (forward: boolean) => {
       transitionName.value = forward ? 'slide-next' : 'slide-prev';
       const direction = forward ? 1 : -1;
       const { length } = cards.value;
-      currentCardIndex.value = (currentCardIndex.value + direction + length) % length;
-      nextCardIndex.value = (nextCardIndex.value + (direction + 1) + length) % length;
-      previousCardIndex.value = (previousCardIndex.value + (direction - 1) + length) % length;
+      previousCard.value = (previousCard.value + (direction) + length) % length;
+      currentCard.value = (currentCard.value + direction + length) % length;
+      nextCard.value = (nextCard.value + (direction) + length) % length;
     };
 
     return {
       categoryClass,
       transitionName,
-      previousCardIndex,
-      currentCardIndex,
-      nextCardIndex,
+      previousCard,
+      currentCard,
+      nextCard,
       slide,
       cards,
     };
@@ -56,13 +47,13 @@ export default defineComponent({
     <h2>{{ title }}</h2>
     <div class="category" :class="categoryClass">
         <div class="card previous">
-          <h1>{{ cards[previousCardIndex].title }}</h1>
+          <h1>{{ cards[previousCard].title }}</h1>
         </div>
         <div class="card current">
-          <h1>{{ cards[currentCardIndex].title }}</h1>
+          <h1>{{ cards[currentCard].title }}</h1>
         </div>
         <div class="card next">
-          <h1>{{ cards[nextCardIndex].title }}</h1>
+          <h1>{{ cards[nextCard].title }}</h1>
         </div>
       <div class="previous arrow" @click="slide(false)" />
       <div class="next arrow" @click="slide(true)" />
