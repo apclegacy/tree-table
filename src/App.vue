@@ -14,10 +14,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
     <overlay />
     <earth-viewer />
-  </div>
 </template>
 
 <style lang="scss">

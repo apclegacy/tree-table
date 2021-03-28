@@ -31,6 +31,6 @@ export default defineComponent({
 .sketch-container {
   height: 100vh;
   width: 100vw;
-  background-color: aqua;
+  background-color: black;
 }
 </style>
