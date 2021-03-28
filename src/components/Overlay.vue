@@ -76,6 +76,8 @@ export default defineComponent({
     flex-direction: column;
     justify-content: center;
 
+    pointer-events: none;
+
     &.menu-open {
       backdrop-filter: blur(40px);
     }
@@ -99,6 +101,8 @@ export default defineComponent({
         $margin: 2.5vh;
         height: 125px;
         width: 600px;
+
+        pointer-events: auto;
 
         &.menu-open {
           box-shadow: none;
