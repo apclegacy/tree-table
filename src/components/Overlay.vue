@@ -47,15 +47,15 @@ export default defineComponent({
       <span class="menu-item menu-toggle" :class="menuClass" @click="toggleMenu">
         <p>Menu</p>
       </span>
-      <category :title="'About The Table'"
+      <category :title="'About The Table'" :class="menuClass"
         :category="Categories.About"
         :openCategory="openCategory"
         @setOpenCategory="setOpenCategory(Categories.About)" />
-      <category :title="'Interactive Projects'"
+      <category :title="'Interactive Projects'" :class="menuClass"
         :category="Categories.InteractiveProjects"
         :openCategory="openCategory"
         @setOpenCategory="setOpenCategory(Categories.InteractiveProjects)" />
-      <category :title="'Projects'"
+      <category :title="'Projects'" :class="menuClass"
         :category="Categories.Projects"
         :openCategory="openCategory"
         @setOpenCategory="setOpenCategory(Categories.Projects)" />
@@ -77,7 +77,7 @@ export default defineComponent({
     justify-content: center;
 
     &.menu-open {
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(40px);
     }
 
     .menu {
@@ -92,12 +92,17 @@ export default defineComponent({
 
       &.menu-open {
         transform: translateY(0);
+        box-shadow: none;
       }
 
       .menu-item {
         $margin: 2.5vh;
         height: 125px;
         width: 600px;
+
+        &.menu-open {
+          box-shadow: none;
+        }
 
         &.menu-toggle {
           height: 113px;
@@ -124,10 +129,13 @@ export default defineComponent({
         justify-content: center;
         align-items: center;
 
-        background: linear-gradient(
-          135deg, rgba(124, 124, 124, 0.4) 20.7%, rgba(112, 112, 112, 0.4) 100%);
-        backdrop-filter: blur(200px);
-        opacity: .8;
+        background: linear-gradient(143.71deg,
+        rgba(100, 100, 100, 0.4) 0%,
+        rgba(67, 67, 67, 0.4) 76.92%,
+        rgba(40, 40, 40, 0.4) 152.65%);
+        box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
+          inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(100px);
         border-radius: 25px;
       }
     }

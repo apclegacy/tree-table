@@ -122,9 +122,16 @@ export default defineComponent({
   position: absolute;
   left: calc((100vw - 2576px) / 2);
 
-  background: linear-gradient(
-    135deg, rgba(120, 120, 120, 0.4) 18.62%, rgba(56, 56, 56, 0.4) 97.79%);
-  backdrop-filter: blur(400px);
+  background: linear-gradient(135deg,
+    rgba(131, 131, 131, 0.4) 0%,
+    rgba(56, 56, 56, 0.4) 38.93%,
+    rgba(41, 41, 41, 0.4) 100%);
+
+  box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+
+  backdrop-filter: blur(300px);
+
   border-radius: 60px;
 
   &.previous {

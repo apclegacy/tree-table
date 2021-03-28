@@ -77,9 +77,15 @@ export default defineComponent({
 
         text-align: center;
 
-        background: linear-gradient(
-            135deg, rgba(255, 255, 255, 0.1) 18.62%, rgba(56, 56, 56, 0.1) 97.79%);
-        backdrop-filter: blur(400px);
+        background: linear-gradient(143.71deg,
+          rgba(100, 100, 100, 0.2) 0%,
+          rgba(67, 67, 67, 0.2) 76.92%,
+          rgba(40, 40, 40, 0.2) 152.65%);
+        box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.3),
+          inset 1px 1px 1px rgba(255, 255, 255, 0.4);
+
+        backdrop-filter: blur(200px);
+
         border-radius: 25px;
 
         p {
@@ -98,7 +104,6 @@ export default defineComponent({
       align-items: center;
 
       .container {
-        background-color: blue;
         height: 90%;
         width: 95%;
 
@@ -106,6 +111,11 @@ export default defineComponent({
 
         overflow: hidden;
 
+        box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
+          inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(300px);
+
+        background: none;
         img {
           width: 100%;
         }
