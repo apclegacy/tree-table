@@ -1,48 +1,64 @@
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import {
+  computed, defineComponent, ref, watchEffect,
+} from 'vue';
 
-// import Category from '@/components/Category';
+import Category from '@/components/Category.vue';
 
 export default defineComponent({
   name: 'Overlay',
-  /* components: {
+  components: {
     Category,
-  }, */
+  },
   setup() {
+    enum Categories { About, InteractiveProjects, Projects, None }
     const menuOpen = ref(false);
+    const openCategory = ref(Categories.None);
 
     const toggleMenu = () => { menuOpen.value = !menuOpen.value; };
-    const menuOpenClass = computed(() => (menuOpen.value ? 'menu-open' : ''));
+    const menuClass = computed(() => (menuOpen.value ? 'menu-open' : ''));
+
+    watchEffect(() => {
+      openCategory.value = !menuOpen.value ? Categories.None : openCategory.value;
+    });
+    const setOpenCategory = (category: Categories) => { openCategory.value = category; };
 
     return {
       toggleMenu,
-      menuOpenClass,
+      menuClass,
+
+      Categories,
+      openCategory,
+      setOpenCategory,
     };
   },
 });
 </script>
 
 <template>
-  <div class="overlay" :class="menuOpenClass">
-    <div class="menu" :class="menuOpenClass">
-      <span class="menu-item menu-indicator" :class="menuOpenClass">
+  <div class="overlay" :class="menuClass">
+    <div class="menu" :class="menuClass">
+      <span class="menu-item menu-indicator" :class="menuClass">
         <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M53.848 30.48L27.924 2.584 2 30.48"
             stroke="#fff" stroke-width="3" stroke-linecap="round"/>
         </svg>
       </span>
-      <span class="menu-item menu-toggle" :class="menuOpenClass" @click="toggleMenu">
+      <span class="menu-item menu-toggle" :class="menuClass" @click="toggleMenu">
         <p>Menu</p>
       </span>
-      <span class="menu-item">
-        <h2>About</h2>
-      </span>
-      <span class="menu-item">
-        <h2>Projects</h2>
-      </span>
-      <span class="menu-item">
-        <h2>Interactive Projects</h2>
-      </span>
+      <category :title="'About The Table'"
+        :category="Categories.About"
+        :openCategory="openCategory"
+        @setOpenCategory="setOpenCategory(Categories.About)" />
+      <category :title="'Interactive Projects'"
+        :category="Categories.InteractiveProjects"
+        :openCategory="openCategory"
+        @setOpenCategory="setOpenCategory(Categories.InteractiveProjects)" />
+      <category :title="'Projects'"
+        :category="Categories.Projects"
+        :openCategory="openCategory"
+        @setOpenCategory="setOpenCategory(Categories.Projects)" />
     </div>
   </div>
 </template>
@@ -72,20 +88,20 @@ export default defineComponent({
       justify-content: flex-end;
       align-items: center;
 
-      transform: translateY(31vh);
+      transform: translateY(25.5vh);
 
       &.menu-open {
         transform: translateY(0);
       }
 
       .menu-item {
-        $margin: 2vh;
-        height: 8vh;
-        width: 20vw;
+        $margin: 2.5vh;
+        height: 125px;
+        width: 600px;
 
         &.menu-toggle {
-          height: 7vh;
-          width: 6vw;
+          height: 113px;
+          width: 214px;
           margin: 0;
           &.menu-open {
             margin-bottom: $margin;
@@ -109,8 +125,9 @@ export default defineComponent({
         align-items: center;
 
         background: linear-gradient(
-          131.45deg, rgba(120, 120, 120, 0.4) 25.82%, rgba(56, 56, 56, 0.4) 135.64%);;
+          135deg, rgba(124, 124, 124, 0.4) 20.7%, rgba(112, 112, 112, 0.4) 100%);
         backdrop-filter: blur(200px);
+        opacity: .8;
         border-radius: 25px;
       }
     }
