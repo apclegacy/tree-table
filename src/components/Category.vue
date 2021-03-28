@@ -51,9 +51,9 @@ export default defineComponent({
   <div class="menu-item open-category" :class="categoryClass" @click="$emit('setOpenCategory')">
     <h2>{{ title }}</h2>
     <div class="category" :class="categoryClass">
-        <card class="previous" :title="cards[previousCard].title" />
-        <card class="current" :title="cards[previousCard].title" />
-        <card class="next" :title="cards[previousCard].title" />
+        <card class="previous" :card="cards[previousCard]" :category="title" />
+        <card class="current" :card="cards[previousCard]" :category="title" />
+        <card class="next" :card="cards[previousCard]" :category="title" />
       <div class="previous arrow" @click="slide(false)">
         <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M30.6932 1.95585L2.79688 27.8798L30.6932 53.8037"

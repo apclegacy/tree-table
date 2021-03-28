@@ -14,10 +14,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
     <overlay />
     <earth-viewer />
-  </div>
 </template>
 
 <style lang="scss">
@@ -25,18 +23,33 @@ body {
   margin: 0;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
 
   p {
-    font-size: 200%;
+    font-size: 27px;
+    line-height: 34px;
+    font-style: normal;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 100px;
+    font-weight: 800;
+    line-height: 137px;
+    font-style: normal;
+    margin: 0;
   }
 
   h2 {
-    font-size: 300%;
-    font-weight: 100;
+    font-size: 45px;
+    font-weight: 500;
+    line-height: 61px;
+    font-style: normal;
+    margin: 50px;
   }
+
 }
 </style>

@@ -17,10 +17,10 @@ export default defineComponent({
 
     const toggleMenu = () => { menuOpen.value = !menuOpen.value; };
     const menuClass = computed(() => (menuOpen.value ? 'menu-open' : ''));
+
     watchEffect(() => {
       openCategory.value = !menuOpen.value ? Categories.None : openCategory.value;
     });
-
     const setOpenCategory = (category: Categories) => { openCategory.value = category; };
 
     return {
