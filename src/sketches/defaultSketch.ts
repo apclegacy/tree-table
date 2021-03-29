@@ -30,7 +30,10 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
     const easyCamVector = (easyCam as any).getPosition(500);
     p.pointLight(200, 255, 200, easyCamVector[0], easyCamVector[1], easyCamVector[2]);
     p.texture(earthTexture);
+    p.push();
+    p.rotateY(3);
     p.sphere(500, 20, 20);
+    p.pop();
     p.noStroke();
   };
 });

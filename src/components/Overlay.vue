@@ -37,6 +37,10 @@ export default defineComponent({
 
 <template>
   <div class="overlay" :class="menuClass">
+    <div class="logos" :class="logoClass">
+      <img src="../assets/eth.png" alt="eth crowther lab">
+      <img src="../assets/zhdk.png" alt="zhdk">
+      </div>
     <div class="menu" :class="menuClass">
       <span class="menu-item menu-indicator" :class="menuClass">
         <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,6 +146,14 @@ export default defineComponent({
         backdrop-filter: blur(100px);
         border-radius: 25px;
       }
+    }
+    .logos {
+      padding: 3vh 0 0 3vh;
+    }
+    .logos img{
+      float: left;
+      display: block;
+      margin-right: 3vh;
     }
   }
 </style>
