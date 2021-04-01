@@ -149,11 +149,12 @@ export default defineComponent({
     }
     .logos {
       padding: 3vh 0 0 3vh;
-    }
-    .logos img{
-      float: left;
-      display: block;
-      margin-right: 3vh;
+
+      img{
+        float: left;
+        display: block;
+        margin-right: 3vh;
+      }
     }
   }
 </style>
