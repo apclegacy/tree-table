@@ -37,10 +37,10 @@ export default defineComponent({
 
 <template>
   <div class="overlay" :class="menuClass">
-    <div class="logos" :class="logoClass">
+    <div class="logos">
       <img src="../assets/eth.png" alt="eth crowther lab">
       <img src="../assets/zhdk.png" alt="zhdk">
-      </div>
+    </div>
     <div class="menu" :class="menuClass">
       <span class="menu-item menu-indicator" :class="menuClass">
         <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
