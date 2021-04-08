@@ -48,12 +48,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="menu-item open-category" :class="categoryClass" @click="$emit('setOpenCategory')">
+  <div class="menu-item toggle-category" :class="categoryClass" @click="$emit('setOpenCategory')">
     <h2>{{ title }}</h2>
     <div class="category" :class="categoryClass">
-        <card class="previous" :card="cards[previousCard]" :category="title" />
-        <card class="current" :card="cards[previousCard]" :category="title" />
-        <card class="next" :card="cards[previousCard]" :category="title" />
+        <card class="card"
+          v-for="card in cards"
+          :card="card"
+          :key="card.title"
+          :category="title" />
       <div class="previous arrow" @click="slide(false)">
         <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M30.6932 1.95585L2.79688 27.8798L30.6932 53.8037"
@@ -71,11 +73,14 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.open-category {
+.toggle-category {
   &.open {
     height: 1356px !important;
     width: 100vw !important;
+
     background: none !important;
+
+    overflow-x: scroll;
     h2 {
       display: none !important;
     }
@@ -88,13 +93,11 @@ export default defineComponent({
   display: none;
 
   &.open {
-    height: 1356px !important;
-    width: 100vw !important;
     display: flex;
   }
 
   flex-direction: row;
-  overflow: hidden;
+  overflow-y: scroll;
 
   .arrow {
     position: absolute;
@@ -111,6 +114,8 @@ export default defineComponent({
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    scroll-snap-type: x mandatory;
   }
 }
 
@@ -119,8 +124,7 @@ export default defineComponent({
   width: 2576px;
   min-width: 2576px;
 
-  position: absolute;
-  left: calc((100vw - 2576px) / 2);
+  margin-left: 10vw;
 
   background: linear-gradient(135deg,
     rgba(131, 131, 131, 0.4) 0%,
@@ -134,12 +138,6 @@ export default defineComponent({
 
   border-radius: 60px;
 
-  &.previous {
-    left: -2208px;
-  }
-
-  &.next {
-    left: 3472px;
-  }
+   scroll-snap-align: center;
 }
 </style>
