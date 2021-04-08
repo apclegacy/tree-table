@@ -24,6 +24,7 @@ export default defineComponent({
     const setOpenCategory = (category: Categories) => { openCategory.value = category; };
 
     return {
+      menuOpen,
       toggleMenu,
       menuClass,
 
@@ -42,32 +43,52 @@ export default defineComponent({
       <img src="../assets/zhdk.png" alt="zhdk">
     </div>
     <div class="menu" :class="menuClass">
-      <span class="menu-item menu-indicator" :class="menuClass">
-        <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M53.848 30.48L27.924 2.584 2 30.48"
-            stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="menu-item menu-toggle" :class="menuClass" @click="toggleMenu">
-        <p>Menu</p>
-      </span>
-      <category :title="'About The Table'" :class="menuClass"
-        :category="Categories.About"
-        :openCategory="openCategory"
-        @setOpenCategory="setOpenCategory(Categories.About)" />
-      <category :title="'Interactive Projects'" :class="menuClass"
-        :category="Categories.InteractiveProjects"
-        :openCategory="openCategory"
-        @setOpenCategory="setOpenCategory(Categories.InteractiveProjects)" />
-      <category :title="'Projects'" :class="menuClass"
-        :category="Categories.Projects"
-        :openCategory="openCategory"
-        @setOpenCategory="setOpenCategory(Categories.Projects)" />
+      <transition-group tag="div" class="menu-items menu-toggle" name="pop" mode="out-in">
+         <span v-if="!menuOpen" class="menu-item menu-indicator"
+          :key="`indicator-${menuClass}`">
+          <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M53.848 30.48L27.924 2.584 2 30.48"
+              stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span v-if="!menuOpen" class="menu-item menu-toggle" :class="menuClass"
+          :key="`toggle-${menuClass}`"
+          @click="toggleMenu">
+          <p>Menu</p>
+        </span>
+      </transition-group>
+      <transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">
+        <span v-if="menuOpen" class="menu-item menu-toggle" :class="menuClass"
+          :key="`toggle-${menuClass}`"
+          :style="{'--position': 4}"
+          @click="toggleMenu">
+          <p>Menu</p>
+        </span>
+        <category v-if="menuOpen" :title="'About The Table'" :class="menuClass"
+          :category="Categories.About"
+          :openCategory="openCategory"
+          :key="`about-${menuClass}`"
+          :style="{'--position': 3}"
+          @setOpenCategory="setOpenCategory(Categories.About)" />
+        <category v-if="menuOpen" :title="'Interactive Projects'" :class="menuClass"
+          :category="Categories.InteractiveProjects"
+          :openCategory="openCategory"
+          :key="`interactive-${menuClass}`"
+          :style="{'--position': 2}"
+          @setOpenCategory="setOpenCategory(Categories.InteractiveProjects)" />
+        <category v-if="menuOpen" :title="'Projects'" :class="menuClass"
+          :category="Categories.Projects"
+          :openCategory="openCategory"
+          :key="`projects-${menuClass}`"
+          :style="{'--position': 1}"
+          @setOpenCategory="setOpenCategory(Categories.Projects)" />
+      </transition-group>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+  // styles
   .overlay {
     width: 100vw;
     height: 100vh;
@@ -94,57 +115,58 @@ export default defineComponent({
       justify-content: flex-end;
       align-items: center;
 
-      transform: translateY(25.5vh);
-
-      &.menu-open {
-        transform: translateY(0);
-        box-shadow: none;
-      }
-
-      .menu-item {
-        $margin: 2.5vh;
-        height: 125px;
-        width: 600px;
-
-        pointer-events: auto;
-
-        &.menu-open {
-          box-shadow: none;
-        }
-
-        &.menu-toggle {
-          height: 113px;
-          width: 214px;
-          margin: 0;
-          &.menu-open {
-            margin-bottom: $margin;
-          }
-        }
-
-        &.menu-indicator {
-          height: 3vh;
-          width: 3vh;
-          background: none;
-           &.menu-open {
-            display: none;
-          }
-        }
-
-        margin-bottom: $margin;
-
+      .menu-items {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        background: linear-gradient(143.71deg,
-        rgba(100, 100, 100, 0.4) 0%,
-        rgba(67, 67, 67, 0.4) 76.92%,
-        rgba(40, 40, 40, 0.4) 152.65%);
-        box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
-          inset 1px 1px 2px rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(100px);
-        border-radius: 25px;
+        &.menu-toggle {
+          position: absolute;
+        }
+
+        .menu-item {
+          $margin: 2.5vh;
+          height: 125px;
+          width: 600px;
+
+          pointer-events: auto;
+
+          &.menu-open {
+            box-shadow: none;
+          }
+
+          &.menu-toggle {
+            height: 113px;
+            width: 214px;
+            margin: 0;
+            &.menu-open {
+              margin-bottom: $margin;
+            }
+          }
+
+          &.menu-indicator {
+            height: 3vh;
+            width: 3vh;
+            background: none;
+          }
+
+          margin-bottom: $margin;
+
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          background: linear-gradient(143.71deg,
+          rgba(100, 100, 100, 0.4) 0%,
+          rgba(67, 67, 67, 0.4) 76.92%,
+          rgba(40, 40, 40, 0.4) 152.65%);
+          box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
+            inset 1px 1px 2px rgba(255, 255, 255, 0.4);
+          backdrop-filter: blur(100px);
+          border-radius: 25px;
+        }
       }
     }
     .logos {
@@ -156,5 +178,29 @@ export default defineComponent({
         margin-right: 3vh;
       }
     }
+  }
+
+  // animations
+  $pop-in: opacity 0.15s linear, transform 0.15s ease-in;
+  $pop-out: opacity 0.15s linear, transform 0.15s ease-out;
+
+  .pop {
+    &-enter-active {
+      transition: $pop-out;
+      transition-delay: 0.6s;
+    }
+    &-enter-from, &-leave-to  { opacity: 0; }
+  }
+
+  .pop-stagger {
+    &-leave-active {
+      transition: $pop-in;
+      transition-delay: calc(0.1s * (5 - var(--position)) + 0.02s);
+    }
+    &-enter-active {
+      transition: $pop-out;
+      transition-delay: calc(0.1s * var(--position));
+    }
+    &-enter-from, &-leave-to  { opacity: 0; }
   }
 </style>
