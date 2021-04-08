@@ -37,13 +37,17 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="overlay" :class="menuClass">
+  <div class="overlay">
+    <transition name="pop-backdrop">
+      <div class="backdrop" v-if="menuClass" />
+    </transition>
     <div class="logos">
       <img src="../assets/eth.png" alt="eth crowther lab">
       <img src="../assets/zhdk.png" alt="zhdk">
     </div>
     <div class="menu" :class="menuClass">
-      <transition-group tag="div" class="menu-items menu-toggle" name="pop" mode="out-in">
+      <transition-group tag="div"
+        class="menu-items menu-toggle" name="pop-menu-toggle" mode="out-in">
          <span v-if="!menuOpen" class="menu-item menu-indicator"
           :key="`indicator-${menuClass}`">
           <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +58,7 @@ export default defineComponent({
         <span v-if="!menuOpen" class="menu-item menu-toggle" :class="menuClass"
           :key="`toggle-${menuClass}`"
           @click="toggleMenu">
-          <p>Menu</p>
+          <p>Menu ↑</p>
         </span>
       </transition-group>
       <transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">
@@ -62,7 +66,7 @@ export default defineComponent({
           :key="`toggle-${menuClass}`"
           :style="{'--position': 4}"
           @click="toggleMenu">
-          <p>Menu</p>
+          <p>Menu ↓</p>
         </span>
         <category v-if="menuOpen" :title="'About The Table'" :class="menuClass"
           :category="Categories.About"
@@ -103,8 +107,25 @@ export default defineComponent({
 
     pointer-events: none;
 
-    &.menu-open {
+    .backdrop {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
       backdrop-filter: blur(40px);
+    }
+
+    .logos {
+      padding: 3vh 0 0 3vh;
+      position: absolute;
+      z-index: 99;
+      top: 0;
+      img{
+        float: left;
+        display: block;
+        margin-right: 3vh;
+      }
     }
 
     .menu {
@@ -169,37 +190,41 @@ export default defineComponent({
         }
       }
     }
-    .logos {
-      padding: 3vh 0 0 3vh;
+  }
 
-      img{
-        float: left;
-        display: block;
-        margin-right: 3vh;
-      }
+  .pop-backdrop {
+    &-enter-active {
+      transition: opacity 0.3s ease-out;
+      transition-delay: 0.1s;
     }
+    &-leave-active {
+      transition: opacity 0.2s ease-in;
+      transition-delay: 0.3s;
+    }
+    &-enter-from, &-leave-to  { opacity: 0; }
   }
 
   // animations
-  $pop-in: opacity 0.15s linear, transform 0.15s ease-in;
-  $pop-out: opacity 0.15s linear, transform 0.15s ease-out;
+  $pop-in: opacity 0.1s ease-in;
+  $pop-out: opacity 0.1s ease-out;
 
-  .pop {
+  .pop-menu-toggle {
     &-enter-active {
-      transition: $pop-out;
+      transition: $pop-in;
       transition-delay: 0.6s;
     }
     &-enter-from, &-leave-to  { opacity: 0; }
   }
 
   .pop-stagger {
-    &-leave-active {
-      transition: $pop-in;
-      transition-delay: calc(0.1s * (5 - var(--position)) + 0.02s);
-    }
     &-enter-active {
+      transition: $pop-in;
+      transition-delay: calc(0.05s * var(--position) + 0.15s);
+    }
+    &-leave-active {
       transition: $pop-out;
-      transition-delay: calc(0.1s * var(--position));
+      transition-delay: calc(0.075s * (5 - var(--position)));
+      //transition-delay: calc(0.01s * (1 - var(--position)) + calc(0.1s * (4 - var(--position))));
     }
     &-enter-from, &-leave-to  { opacity: 0; }
   }
