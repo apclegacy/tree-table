@@ -51,11 +51,6 @@ export default defineComponent({
   <div class="menu-item toggle-category" :class="categoryClass" @click="$emit('setOpenCategory')">
     <h2>{{ title }}</h2>
     <div class="category" :class="categoryClass">
-        <card class="card"
-          v-for="card in cards"
-          :card="card"
-          :key="card.title"
-          :category="title" />
       <div class="previous arrow" @click="slide(false)">
         <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M30.6932 1.95585L2.79688 27.8798L30.6932 53.8037"
@@ -68,6 +63,11 @@ export default defineComponent({
             stroke="white" stroke-width="3" stroke-linecap="round"/>
         </svg>
       </div>
+      <card class="card"
+        v-for="card in cards"
+        :card="card"
+        :key="card.title"
+        :category="title" />
     </div>
   </div>
 </template>
@@ -97,7 +97,9 @@ export default defineComponent({
   }
 
   flex-direction: row;
-  overflow-y: scroll;
+  overflow-x: scroll;
+
+  scroll-snap-type: x mandatory;
 
   .arrow {
     position: absolute;
@@ -114,30 +116,7 @@ export default defineComponent({
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    scroll-snap-type: x mandatory;
   }
-}
 
-.card {
-  height: 1356px;
-  width: 2576px;
-  min-width: 2576px;
-
-  margin-left: 10vw;
-
-  background: linear-gradient(135deg,
-    rgba(131, 131, 131, 0.4) 0%,
-    rgba(56, 56, 56, 0.4) 38.93%,
-    rgba(41, 41, 41, 0.4) 100%);
-
-  box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.4);
-
-  backdrop-filter: blur(300px);
-
-  border-radius: 60px;
-
-   scroll-snap-align: center;
 }
 </style>
