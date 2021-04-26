@@ -1,27 +1,21 @@
 [
   {
-    "title": "About This Table",
+    "title": "About The Table",
     "cards" : [
       {
-        "title": "About Card 1",
-        "author": "About Author 1",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "media": [
-          { "type":"img", "title":"tom.png" }
-        ]
-      },
-      {
-        "title": "About Card 2",
-        "author": "About Author 2",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "media": [
-          { "type":"img", "title":"tom.png" }
-        ]
-      },
-      {
-        "title": "About Card 3",
-        "author": "About Author 3",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "title": "Crowther Lab",
+        "lead": "The Crowther Lab team at ETH Zurich uses ecosystem science to address biodiversity loss and climate change",
+        "people": {
+          "title": "Project Partner",
+          "names": [
+            "Prof. Dr. Thomas Crowther",
+            "Crowther Lab ETH Zurich"
+          ]
+        },
+        "description": {
+          "title": "Reforestation Projects",
+          "text": "The globe in the background show diverse projects around the world helping the reforestation progress in cooperation with the Crowther Lab.\n\nClick on the button below to get to the interactive visualization that shows more information about each project."
+        },
         "media": [
           { "type":"img", "title":"tom.png" }
         ]
@@ -31,59 +25,13 @@
   {
     "title": "Interactive Projects",
     "cards" : [
-      {
-        "title": "Interactive Card 1",
-        "author": "Interactive Author 1",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "media": [
-          { "type":"img", "title":"tom.png" }
-        ]
-      },
-      {
-        "title": "Interactive Card 2",
-        "author": "Interactive Author 2",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "media": [
-          { "type":"img", "title":"tom.png" }
-        ]
-      },
-      {
-        "title": "Interactive Card 3",
-        "author": "Interactive Author 3",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "media": [
-          { "type":"img", "title":"tom.png" }
-        ]
-      }
+      
     ]
   },
   {
     "title": "Projects",
     "cards" : [
-      {
-        "title": "Projects Card 1",
-        "author": "Projects Author 1",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "media": [
-          { "type":"img", "title":"tom.png" }
-        ]
-      },
-      {
-        "title": "Projects Card 2",
-        "author": "Projects Author 2",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "media": [
-          { "type":"img", "title":"tom.png" }
-        ]
-      },
-      {
-        "title": "Projects Card 3",
-        "author": "Projects Author 3",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "media": [
-          { "type":"img", "title":"tom.png" }
-        ]
-      }
+
     ]
   }
 ]

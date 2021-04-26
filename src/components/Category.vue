@@ -48,96 +48,136 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="menu-item toggle-category" :class="categoryClass" @click="$emit('setOpenCategory')">
-    <h2>{{ title }}</h2>
-    <div class="category" :class="categoryClass">
-        <card class="card"
-          v-for="card in cards"
-          :card="card"
-          :key="card.title"
-          :category="title" />
-      <div class="previous arrow" @click="slide(false)">
-        <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M30.6932 1.95585L2.79688 27.8798L30.6932 53.8037"
-            stroke="white" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+    <div class="menu-item" :class="categoryClass">
+      <div class="toggle-category"
+        v-show="(categoryClass === '')"
+        @click="$emit('setOpenCategory')">
+        <h2>{{ title }}</h2>
       </div>
-      <div class="next arrow" @click="slide(true)">
-        <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2.30676 54.0432L30.2031 28.1192L2.30676 2.19531"
-            stroke="white" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-      </div>
+      <!--<transition name="pop">-->
+        <div class="category" v-show="(categoryClass !== '')">
+          <div class="previous arrow" @click="slide(false)">
+            <svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.7" filter="url(#filter0_bii)">
+                <circle cx="40.8672" cy="40.582"
+                  r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
+              </g>
+              <path d="M44.3539 29.3402L32.3539 40.5402L44.3539 51.7402"
+                stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <defs>
+                <filter id="filter0_bii" x="-49.1328" y="-49.418" width="180"
+                  height="180" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                  <feGaussianBlur in="BackgroundImage" stdDeviation="25"/>
+                  <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
+                  <feBlend mode="normal"
+                    in="SourceGraphic" in2="effect1_backgroundBlur" result="shape"/>
+                  <feColorMatrix in="SourceAlpha" type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                  <feOffset dx="1" dy="1"/>
+                  <feGaussianBlur stdDeviation="1"/>
+                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
+                  <feBlend mode="normal" in2="shape" result="effect2_innerShadow"/>
+                  <feColorMatrix in="SourceAlpha" type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                  <feOffset dx="-1" dy="-1"/>
+                  <feGaussianBlur stdDeviation="0.5"/>
+                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                  <feColorMatrix type="matrix"
+                    values="0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0.5 0"/>
+                  <feBlend mode="normal" in2="effect2_innerShadow" result="effect3_innerShadow"/>
+                </filter>
+              </defs>
+            </svg>
+          </div>
+          <div class="next arrow" @click="slide(true)">
+            <svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.7" filter="url(#filter0_bii)">
+                <circle cx="40.8672" cy="40.582"
+                  r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
+              </g>
+              <path d="M37.0906 52.7906L49.0906 41.5906L37.0906 30.3906"
+                stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <defs>
+                <filter id="filter0_bii" x="-49.1328" y="-49.418" width="180"
+                  height="180" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                  <feGaussianBlur in="BackgroundImage" stdDeviation="25"/>
+                  <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
+                  <feBlend mode="normal"
+                    in="SourceGraphic" in2="effect1_backgroundBlur" result="shape"/>
+                  <feColorMatrix in="SourceAlpha" type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                  <feOffset dx="1" dy="1"/>
+                  <feGaussianBlur stdDeviation="1"/>
+                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
+                  <feBlend mode="normal" in2="shape" result="effect2_innerShadow"/>
+                  <feColorMatrix in="SourceAlpha" type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                  <feOffset dx="-1" dy="-1"/>
+                  <feGaussianBlur stdDeviation="0.5"/>
+                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                  <feColorMatrix type="matrix"
+                    values="0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0.5 0"/>
+                  <feBlend mode="normal" in2="effect2_innerShadow" result="effect3_innerShadow"/>
+                </filter>
+              </defs>
+            </svg>
+          </div>
+          <card
+            v-for="card in cards"
+            :card="card"
+            :key="card.title"
+            :category="title" />
+        </div>
+      <!--</transition>-->
     </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>
-.toggle-category {
+.menu-item {
   &.open {
-    height: 1356px !important;
+    height: 1180px !important;
     width: 100vw !important;
-
     background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    }
 
+    // transition: width 0s;
+    // transition-delay: 0.1s;
+
+  .toggle-category { h2 { opacity: 1; }  transition: none !important;}
+
+  .category {
+    display: flex;
+    flex-direction: row;
     overflow-x: scroll;
-    h2 {
-      display: none !important;
-    }
-  }
-  h2 {
-    opacity: 1 !important;
-  }
-}
-.category {
-  display: none;
-
-  &.open {
-    display: flex;
-  }
-
-  flex-direction: row;
-  overflow-y: scroll;
-
-  .arrow {
-    position: absolute;
-    height: 100%;
-    width: 264px;
-    &.previous {
-      left: 368px;
-    }
-    &.next {
-      left: calc(((100vw - 2576px) / 2) + 2576px);
-    }
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    scrollbar-width: none;
 
     scroll-snap-type: x mandatory;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .arrow {
+      position: absolute;
+      height: 1180px;
+      width: 264px;
+      &.previous {
+        left: 368px;
+      }
+      &.next {
+        left: calc(((100vw - 2576px) / 2) + 2576px);
+      }
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
-}
-
-.card {
-  height: 1356px;
-  width: 2576px;
-  min-width: 2576px;
-
-  margin-left: 10vw;
-
-  background: linear-gradient(135deg,
-    rgba(131, 131, 131, 0.4) 0%,
-    rgba(56, 56, 56, 0.4) 38.93%,
-    rgba(41, 41, 41, 0.4) 100%);
-
-  box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.4);
-
-  backdrop-filter: blur(300px);
-
-  border-radius: 60px;
-
-   scroll-snap-align: center;
 }
 </style>
