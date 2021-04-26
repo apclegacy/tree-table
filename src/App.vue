@@ -22,33 +22,36 @@ export default defineComponent({
 body {
   margin: 0;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+
 #app {
-  font-family: Avenir;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
 
   p {
-    font-size: 27px;
-    line-height: 34px;
+    font-size: 30px;
+    line-height: 36px;
     font-style: normal;
+    font-weight: 300;
     margin: 20px;
   }
 
   h1 {
-    font-size: 100px;
-    font-weight: 800;
-    line-height: 137px;
+    font-size: 130px;
+    font-weight: 700;
+    line-height: 157px;
     font-style: normal;
     margin: 0;
   }
 
   h2 {
-    font-size: 45px;
+    font-size: 30px;
     font-weight: 500;
-    line-height: 61px;
+    line-height: 36px;
     font-style: normal;
-    margin: 50px;
   }
 
 }

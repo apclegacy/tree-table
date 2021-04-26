@@ -48,75 +48,75 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="menu-item toggle-category" :class="categoryClass" @click="$emit('setOpenCategory')">
-    <h2>{{ title }}</h2>
-    <div class="category" :class="categoryClass">
-      <div class="previous arrow" @click="slide(false)">
-        <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M30.6932 1.95585L2.79688 27.8798L30.6932 53.8037"
-            stroke="white" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+    <div class="menu-item" :class="categoryClass">
+      <div class="toggle-category"
+        v-show="(categoryClass === '')"
+        @click="$emit('setOpenCategory')">
+        <h2>{{ title }}</h2>
       </div>
-      <div class="next arrow" @click="slide(true)">
-        <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2.30676 54.0432L30.2031 28.1192L2.30676 2.19531"
-            stroke="white" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <card class="card"
-        v-for="card in cards"
-        :card="card"
-        :key="card.title"
-        :category="title" />
+      <!--<transition name="pop">-->
+        <div class="category" v-show="(categoryClass !== '')">
+          <div class="previous arrow" @click="slide(false)">
+            <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30.6932 1.95585L2.79688 27.8798L30.6932 53.8037"
+                stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="next arrow" @click="slide(true)">
+            <svg width="33" height="56" viewBox="0 0 33 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.30676 54.0432L30.2031 28.1192L2.30676 2.19531"
+                stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <card
+            v-for="card in cards"
+            :card="card"
+            :key="card.title"
+            :category="title" />
+        </div>
+      <!--</transition>-->
     </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>
-.toggle-category {
+.menu-item {
   &.open {
-    height: 1356px !important;
+    height: 1180px !important;
     width: 100vw !important;
-
     background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    }
 
+    // transition: width 0s;
+    // transition-delay: 0.1s;
+
+  .toggle-category { h2 { opacity: 1; }  transition: none !important;}
+
+  .category {
+    display: flex;
+    flex-direction: row;
     overflow-x: scroll;
-    h2 {
-      display: none !important;
+
+    scroll-snap-type: x mandatory;
+
+    .arrow {
+      position: absolute;
+      height: 1180px;
+      width: 264px;
+      &.previous {
+        left: 368px;
+      }
+      &.next {
+        left: calc(((100vw - 2576px) / 2) + 2576px);
+      }
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   }
-  h2 {
-    opacity: 1 !important;
-  }
-}
-.category {
-  display: none;
-
-  &.open {
-    display: flex;
-  }
-
-  flex-direction: row;
-  overflow-x: scroll;
-
-  scroll-snap-type: x mandatory;
-
-  .arrow {
-    position: absolute;
-    height: 100%;
-    width: 264px;
-    &.previous {
-      left: 368px;
-    }
-    &.next {
-      left: calc(((100vw - 2576px) / 2) + 2576px);
-    }
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
 }
 </style>

@@ -42,29 +42,27 @@ export default defineComponent({
 .card-container {
   padding-left: 192px;
   padding-right: 192px;
-  &:nth-child(3) { padding-left: 632px; }
+  &:nth-child(3) {
+    padding-left: 632px; }
   &:last-of-type { padding-right: 632px; }
 
   scroll-snap-align: center;
 
   .card {
-    height: 1356px;
+    height: 1180px;
     width: 2576px;
     min-width: 2576px;
 
     display: flex;
     flex-direction: column;
 
-    background: linear-gradient(135deg,
-      rgba(131, 131, 131, 0.4) 0%,
-      rgba(56, 56, 56, 0.4) 38.93%,
-      rgba(41, 41, 41, 0.4) 100%);
-
+    /* background */
+    background: rgba(48, 48, 48, 0.7);
+    /* final */
     box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
       inset 1px 1px 2px rgba(255, 255, 255, 0.4);
-
-    backdrop-filter: blur(300px);
-    border-radius: 60px;
+    backdrop-filter: blur(400px);
+    border-radius: 25px;
 
     scroll-snap-align: center;
 
