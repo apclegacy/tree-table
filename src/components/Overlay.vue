@@ -58,7 +58,7 @@ export default defineComponent({
         <span v-if="!menuOpen" class="menu-item menu-toggle" :class="menuClass"
           :key="`toggle-${menuClass}`"
           @click="toggleMenu">
-          <p>Menu ↑</p>
+          <p>Menu</p>
         </span>
       </transition-group>
       <transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">
@@ -181,7 +181,6 @@ export default defineComponent({
 
           /* background */
           background: rgba(48, 48, 48, 0.7);
-          opacity: 0.7;
           /* stroke */
           border: 3px solid #00FF75;
           box-sizing: border-box;

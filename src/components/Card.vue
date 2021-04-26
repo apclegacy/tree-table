@@ -19,7 +19,6 @@ export default defineComponent({
       <div class="header">
         <h2>{{ category }}</h2>
         <h1>{{ card.title }}</h1>
-        <p>{{ card.author }}</p>
       </div>
       <div class="body">
         <div class="text">
@@ -30,6 +29,9 @@ export default defineComponent({
         </div>
         <div class="media">
           <div class="container">
+            <img src="../assets/tom.png" />
+            <img src="../assets/tom.png" />
+            <img src="../assets/tom.png" />
             <img src="../assets/tom.png" />
           </div>
         </div>
@@ -57,7 +59,7 @@ export default defineComponent({
     flex-direction: column;
 
     /* background */
-    background: rgba(48, 48, 48, 0.7);
+    background: rgba(48, 48, 48, 0.3);
     /* final */
     box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
       inset 1px 1px 2px rgba(255, 255, 255, 0.4);
@@ -128,21 +130,21 @@ export default defineComponent({
         justify-content: center;
         align-items: center;
 
+        opacity: 1 !important;
+
         .container {
           height: 90%;
           width: 95%;
 
           border-radius: 25px;
 
-          overflow: hidden;
-
-          box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
-            inset 1px 1px 2px rgba(255, 255, 255, 0.4);
-          backdrop-filter: blur(300px);
+          overflow-y: scroll;
+          scroll-snap-type: y mandatory;
 
           background: none;
           img {
             width: 100%;
+            scroll-snap-align: center;
           }
         }
       }
