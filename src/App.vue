@@ -32,11 +32,11 @@ body {
   color: white;
 
   p {
-    font-size: 30px;
-    line-height: 36px;
+    font-size: 20px;
+    line-height: 30px;
     font-style: normal;
     font-weight: 300;
-    margin: 20px;
+    margin: 0;
   }
 
   h1 {

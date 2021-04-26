@@ -23,8 +23,17 @@ export default defineComponent({
       <div class="body">
         <div class="text">
           <div class="container">
-            <h2>About</h2>
-            <p>{{ card.description }}</p>
+            <div class="column">
+              <h2>{{ card.lead }}</h2>
+              <div class="people">
+                <h2>{{ card.people.title }}</h2>
+                <p v-for="name in card.people.names" :key="name">{{ name }}</p>
+              </div>
+            </div>
+            <div class="column border">
+              <h2>{{ card.description.title }}</h2>
+              <p>{{ card.description.text }}</p>
+            </div>
           </div>
         </div>
         <div class="media">
@@ -84,7 +93,7 @@ export default defineComponent({
       flex-direction: row;
 
       .text {
-        width: 38%;
+        width: 40%;
         height: 100%;
 
         display: flex;
@@ -98,31 +107,67 @@ export default defineComponent({
 
           margin-left: 4%;
 
-          display:flex;
-          flex-direction: column;
+          display: flex;
+          flex-direction: row;
           align-items: center;
+          justify-content: space-evenly;
 
-          text-align: center;
-
-          background: linear-gradient(143.71deg,
-            rgba(100, 100, 100, 0.2) 0%,
-            rgba(67, 67, 67, 0.2) 76.92%,
-            rgba(40, 40, 40, 0.2) 152.65%);
-          box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.3),
-            inset 1px 1px 1px rgba(255, 255, 255, 0.4);
-
-          backdrop-filter: blur(200px);
-
+          border: 3px solid rgba(255, 255, 255, 0.2);
           border-radius: 25px;
 
-          p {
-            max-width: 85%;
+          .column {
+            width: 42%;
+            height: 88%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            &.border {
+              border: 3px solid rgba(255, 255, 255, 0.2);
+              border-radius: 25px;
+
+              justify-content: start;
+
+              h2 {
+                margin-left: 12%;
+                margin-top: 9%;
+                margin-bottom: 9%;
+              }
+              p {
+                margin-left: 12% !important;
+                white-space: pre-wrap;
+
+                max-width: 80%;
+              }
+            }
+
+            h2 {
+              margin: 0;
+            }
+
+            .people {
+              width: 100%;
+              height: 50%;
+
+              border: 3px solid rgba(255, 255, 255, 0.2);
+              border-radius: 25px;
+
+              h2 {
+                margin-left: 12%;
+                margin-top: 9%;
+                margin-bottom: 9%;
+              }
+              p {
+                margin-left: 12% !important;
+              }
+            }
           }
         }
       }
 
       .media {
-        width: 62%;
+        width: 60%;
         height: 100%;
 
         display: flex;

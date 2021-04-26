@@ -48,13 +48,13 @@ export default defineComponent({
     <div class="menu" :class="menuClass">
       <transition-group tag="div"
         class="menu-items menu-toggle" name="pop-menu-toggle" mode="out-in">
-         <span v-if="!menuOpen" class="menu-item menu-indicator"
+         <!--<span v-if="!menuOpen" class="menu-item menu-indicator"
           :key="`indicator-${menuClass}`">
           <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M53.848 30.48L27.924 2.584 2 30.48"
               stroke="#fff" stroke-width="3" stroke-linecap="round"/>
           </svg>
-        </span>
+        </span>-->
         <span v-if="!menuOpen" class="menu-item menu-toggle" :class="menuClass"
           :key="`toggle-${menuClass}`"
           @click="toggleMenu">
