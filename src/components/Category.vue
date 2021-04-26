@@ -156,9 +156,12 @@ export default defineComponent({
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
+    scrollbar-width: none;
 
     scroll-snap-type: x mandatory;
-
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .arrow {
       position: absolute;
       height: 1180px;
