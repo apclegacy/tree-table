@@ -42,8 +42,8 @@ export default defineComponent({
       <div class="backdrop" v-if="menuClass" />
     </transition>
     <div class="logos">
-      <img src="../assets/eth.png" alt="eth crowther lab">
-      <img src="../assets/zhdk.png" alt="zhdk">
+      <img src="../assets/logos/eth.png" alt="eth crowther lab">
+      <img src="../assets/logos/zhdk.png" alt="zhdk">
     </div>
     <div class="menu" :class="menuClass">
       <transition-group tag="div"

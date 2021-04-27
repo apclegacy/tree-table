@@ -38,10 +38,9 @@ export default defineComponent({
         </div>
         <div class="media">
           <div class="container">
-            <img src="../assets/tom.png" />
-            <img src="../assets/tom.png" />
-            <img src="../assets/tom.png" />
-            <img src="../assets/tom.png" />
+            <!--<img v-for="media in card.media" :key="media.title"
+              :src="'../assets/cards/img/' + media.title"/>-->
+           <img src="../assets/cards/img/tom.png">
           </div>
         </div>
       </div>

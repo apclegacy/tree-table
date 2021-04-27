@@ -1,0 +1,55 @@
+[
+  {
+    "title": "About The Table",
+    "cards" : [
+      {
+        "title": "Crowther Lab",
+        "lead": "The Crowther Lab team at ETH Zurich uses ecosystem science to address biodiversity loss and climate change",
+        "people": {
+          "title": "Project Partner",
+          "names": [
+            "Prof. Dr. Thomas Crowther",
+            "Crowther Lab ETH Zurich"
+          ]
+        },
+        "description": {
+          "title": "Reforestation Projects",
+          "text": "The globe in the background show diverse projects around the world helping the reforestation progress in cooperation with the Crowther Lab.\n\nClick on the button below to get to the interactive visualization that shows more information about each project."
+        },
+        "media": [
+          { "type":"img", "title":"tom.png" }
+        ]
+      },
+      {
+        "title": "Crowther Lab",
+        "lead": "The Crowther Lab team at ETH Zurich uses ecosystem science to address biodiversity loss and climate change",
+        "people": {
+          "title": "Project Partner",
+          "names": [
+            "Prof. Dr. Thomas Crowther",
+            "Crowther Lab ETH Zurich"
+          ]
+        },
+        "description": {
+          "title": "Reforestation Projects",
+          "text": "The globe in the background show diverse projects around the world helping the reforestation progress in cooperation with the Crowther Lab.\n\nClick on the button below to get to the interactive visualization that shows more information about each project."
+        },
+        "media": [
+          { "type":"img", "title":"tom.png" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Interactive Projects",
+    "cards" : [
+      
+    ]
+  },
+  {
+    "title": "Projects",
+    "cards" : [
+
+    ]
+  }
+]
