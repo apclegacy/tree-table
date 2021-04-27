@@ -42,31 +42,31 @@ export default defineComponent({
       <div class="backdrop" v-if="menuClass" />
     </transition>
     <div class="logos">
-      <img src="../assets/eth.png" alt="eth crowther lab">
-      <img src="../assets/zhdk.png" alt="zhdk">
+      <img src="../assets/logos/eth.png" alt="eth crowther lab">
+      <img src="../assets/logos/zhdk.png" alt="zhdk">
     </div>
     <div class="menu" :class="menuClass">
       <transition-group tag="div"
         class="menu-items menu-toggle" name="pop-menu-toggle" mode="out-in">
-         <span v-if="!menuOpen" class="menu-item menu-indicator"
+         <!--<span v-if="!menuOpen" class="menu-item menu-indicator"
           :key="`indicator-${menuClass}`">
           <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M53.848 30.48L27.924 2.584 2 30.48"
               stroke="#fff" stroke-width="3" stroke-linecap="round"/>
           </svg>
-        </span>
+        </span>-->
         <span v-if="!menuOpen" class="menu-item menu-toggle" :class="menuClass"
           :key="`toggle-${menuClass}`"
           @click="toggleMenu">
-          <p>Menu ↑</p>
+          <p>Menu</p>
         </span>
       </transition-group>
       <transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">
-        <span v-if="menuOpen" class="menu-item menu-toggle" :class="menuClass"
+        <span v-if="menuOpen" class="menu-item menu-toggle close" :class="menuClass"
           :key="`toggle-${menuClass}`"
           :style="{'--position': 4}"
           @click="toggleMenu">
-          <p>Menu ↓</p>
+          <p>X</p>
         </span>
         <category v-if="menuOpen" :title="'About The Table'" :class="menuClass"
           :category="Categories.About"
@@ -148,8 +148,8 @@ export default defineComponent({
 
         .menu-item {
           $margin: 2.5vh;
-          height: 125px;
-          width: 600px;
+          height: 80px;
+          width: 320px;
 
           pointer-events: auto;
 
@@ -158,11 +158,10 @@ export default defineComponent({
           }
 
           &.menu-toggle {
-            height: 113px;
-            width: 214px;
-            margin: 0;
-            &.menu-open {
               margin-bottom: $margin;
+            &.menu-open {
+              width: 80px;
+              border-radius: 100%;
             }
           }
 
@@ -170,6 +169,7 @@ export default defineComponent({
             height: 3vh;
             width: 3vh;
             background: none;
+            border: none;
           }
 
           margin-bottom: $margin;
@@ -179,13 +179,15 @@ export default defineComponent({
           justify-content: center;
           align-items: center;
 
-          background: linear-gradient(143.71deg,
-          rgba(100, 100, 100, 0.4) 0%,
-          rgba(67, 67, 67, 0.4) 76.92%,
-          rgba(40, 40, 40, 0.4) 152.65%);
+          /* background */
+          background: rgba(48, 48, 48, 0.7);
+          /* stroke */
+          border: 3px solid #00FF75;
+          box-sizing: border-box;
+          /* final */
           box-shadow: inset -1px -1px 1px rgba(115, 115, 115, 0.5),
             inset 1px 1px 2px rgba(255, 255, 255, 0.4);
-          backdrop-filter: blur(100px);
+          backdrop-filter: blur(400px);
           border-radius: 25px;
         }
       }
@@ -198,20 +200,20 @@ export default defineComponent({
       transition-delay: 0.1s;
     }
     &-leave-active {
-      transition: opacity 0.2s ease-in;
-      transition-delay: 0.3s;
+      transition: opacity 0.3s ease-in;
+      transition-delay: 0.1s;
     }
     &-enter-from, &-leave-to  { opacity: 0; }
   }
 
   // animations
-  $pop-in: opacity 0.1s ease-in;
-  $pop-out: opacity 0.1s ease-out;
+  $pop-in: opacity 0.03s ease-in;
+  $pop-out: opacity 0.03s ease-out;
 
   .pop-menu-toggle {
     &-enter-active {
       transition: $pop-in;
-      transition-delay: 0.6s;
+      transition-delay: 4s;
     }
     &-enter-from, &-leave-to  { opacity: 0; }
   }
@@ -219,11 +221,11 @@ export default defineComponent({
   .pop-stagger {
     &-enter-active {
       transition: $pop-in;
-      transition-delay: calc(0.05s * var(--position) + 0.15s);
+      transition-delay: calc(0.03s * var(--position) + 0.03s);
     }
     &-leave-active {
       transition: $pop-out;
-      transition-delay: calc(0.075s * (5 - var(--position)));
+      transition-delay: calc(0.03s * (5 - var(--position)));
       //transition-delay: calc(0.01s * (1 - var(--position)) + calc(0.1s * (4 - var(--position))));
     }
     &-enter-from, &-leave-to  { opacity: 0; }
