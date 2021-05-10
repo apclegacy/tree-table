@@ -136,6 +136,39 @@
   },
   {
     "title": "Projects",
-    "cards": []
+    "cards": [
+      {
+        "title": "Above and Below",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      }
+    ]
   }
 ]
