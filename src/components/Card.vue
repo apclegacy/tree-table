@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'Card',
@@ -9,6 +9,31 @@ export default defineComponent({
       type: String,
       required: true,
     },
+  },
+  setup(props) {
+    const scrollIndicatorList = ref({} as HTMLElement);
+    const mediaScroll = (event: Event) => {
+      if (event.target) {
+        const { scrollTop, scrollHeight } = event.target as HTMLElement;
+
+        const activeItem = Math.floor(scrollTop / (scrollHeight
+          / (props.card as any).media.length));
+
+        if (scrollIndicatorList.value) {
+          const indicators = Array.from(scrollIndicatorList.value.children);
+          indicators.forEach((indicator) => {
+            indicator.classList.remove('active');
+            if (indicators.indexOf(indicator) === activeItem) {
+              indicator.classList.add('active');
+            }
+          });
+        }
+      }
+    };
+    return {
+      scrollIndicatorList,
+      mediaScroll,
+    };
   },
 });
 </script>
@@ -37,10 +62,12 @@ export default defineComponent({
           </div>
         </div>
         <div class="media">
-          <div class="container">
+          <div class="container" @scroll="mediaScroll">
+            <span class="scroll-indicator-list" ref="scrollIndicatorList">
+              <span class="indicator" v-for="media in card.media" :key="media.title" />
+            </span>
             <img v-for="media in card.media" :key="media.title"
               :src="require(`@/assets/cards/img/${media.title}`)"/>
-           <!--<img src="../assets/cards/img/tom.png">-->
           </div>
         </div>
       </div>
@@ -180,6 +207,8 @@ export default defineComponent({
           height: 90%;
           width: 95%;
 
+          position: relative;
+
           border-radius: 25px;
 
           overflow-y: scroll;
@@ -188,7 +217,40 @@ export default defineComponent({
           background: none;
           img {
             width: 100%;
+            object-fit: contain;
             scroll-snap-align: center;
+
+            :focus {
+              border: 5px solid red;
+            }
+          }
+
+          .scroll-indicator-list {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 5%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .indicator {
+              border-radius: 100%;
+              width: 25px;
+              height: 25px;
+              border: 3px solid #00FF75;
+
+              margin-bottom: 10px;
+
+              transition: background-color 0.1s ease;
+
+              &.active {
+                background-color: #00FF75;
+              }
+            }
           }
         }
       }
