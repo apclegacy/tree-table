@@ -29,12 +29,19 @@ export default defineComponent({
           const videoElements = mediaContainer.value.getElementsByClassName('video-element');
           if (videoElements) {
             Array.from(videoElements).forEach((videoElement) => {
-              (videoElement as HTMLVideoElement).pause();
-              (videoElement as HTMLVideoElement).currentTime = 0;
+              const playPromise = (videoElement as HTMLVideoElement).play();
+              const play = mediaContainer.value.children[activeItem].getElementsByClassName('play')[0];
+              if (play) play.classList.add('invisible');
+              if (videoElement !== mediaContainer.value.children[activeItem].getElementsByClassName('video-element')[0]) {
+                if (playPromise !== undefined) {
+                  playPromise.then(() => {
+                    (videoElement as HTMLVideoElement).pause();
+                    (videoElement as HTMLVideoElement).currentTime = 0;
+                  });
+                }
+              }
             });
           }
-          const videoElement = mediaContainer.value.children[activeItem].getElementsByClassName('video-element')[0];
-          if (videoElement) (videoElement as HTMLVideoElement).play();
         }
 
         if (scrollIndicatorList.value) {
@@ -54,8 +61,9 @@ export default defineComponent({
         const video = mediaContainer.value.getElementsByClassName(videoId)[0] as HTMLVideoElement;
         const videoPlayButton = mediaContainer.value.getElementsByClassName(`play-${videoId}`)[0] as HTMLVideoElement;
         videoPlayButton.classList.add('invisible');
-        video.play();
+        return video.play();
       }
+      return undefined;
     };
     const pauseVideo = (videoId: string) => {
       if (mediaContainer.value) {
