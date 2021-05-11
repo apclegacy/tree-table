@@ -15,7 +15,7 @@ export default defineComponent({
 
 <template>
   <svg v-if="direction==='left'" width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity="0.7" filter="url(#filter0_bii)">
+    <g opacity="0.7">
       <circle cx="40.8672" cy="40.582"
         r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
     </g>
@@ -48,7 +48,7 @@ export default defineComponent({
     </defs>
   </svg>
   <svg v-else width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity="0.7" filter="url(#filter0_bii)">
+    <g opacity="0.7">
       <circle cx="40.8672" cy="40.582"
         r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
     </g>

@@ -86,7 +86,7 @@ export default defineComponent({
                   playsinline />
                 <span class="play" @click="playVideo(media.title)" :class="`play-${media.title}`">
                   <svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g opacity="0.8" filter="url(#filter0_bii)">
+                    <g opacity="0.8">
                     <circle cx="40.0156"
                       cy="40.4219"
                       r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
