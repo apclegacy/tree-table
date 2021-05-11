@@ -4,11 +4,13 @@ import { defineComponent, computed, ref } from 'vue';
 import useContent from '@/modules/useContent';
 
 import Card from '@/components/Card.vue';
+import SwipeControl from '@/components/SwipeControl.vue';
 
 export default defineComponent({
   name: 'Category',
   components: {
     Card,
+    SwipeControl,
   },
   props: {
     title: { type: String, required: true },
@@ -57,74 +59,10 @@ export default defineComponent({
       <!--<transition name="pop">-->
         <div class="category" v-show="(categoryClass !== '')">
           <div class="previous arrow" @click="slide(false)">
-            <svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.7" filter="url(#filter0_bii)">
-                <circle cx="40.8672" cy="40.582"
-                  r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
-              </g>
-              <path d="M44.3539 29.3402L32.3539 40.5402L44.3539 51.7402"
-                stroke="white" stroke-width="3" stroke-linecap="round"/>
-              <defs>
-                <filter id="filter0_bii" x="-49.1328" y="-49.418" width="180"
-                  height="180" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                  <feGaussianBlur in="BackgroundImage" stdDeviation="25"/>
-                  <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
-                  <feBlend mode="normal"
-                    in="SourceGraphic" in2="effect1_backgroundBlur" result="shape"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset dx="1" dy="1"/>
-                  <feGaussianBlur stdDeviation="1"/>
-                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-                  <feBlend mode="normal" in2="shape" result="effect2_innerShadow"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset dx="-1" dy="-1"/>
-                  <feGaussianBlur stdDeviation="0.5"/>
-                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                  <feColorMatrix type="matrix"
-                    values="0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0.5 0"/>
-                  <feBlend mode="normal" in2="effect2_innerShadow" result="effect3_innerShadow"/>
-                </filter>
-              </defs>
-            </svg>
+            <swipe-control :direction="'left'" />
           </div>
           <div class="next arrow" @click="slide(true)">
-            <svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.7" filter="url(#filter0_bii)">
-                <circle cx="40.8672" cy="40.582"
-                  r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
-              </g>
-              <path d="M37.0906 52.7906L49.0906 41.5906L37.0906 30.3906"
-                stroke="white" stroke-width="3" stroke-linecap="round"/>
-              <defs>
-                <filter id="filter0_bii" x="-49.1328" y="-49.418" width="180"
-                  height="180" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                  <feGaussianBlur in="BackgroundImage" stdDeviation="25"/>
-                  <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
-                  <feBlend mode="normal"
-                    in="SourceGraphic" in2="effect1_backgroundBlur" result="shape"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset dx="1" dy="1"/>
-                  <feGaussianBlur stdDeviation="1"/>
-                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-                  <feBlend mode="normal" in2="shape" result="effect2_innerShadow"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset dx="-1" dy="-1"/>
-                  <feGaussianBlur stdDeviation="0.5"/>
-                  <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                  <feColorMatrix type="matrix"
-                    values="0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0.5 0"/>
-                  <feBlend mode="normal" in2="effect2_innerShadow" result="effect3_innerShadow"/>
-                </filter>
-              </defs>
-            </svg>
+            <swipe-control :direction="'right'" />
           </div>
           <card
             v-for="card in cards"
