@@ -154,16 +154,21 @@
         "media": [
           {
             "type": "img",
-            "title": "05_Interaktion.jpg"
+            "title": "01_WholeScreen.jpg"
+          },
+          {
+            "type": "video",
+            "title": "reforest.mp4"
           },
           {
             "type": "img",
             "title": "05_Interaktion.jpg"
           },
           {
-            "type": "img",
-            "title": "05_Interaktion.jpg"
-          },          {
+            "type": "video",
+            "title": "ab.mp4"
+          },          
+          {
             "type": "img",
             "title": "05_Interaktion.jpg"
           }

@@ -12,6 +12,7 @@ export default defineComponent({
   },
   setup(props) {
     const scrollIndicatorList = ref({} as HTMLElement);
+    const mediaContainer = ref({} as HTMLElement);
     const mediaScroll = (event: Event) => {
       if (event.target) {
         const { scrollTop, scrollHeight } = event.target as HTMLElement;
@@ -30,9 +31,20 @@ export default defineComponent({
         }
       }
     };
+
+    const playVideo = (videoId: string) => {
+      if (mediaContainer.value) {
+        const video = mediaContainer.value.getElementsByClassName(videoId)[0] as HTMLVideoElement;
+        const videoPlayButton = mediaContainer.value.getElementsByClassName(`play-${videoId}`)[0] as HTMLVideoElement;
+        videoPlayButton.classList.add('invisible');
+        video.play();
+      }
+    };
     return {
       scrollIndicatorList,
       mediaScroll,
+      mediaContainer,
+      playVideo,
     };
   },
 });
@@ -62,12 +74,61 @@ export default defineComponent({
           </div>
         </div>
         <div class="media">
-          <div class="container" @scroll="mediaScroll">
+          <div class="container" @scroll="mediaScroll" ref="mediaContainer">
             <span class="scroll-indicator-list" ref="scrollIndicatorList">
               <span class="indicator" v-for="media in card.media" :key="media.title" />
             </span>
-            <img v-for="media in card.media" :key="media.title"
-              :src="require(`@/assets/cards/img/${media.title}`)"/>
+            <div class="item" v-for="media in card.media" :key="media.title">
+              <img v-if="media.type==='img'" :src="require(`@/assets/cards/img/${media.title}`)"/>
+              <div v-else class="video">
+                <video :src="require(`@/assets/cards/vid/${media.title}`)"
+                  :class="media.title"
+                  playsinline />
+                <span class="play" @click="playVideo(media.title)" :class="`play-${media.title}`">
+                  <svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.8" filter="url(#filter0_bii)">
+                    <circle cx="40.0156"
+                      cy="40.4219"
+                      r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
+                    </g>
+                    <path
+                      d="M37.0047 33.8557L45.527 41.7754L37.0047 49.695L37.0047 33.8557Z"
+                      fill="white" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    <defs>
+                    <filter id="filter0_bii"
+                      x="-49.9844" y="-49.5781"
+                      width="180" height="180"
+                      filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feGaussianBlur in="BackgroundImage" stdDeviation="25"/>
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
+                    <feBlend mode="normal"
+                      in="SourceGraphic"
+                      in2="effect1_backgroundBlur" result="shape"/>
+                    <feColorMatrix in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dx="1" dy="1"/>
+                    <feGaussianBlur stdDeviation="1"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix"
+                      values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
+                    <feBlend mode="normal" in2="shape" result="effect2_innerShadow"/>
+                    <feColorMatrix in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dx="-1" dy="-1"/>
+                    <feGaussianBlur stdDeviation="0.5"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix"
+                      values="0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0.5 0"/>
+                    <feBlend mode="normal" in2="effect2_innerShadow" result="effect3_innerShadow"/>
+                    </filter>
+                    </defs>
+                  </svg>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -215,13 +276,23 @@ export default defineComponent({
           scroll-snap-type: y mandatory;
 
           background: none;
-          img {
+          .item, img, .video, video {
             width: 100%;
             object-fit: contain;
             scroll-snap-align: center;
+            position: inherit;
+          }
 
-            :focus {
-              border: 5px solid red;
+          .play {
+            position: absolute;
+            height: 81px;
+            width: 81px;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%);
+
+            &.invisible {
+              display: none;
             }
           }
 
@@ -231,6 +302,8 @@ export default defineComponent({
             left: 0;
             width: 5%;
             height: 100%;
+
+            z-index: 99;
 
             display: flex;
             flex-direction: column;
