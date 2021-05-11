@@ -25,6 +25,18 @@ export default defineComponent({
         const activeItem = Math.floor(scrollTop / (scrollHeight
           / (props.card as any).media.length));
 
+        if (mediaContainer.value) {
+          const videoElements = mediaContainer.value.getElementsByClassName('video-element');
+          if (videoElements) {
+            Array.from(videoElements).forEach((videoElement) => {
+              (videoElement as HTMLVideoElement).pause();
+              (videoElement as HTMLVideoElement).currentTime = 0;
+            });
+          }
+          const videoElement = mediaContainer.value.children[activeItem].getElementsByClassName('video-element')[0];
+          if (videoElement) (videoElement as HTMLVideoElement).play();
+        }
+
         if (scrollIndicatorList.value) {
           const indicators = Array.from(scrollIndicatorList.value.children);
           indicators.forEach((indicator) => {
@@ -45,11 +57,20 @@ export default defineComponent({
         video.play();
       }
     };
+    const pauseVideo = (videoId: string) => {
+      if (mediaContainer.value) {
+        const video = mediaContainer.value.getElementsByClassName(videoId)[0] as HTMLVideoElement;
+        const videoPlayButton = mediaContainer.value.getElementsByClassName(`play-${videoId}`)[0] as HTMLVideoElement;
+        videoPlayButton.classList.remove('invisible');
+        video.pause();
+      }
+    };
     return {
       scrollIndicatorList,
       mediaScroll,
       mediaContainer,
       playVideo,
+      pauseVideo,
     };
   },
 });
@@ -79,17 +100,22 @@ export default defineComponent({
           </div>
         </div>
         <div class="media">
+          <span class="scroll-indicator-list" ref="scrollIndicatorList">
+            <span class="indicator"
+              :class="card.media.indexOf(media) === 0 ? 'active' : ''"
+              v-for="media in card.media" :key="media.title" />
+          </span>
           <div class="container" @scroll="mediaScroll" ref="mediaContainer">
-            <span class="scroll-indicator-list" ref="scrollIndicatorList">
-              <span class="indicator" v-for="media in card.media" :key="media.title" />
-            </span>
             <div class="item" v-for="media in card.media" :key="media.title">
               <img v-if="media.type==='img'" :src="require(`@/assets/cards/img/${media.title}`)"/>
               <div v-else class="video">
-                <video :src="require(`@/assets/cards/vid/${media.title}`)"
+                <video class="video-element" :src="require(`@/assets/cards/vid/${media.title}`)"
+                  @click="pauseVideo(media.title)"
                   :class="media.title"
-                  playsinline />
-                <span class="play" @click="playVideo(media.title)" :class="`play-${media.title}`">
+                  playsinline
+                  muted />
+                <span class="play invisible"
+                  @click="playVideo(media.title)" :class="`play-${media.title}`">
                   <play-button />
                 </span>
               </div>
@@ -222,6 +248,8 @@ export default defineComponent({
         width: 60%;
         height: 100%;
 
+        position: relative;
+
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -262,35 +290,34 @@ export default defineComponent({
               display: none;
             }
           }
+        }
+        .scroll-indicator-list {
+          position: absolute;
 
-          .scroll-indicator-list {
-            position: sticky;
+          top: 0;
+          left: 3%;
+          width: 5%;
+          height: 100%;
 
-            top: 0;
-            left: 0;
-            width: 5%;
-            height: 100%;
+          z-index: 99;
 
-            z-index: 99;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+          .indicator {
+            border-radius: 100%;
+            width: 25px;
+            height: 25px;
+            border: 3px solid #00FF75;
 
-            .indicator {
-              border-radius: 100%;
-              width: 25px;
-              height: 25px;
-              border: 3px solid #00FF75;
+            margin-bottom: 10px;
 
-              margin-bottom: 10px;
+            transition: background-color 0.1s ease;
 
-              transition: background-color 0.1s ease;
-
-              &.active {
-                background-color: #00FF75;
-              }
+            &.active {
+              background-color: #00FF75;
             }
           }
         }
