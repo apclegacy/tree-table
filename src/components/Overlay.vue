@@ -46,8 +46,9 @@ export default defineComponent({
       <img src="../assets/logos/zhdk.png" alt="zhdk">
     </div>
     <div class="menu" :class="menuClass">
-      <transition-group tag="div"
-        class="menu-items menu-toggle" name="pop-menu-toggle" mode="out-in">
+      <!--<transition-group tag="div"
+        class="menu-items menu-toggle" name="pop-menu-toggle" mode="out-in">-->
+        <div class="menu-items menu-toggle">
          <!--<span v-if="!menuOpen" class="menu-item menu-indicator"
           :key="`indicator-${menuClass}`">
           <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,8 +61,10 @@ export default defineComponent({
           @click="toggleMenu">
           <p>Menu</p>
         </span>
-      </transition-group>
-      <transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">
+      <!--</transition-group>-->
+        </div>
+      <!--<transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">-->
+        <div class="menu-items">
         <span v-if="menuOpen" class="menu-item menu-toggle close" :class="menuClass"
           :key="`toggle-${menuClass}`"
           :style="{'--position': 4}"
@@ -86,7 +89,8 @@ export default defineComponent({
           :key="`projects-${menuClass}`"
           :style="{'--position': 1}"
           @setOpenCategory="setOpenCategory(Categories.Projects)" />
-      </transition-group>
+      <!--</transition-group>-->
+        </div>
     </div>
   </div>
 </template>
