@@ -137,13 +137,18 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .card-container {
-  padding-left: 192px;
-  padding-right: 192px;
   &:nth-child(3) {
-    padding-left: 632px; }
-  &:last-of-type { padding-right: 632px; }
+    padding-left: 474px; }
 
-  scroll-snap-align: center;
+  &:last-of-type {
+  padding-right: 474px; }
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 2901px;
+  min-width: 2901px;
 
   .card {
     height: 1180px;

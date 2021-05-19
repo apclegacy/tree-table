@@ -1,16 +1,18 @@
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
+import {
+  defineComponent, computed, ref, reactive,
+} from 'vue';
 
 import useContent from '@/modules/useContent';
 
 import Card from '@/components/Card.vue';
-import SwipeControl from '@/components/SwipeControl.vue';
+import scrollArrow from '@/components/SwipeControl.vue';
 
 export default defineComponent({
   name: 'Category',
   components: {
     Card,
-    SwipeControl,
+    scrollArrow,
   },
   props: {
     title: { type: String, required: true },
@@ -18,31 +20,74 @@ export default defineComponent({
     openCategory: { type: Number, required: true },
   },
   setup(props) {
+    const categoryElement = ref({} as HTMLElement);
     const categoryClass = computed(() => (props.openCategory === props.category ? 'open' : ''));
-    const { getCards } = useContent();
-    const cards = ref(getCards(props.category));
+    const cards = reactive(useContent().getCards(props.category));
 
-    const transitionName = ref('');
-    const previousCard = ref(0);
-    const currentCard = ref(1);
-    const nextCard = ref(2);
+    /* onMounted(() => {
+      if (categoryElement.value) {
+        categoryElement.value.scrollLeft += 3840;
+        console.log(categoryElement.value.scrollLeft);
+      }
+    });
 
-    const slide = (forward: boolean) => {
-      transitionName.value = forward ? 'slide-next' : 'slide-prev';
-      const direction = forward ? 1 : -1;
-      const { length } = cards.value;
-      previousCard.value = (previousCard.value + (direction) + length) % length;
-      currentCard.value = (currentCard.value + direction + length) % length;
-      nextCard.value = (nextCard.value + (direction) + length) % length;
+    async function updateSort(el: HTMLElement) {
+      const { scrollWidth } = el;
+      const { scrollLeft } = el;
+      const width = el.offsetWidth;
+      const scrollDistance = el.offsetWidth;
+      const items = el.children;
+
+      /* if (scrollLeft <= width) {
+        el.prepend(items[items.length - 1]);
+        el.scrollLeft = scrollLeft + width;
+        console.log('scroll left');
+      }
+      if (scrollWidth - scrollLeft <= width * 2) {
+        const card = items[0].cloneNode();
+        el.appendChild(card);
+        console.log('append right');
+      }
+    }
+
+    const categoryScroll = (event: Event) => {
+      const element = event.target as HTMLElement;
+
+      if (element) {
+        updateSort(element);
+      }
+    }; */
+
+    const activeCard = ref(0);
+
+    const onCategoryScroll = () => {
+      const {
+        scrollLeft,
+        scrollWidth,
+      } = categoryElement.value;
+
+      activeCard.value = Math.round(scrollLeft / (scrollWidth
+        / cards.length));
+
+      console.log(scrollLeft);
+    };
+
+    const scrollDistance = 2906;
+    const autoScroll = (direction: string) => {
+      if (categoryElement.value) {
+        categoryElement.value.scrollTo({
+          left: (activeCard.value + (direction === 'right' ? 1 : -1)) * scrollDistance,
+          behavior: 'smooth',
+        });
+      }
     };
 
     return {
+      categoryElement,
+      onCategoryScroll,
+      autoScroll,
+      activeCard,
       categoryClass,
-      transitionName,
-      previousCard,
-      currentCard,
-      nextCard,
-      slide,
       cards,
     };
   },
@@ -57,17 +102,22 @@ export default defineComponent({
         <h2>{{ title }}</h2>
       </div>
       <!--<transition name="pop">-->
-        <div class="category" v-show="(categoryClass !== '')">
-          <div class="previous arrow" @click="slide(false)">
-            <swipe-control :direction="'left'" />
+        <div class="category"
+          :class="categoryClass"
+          @scroll="onCategoryScroll"
+          ref="categoryElement">
+          <div class="previous arrow" @click="autoScroll('left')"
+            :class="activeCard === 0 ? 'hidden': ''">
+            <scroll-arrow :direction="'left'" />
           </div>
-          <div class="next arrow" @click="slide(true)">
-            <swipe-control :direction="'right'" />
+          <div class="next arrow" @click="autoScroll('right')"
+            :class="activeCard === cards.length -1 ? 'hidden': ''">
+            <scroll-arrow :direction="'right'" />
           </div>
-          <card
+          <card class="card card-element"
             v-for="card in cards"
             :card="card"
-            :key="card.title"
+            :key="card.title + cards.indexOf(card)"
             :category="title" />
         </div>
       <!--</transition>-->
@@ -83,7 +133,7 @@ export default defineComponent({
     border: none !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
-    }
+  }
 
     // transition: width 0s;
     // transition-delay: 0.1s;
@@ -96,19 +146,28 @@ export default defineComponent({
     overflow-x: scroll;
     scrollbar-width: none;
 
+    visibility: collapse;
+
     scroll-snap-type: x mandatory;
+    &.open {
+      visibility: visible;
+    }
     &::-webkit-scrollbar {
       display: none;
     }
     .arrow {
       position: absolute;
       height: 1180px;
-      width: 264px;
+      width: 316px;
       &.previous {
-        left: 368px;
+        left: 316px;
       }
       &.next {
-        left: calc(((100vw - 2576px) / 2) + 2576px);
+        right: 316px;
+      }
+
+      &.hidden {
+        visibility: hidden;
       }
 
       display: flex;

@@ -68,19 +68,19 @@ export default defineComponent({
           @click="toggleMenu">
           <p>X</p>
         </span>
-        <category v-if="menuOpen" :title="'About The Table'" :class="menuClass"
+        <category v-show="menuOpen" :title="'About The Table'" :class="menuClass"
           :category="Categories.About"
           :openCategory="openCategory"
           :key="`about-${menuClass}`"
           :style="{'--position': 3}"
           @setOpenCategory="setOpenCategory(Categories.About)" />
-        <category v-if="menuOpen" :title="'Interactive Projects'" :class="menuClass"
+        <category v-show="menuOpen" :title="'Interactive Projects'" :class="menuClass"
           :category="Categories.InteractiveProjects"
           :openCategory="openCategory"
           :key="`interactive-${menuClass}`"
           :style="{'--position': 2}"
           @setOpenCategory="setOpenCategory(Categories.InteractiveProjects)" />
-        <category v-if="menuOpen" :title="'Projects'" :class="menuClass"
+        <category v-show="menuOpen" :title="'Projects'" :class="menuClass"
           :category="Categories.Projects"
           :openCategory="openCategory"
           :key="`projects-${menuClass}`"

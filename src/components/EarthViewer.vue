@@ -13,7 +13,7 @@ export default defineComponent({
     // onMounted is a lifecycle event which is hooked right after the Whole Component
     // including the dome is created and inserted into the app
     // we need this event because before onMounted the HtmlElement does not exist.
-    onMounted(() => useSketches(sketchContainer.value));
+    // onMounted(() => useSketches(sketchContainer.value));
 
     // return the ref to the virtual dom
     return {
