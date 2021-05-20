@@ -14,13 +14,15 @@ const pointsOfInterest = (p: p5, earthRadius: number) => {
     );
   };
 
-  // point of interests
+  // Points Of Interest
   const zurich = getVector(47.376888, 8.541694);
   const cdmx = getVector(19.432608, -99.133209);
   const london = getVector(51.507351, -0.127758);
   const newYork = getVector(40.712776, -74.005974);
+  const beijing = getVector(39.916668, 116.383331);
+  const saoPaolo = getVector(-23.550520, -46.633308);
 
-  // draw Point Of Interest
+  // draw Points Of Interest
   const drawPOI = (position: Vector) => {
     p.push();
     p.translate(position.x, position.y, position.z);
@@ -34,6 +36,8 @@ const pointsOfInterest = (p: p5, earthRadius: number) => {
     drawPOI(cdmx);
     drawPOI(london);
     drawPOI(newYork);
+    drawPOI(beijing);
+    drawPOI(saoPaolo);
   };
   return {
     drawPointsOfInterest,
