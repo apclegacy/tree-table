@@ -58,12 +58,15 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
     p.push();
     // rotate the earth so that texture matches coordinates
     p.texture(earthTexture);
-    p.rotateY(-89.8);
+    p.rotateY(4.7);
     p.sphere(earthRadius, 50, 50);
     p.pop();
 
+    p.push();
     p.texture(cloudTexture);
+    p.rotateY(4.7);
     p.sphere(earthRadius + 5);
+    p.pop();
   };
 });
 

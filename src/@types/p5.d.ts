@@ -5,5 +5,6 @@ declare module 'p5' {
     createEasyCam: functionm,
     spotLight: function,
     screenPosition: function,
+    emissiveMaterial: function,
   }
 }
