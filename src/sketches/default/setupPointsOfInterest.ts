@@ -1,6 +1,6 @@
 import { p5, Vector } from 'p5';
 
-const pointOfInterests = (p: p5, earthRadius: number) => {
+const pointsOfInterest = (p: p5, earthRadius: number) => {
   // get Positional Vector around earth from lat and lon
   const getVector = (lat: number, lon: number): Vector => {
     // p5 3d axis are weird so z and y had to be switched
@@ -29,15 +29,15 @@ const pointOfInterests = (p: p5, earthRadius: number) => {
     p.pop();
   };
 
-  const drawPointOfInterests = () => {
+  const drawPointsOfInterest = () => {
     drawPOI(zurich);
     drawPOI(cdmx);
     drawPOI(london);
     drawPOI(newYork);
   };
   return {
-    drawPointOfInterests,
+    drawPointsOfInterest,
   };
 };
 
-export default pointOfInterests;
+export default pointsOfInterest;
