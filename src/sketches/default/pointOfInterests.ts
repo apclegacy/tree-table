@@ -15,9 +15,6 @@ const pointOfInterests = (p: p5, earthRadius: number) => {
     p.translate(position.x, position.y, position.z);
     (p as any).emissiveMaterial(0, 255, 117);
     p.sphere(earthRadius / 40, earthRadius / 40, 40);
-
-    // p.line(0, 0, 0, position.x + 10, position.y + 10, position.z + 10);
-    // p.fill(0, 255, 117);
     p.pop();
   };
 

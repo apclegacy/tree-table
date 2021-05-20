@@ -4,7 +4,9 @@ import {
   p5, Image,
 } from 'p5';
 
-import imageTexture from '@/assets/sketches/earth-texture-night.jpg';
+// textures
+import earthTextureSrc from '@/assets/sketches/earth-texture-night.jpg';
+import cloudTextureSrc from '@/assets/sketches/cloud-texture.png';
 
 import pointOfInterests from './pointOfInterests';
 
@@ -13,16 +15,19 @@ import pointOfInterests from './pointOfInterests';
 const defaultSketch = (height: number, width: number) => ((p: p5) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let easyCam: any;
+  const viewDistance = 1500;
 
   // earth
   const earthRadius = 600;
   let earthTexture: Image;
+  let cloudTexture: Image;
 
   // point of interests
   const { drawPointOfInterests } = pointOfInterests(p, earthRadius);
 
   p.preload = () => {
-    earthTexture = p.loadImage(imageTexture);
+    earthTexture = p.loadImage(earthTextureSrc);
+    cloudTexture = p.loadImage(cloudTextureSrc);
   };
 
   p.setup = () => {
@@ -33,28 +38,32 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
     document.oncontextmenu = () => false;
 
     // camera
-    easyCam = p.createEasyCam({ distance: 1500 });
+    easyCam = p.createEasyCam({ distance: viewDistance });
+    easyCam.setDistanceMin(viewDistance);
+    easyCam.setDistanceMax(viewDistance);
   };
 
   p.draw = () => {
     p.background(0);
+    p.noStroke();
     drawEarth();
     drawPointOfInterests();
   };
 
   let rotation = 1;
   const drawEarth = () => {
-    p.noStroke();
-    p.texture(earthTexture);
-
     p.rotateY(rotation);
     rotation += 0.001;
 
     p.push();
     // rotate the earth so that texture matches coordinates
+    p.texture(earthTexture);
     p.rotateY(-89.8);
     p.sphere(earthRadius, 50, 50);
     p.pop();
+
+    p.texture(cloudTexture);
+    p.sphere(earthRadius + 5);
   };
 });
 
