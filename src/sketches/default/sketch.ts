@@ -14,7 +14,10 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
 
   const viewDistance = 1300;
   const earthRadius = 400;
-  const cloudOffset = 5; // distance from globe to clouds
+
+  // setup objects
+  const { drawEarth, cloudOffset } = setupEarth(p, earthRadius);
+  const { drawPointsOfInterest, pointsOfInterestSize } = setupPointsOfInterest(p, earthRadius);
 
   p.setup = () => {
     // init
@@ -25,7 +28,7 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
     // perspective
     p.perspective(p.PI / 3.5,
       width / height,
-      viewDistance - (earthRadius + cloudOffset),
+      viewDistance - (earthRadius + cloudOffset + pointsOfInterestSize),
       viewDistance);
     // no right click
     document.oncontextmenu = () => false;
@@ -35,10 +38,6 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
     easyCam.setDistanceMin(viewDistance);
     easyCam.setDistanceMax(viewDistance);
   };
-
-  // setup objects
-  const { drawEarth } = setupEarth(p, earthRadius, cloudOffset);
-  const { drawPointsOfInterest } = setupPointsOfInterest(p, earthRadius);
 
   p.draw = () => {
     p.background(0);

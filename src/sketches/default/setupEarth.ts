@@ -7,11 +7,13 @@ import cloudTextureSrc from '@/assets/sketches/cloud-texture.png';
 let earthTexture: Image;
 let cloudTexture: Image;
 
-const earth = (p: p5, earthRadius: number, cloudOffset: number) => {
+const earth = (p: p5, earthRadius: number) => {
   p.preload = () => {
     earthTexture = p.loadImage(earthTextureSrc);
     cloudTexture = p.loadImage(cloudTextureSrc);
   };
+
+  const cloudOffset = 5; // distance from globe to clouds
 
   let rotation = 1;
   const drawEarth = () => {
@@ -41,6 +43,7 @@ const earth = (p: p5, earthRadius: number, cloudOffset: number) => {
 
   return {
     drawEarth,
+    cloudOffset,
   };
 };
 
