@@ -12,8 +12,17 @@ const earth = (p: p5, earthRadius: number) => {
     earthTexture = p.loadImage(earthTextureSrc);
     cloudTexture = p.loadImage(cloudTextureSrc);
   };
+
+  let rotation = 1;
   const drawEarth = () => {
-    // earth
+    // earth rotation
+    p.rotateY(rotation);
+    rotation += 0.0003;
+
+    // initial position
+    p.rotateY(105);
+
+    // globe
     p.push();
     // rotate the earth so that texture matches coordinates
     p.texture(earthTexture);
@@ -22,6 +31,7 @@ const earth = (p: p5, earthRadius: number) => {
     p.pop();
 
     // clouds
+
     p.push();
     p.texture(cloudTexture);
     p.rotateY(4.7);
