@@ -23,6 +23,14 @@ export default defineComponent({
     });
     const setOpenCategory = (category: Categories) => { openCategory.value = category; };
 
+    const closeMenu = (event: MouseEvent) => {
+      const element = event.target as HTMLElement;
+      if (element) {
+        console.log(element.classList);
+        if (!element.classList.contains('menu-item')) toggleMenu();
+      }
+    };
+
     return {
       menuOpen,
       toggleMenu,
@@ -31,6 +39,8 @@ export default defineComponent({
       Categories,
       openCategory,
       setOpenCategory,
+
+      closeMenu,
     };
   },
 });
@@ -39,7 +49,7 @@ export default defineComponent({
 <template>
   <div class="overlay">
     <transition name="pop-backdrop">
-      <div class="backdrop" v-if="menuClass" />
+      <div class="backdrop" v-if="menuClass" @click="closeMenu"/>
     </transition>
     <div class="logos">
       <img src="../assets/logos/eth.png" alt="eth crowther lab">
@@ -118,6 +128,7 @@ export default defineComponent({
       top: 0;
       left: 0;
       backdrop-filter: blur(40px);
+      pointer-events: auto;
     }
 
     .logos {
