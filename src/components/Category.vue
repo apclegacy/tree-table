@@ -157,7 +157,8 @@ export default defineComponent({
     }
     .arrow {
       position: absolute;
-      height: 1180px;
+      height: 1000px;
+      max-height: 1000px;
       width: 316px;
       &.previous {
         left: 316px;

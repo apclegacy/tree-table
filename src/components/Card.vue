@@ -270,6 +270,8 @@ export default defineComponent({
 
         opacity: 1 !important;
 
+        scrollbar-width: none;
+
         .container {
           height: 90%;
           width: 95%;
