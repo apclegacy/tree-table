@@ -282,6 +282,7 @@ export default defineComponent({
 
           overflow-y: scroll;
           scroll-snap-type: y mandatory;
+          scrollbar-width: none;
 
           background: none;
 
