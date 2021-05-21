@@ -151,7 +151,7 @@ export default defineComponent({
   min-width: 2901px;
 
   .card {
-    height: 1180px;
+    height: 1000px;
     width: 2576px;
     min-width: 2576px;
 

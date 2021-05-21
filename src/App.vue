@@ -40,9 +40,9 @@ body {
   }
 
   h1 {
-    font-size: 130px;
+    font-size: 100px;
     font-weight: 700;
-    line-height: 157px;
+    line-height: 100px;
     font-style: normal;
     margin: 0;
   }

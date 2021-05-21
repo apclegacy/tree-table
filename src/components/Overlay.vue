@@ -65,12 +65,6 @@ export default defineComponent({
         </div>
       <!--<transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">-->
         <div class="menu-items">
-        <span v-if="menuOpen" class="menu-item menu-toggle close" :class="menuClass"
-          :key="`toggle-${menuClass}`"
-          :style="{'--position': 4}"
-          @click="toggleMenu">
-          <p>X</p>
-        </span>
         <category v-show="menuOpen" :title="'About The Table'" :class="menuClass"
           :category="Categories.About"
           :openCategory="openCategory"
@@ -89,6 +83,12 @@ export default defineComponent({
           :key="`projects-${menuClass}`"
           :style="{'--position': 1}"
           @setOpenCategory="setOpenCategory(Categories.Projects)" />
+          <span v-if="menuOpen" class="menu-item menu-toggle close" :class="menuClass"
+            :key="`toggle-${menuClass}`"
+            :style="{'--position': 4}"
+            @click="toggleMenu">
+            <p>X</p>
+          </span>
       <!--</transition-group>-->
         </div>
     </div>
@@ -151,7 +151,7 @@ export default defineComponent({
         }
 
         .menu-item {
-          $margin: 2.5vh;
+          $margin: 1.5vh;
           height: 80px;
           width: 320px;
 

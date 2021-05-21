@@ -127,7 +127,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .menu-item {
   &.open {
-    height: 1180px !important;
+    height: 1000px !important;
     width: 100vw !important;
     background: none !important;
     border: none !important;
