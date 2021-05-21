@@ -7,7 +7,7 @@ import cloudTextureSrc from '@/assets/sketches/cloud-texture.png';
 let earthTexture: Image;
 let cloudTexture: Image;
 
-const earth = (p: p5, earthRadius: number) => {
+const earth = (p: p5, earthRadius: number, cloudOffset: number) => {
   p.preload = () => {
     earthTexture = p.loadImage(earthTextureSrc);
     cloudTexture = p.loadImage(cloudTextureSrc);
@@ -35,7 +35,7 @@ const earth = (p: p5, earthRadius: number) => {
     p.push();
     p.texture(cloudTexture);
     p.rotateY(4.7);
-    p.sphere(earthRadius + 5);
+    p.sphere(earthRadius + cloudOffset);
     p.pop();
   };
 
