@@ -138,7 +138,118 @@
     "title": "Projects",
     "cards": [
       {
-        "title": "Above and Below",
+        "title": "Dev Project 1",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "01_WholeScreen.jpg"
+          },
+          {
+            "type": "video",
+            "title": "reforest.mp4"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "video",
+            "title": "ww.mp4"
+          },          
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Dev Project 2",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "01_WholeScreen.jpg"
+          },
+          {
+            "type": "video",
+            "title": "reforest.mp4"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "video",
+            "title": "ww.mp4"
+          },          
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Dev Project 3",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "01_WholeScreen.jpg"
+          },
+          {
+            "type": "video",
+            "title": "reforest.mp4"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "video",
+            "title": "ww.mp4"
+          },          
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Dev Project 4",
         "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
         "people": {
           "title": "Students",
