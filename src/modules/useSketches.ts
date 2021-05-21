@@ -1,5 +1,5 @@
 import P5 from 'p5';
-import defaultSketch from '@/sketches/defaultSketch';
+import defaultSketch from '@/sketches/default/sketch';
 
 // in this module will all the logic of switching the sketches be.
 // this module is empty at the moment.

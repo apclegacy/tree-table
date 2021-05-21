@@ -1,4 +1,4 @@
-import content from '@/content/content.json';
+import content from '@/content.json';
 
 const useContent = () => {
   const getCards = (category: number) => content[category].cards;

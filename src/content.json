@@ -1,0 +1,290 @@
+[
+  {
+    "title": "About The Table",
+    "cards": [
+      {
+        "title": "Crowther Lab",
+        "lead": "The Crowther Lab team at ETH Zurich uses ecosystem science to address biodiversity loss and climate change",
+        "people": {
+          "title": "Project Partner",
+          "names": [
+            "Prof. Dr. Thomas Crowther",
+            "Crowther Lab ETH Zurich"
+          ]
+        },
+        "description": {
+          "title": "Reforestation Projects",
+          "text": "The globe in the background show diverse projects around the world helping the reforestation progress in cooperation with the Crowther Lab.\n\nClick on the button below to get to the interactive visualization that shows more information about each project."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "tom.png"
+          }
+        ]
+      },
+      {
+        "title": "Multitouch Table – ACT NOW!",
+        "lead": "Projects created by Interaction Design students in cooperation with the Crowther Lab to visualize the potential of reforestation.",
+        "people": {
+          "title": "Mentors",
+          "names": [
+            "Prof. Jürgen Späth",
+            "Marcial Koch"
+          ]
+        },
+        "description": {
+          "title": "About the Projects",
+          "text": "The exercise was to create an application for the multitouch table where the user can experience the potential of global reforestation.\n\nBy using the tokens and changing various parameters, the user should be able to influence the overall situation. For this purpose we should use the reforestation data gathered by the Crowther Lab, as well as other data that would be relevant for our project."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "Multitouch.png"
+          }
+        ]
+      },
+      {
+        "title": "Interaction Design ZHdK",
+        "lead": "We deal with interfaces between people, products and services with the aim of making them as useful and enriching as possible.",
+        "people": {
+          "title": "Heads",
+          "names": [
+            "Prof. Jürgen Späth"
+          ]
+        },
+        "description": {
+          "title": "About the Studies",
+          "text": "Students of the bachelor's degree study Interaction Design at ZHdK learn to design and realize digital products and systems such as smartphone apps, social media platforms, interactive objects, materials and environments.\n\nThey acquire basic digital craftsmanship and develop a sound understanding of user experience, 2D and 3D media and sonic interaction."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "interactiondesign.png"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Interactive Projects",
+    "cards": [
+      {
+        "title": "Above and Below",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      },
+      {
+        "title": "WW",
+        "lead": "In the project WW the user can change the used potential of different co2 reduction projects.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Miriam Mai Watanabe",
+            "David Wollschlegel"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "With the so called tokens the user can select a Project Drawdown sector and change its used potential. With this interaction the potential can be made visible. The user realised how much reduction each sector can provide. But in the end every action counts to reduce the global emissions to an acceptable level."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "MW_DW_Image_9.png"
+          }
+        ]
+      },
+      {
+        "title": "Reforest",
+        "lead": "Making climate change visible — by visualizing projected GHG emissions on a global scale and proposing reforestation as a solution.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Alec Nikolov",
+            "Nemo Brigatti"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Interactive Visualisation with the goal of informing about the problems of climate change, visualising its impacts and showcase certain solution scenarios which could improve the outcome of the climate crisis we are facing. The data provided is based on research by the Crowther lab and showcases the importance of investing in nature as a precious resource and basis of our existence.\n\nThe user can navigate through the map and change the reforestation parameter to view its compensation effect on global CO2 emissions."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "07_Detail_Hand_Interaction.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Projects",
+    "cards": [
+      {
+        "title": "Dev Project 1",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "01_WholeScreen.jpg"
+          },
+          {
+            "type": "video",
+            "title": "reforest.mp4"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "video",
+            "title": "ww.mp4"
+          },          
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Dev Project 2",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "01_WholeScreen.jpg"
+          },
+          {
+            "type": "video",
+            "title": "reforest.mp4"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "video",
+            "title": "ww.mp4"
+          },          
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Dev Project 3",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "01_WholeScreen.jpg"
+          },
+          {
+            "type": "video",
+            "title": "reforest.mp4"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "video",
+            "title": "ww.mp4"
+          },          
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      },
+      {
+        "title": "Dev Project 4",
+        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Celina Springer",
+            "Sonia Tao"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "01_WholeScreen.jpg"
+          },
+          {
+            "type": "video",
+            "title": "reforest.mp4"
+          },
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          },
+          {
+            "type": "video",
+            "title": "ww.mp4"
+          },          
+          {
+            "type": "img",
+            "title": "05_Interaktion.jpg"
+          }
+        ]
+      }
+    ]
+  }
+]

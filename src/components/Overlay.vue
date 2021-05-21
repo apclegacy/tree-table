@@ -23,6 +23,14 @@ export default defineComponent({
     });
     const setOpenCategory = (category: Categories) => { openCategory.value = category; };
 
+    const closeMenu = (event: MouseEvent) => {
+      const element = event.target as HTMLElement;
+      if (element) {
+        console.log(element.classList);
+        if (!element.classList.contains('menu-item')) toggleMenu();
+      }
+    };
+
     return {
       menuOpen,
       toggleMenu,
@@ -31,6 +39,8 @@ export default defineComponent({
       Categories,
       openCategory,
       setOpenCategory,
+
+      closeMenu,
     };
   },
 });
@@ -39,15 +49,16 @@ export default defineComponent({
 <template>
   <div class="overlay">
     <transition name="pop-backdrop">
-      <div class="backdrop" v-if="menuClass" />
+      <div class="backdrop" v-if="menuClass" @click="closeMenu"/>
     </transition>
     <div class="logos">
       <img src="../assets/logos/eth.png" alt="eth crowther lab">
       <img src="../assets/logos/zhdk.png" alt="zhdk">
     </div>
     <div class="menu" :class="menuClass">
-      <transition-group tag="div"
-        class="menu-items menu-toggle" name="pop-menu-toggle" mode="out-in">
+      <!--<transition-group tag="div"
+        class="menu-items menu-toggle" name="pop-menu-toggle" mode="out-in">-->
+        <div class="menu-items menu-toggle">
          <!--<span v-if="!menuOpen" class="menu-item menu-indicator"
           :key="`indicator-${menuClass}`">
           <svg viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,33 +71,36 @@ export default defineComponent({
           @click="toggleMenu">
           <p>Menu</p>
         </span>
-      </transition-group>
-      <transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">
-        <span v-if="menuOpen" class="menu-item menu-toggle close" :class="menuClass"
-          :key="`toggle-${menuClass}`"
-          :style="{'--position': 4}"
-          @click="toggleMenu">
-          <p>X</p>
-        </span>
-        <category v-if="menuOpen" :title="'About The Table'" :class="menuClass"
+      <!--</transition-group>-->
+        </div>
+      <!--<transition-group tag="div" class="menu-items" name="pop-stagger" mode="in-out">-->
+        <div class="menu-items">
+        <category v-show="menuOpen" :title="'About The Table'" :class="menuClass"
           :category="Categories.About"
           :openCategory="openCategory"
           :key="`about-${menuClass}`"
           :style="{'--position': 3}"
           @setOpenCategory="setOpenCategory(Categories.About)" />
-        <category v-if="menuOpen" :title="'Interactive Projects'" :class="menuClass"
+        <category v-show="menuOpen" :title="'Interactive Projects'" :class="menuClass"
           :category="Categories.InteractiveProjects"
           :openCategory="openCategory"
           :key="`interactive-${menuClass}`"
           :style="{'--position': 2}"
           @setOpenCategory="setOpenCategory(Categories.InteractiveProjects)" />
-        <category v-if="menuOpen" :title="'Projects'" :class="menuClass"
+        <category v-show="menuOpen" :title="'Projects'" :class="menuClass"
           :category="Categories.Projects"
           :openCategory="openCategory"
           :key="`projects-${menuClass}`"
           :style="{'--position': 1}"
           @setOpenCategory="setOpenCategory(Categories.Projects)" />
-      </transition-group>
+          <span v-if="menuOpen" class="menu-item menu-toggle close" :class="menuClass"
+            :key="`toggle-${menuClass}`"
+            :style="{'--position': 4}"
+            @click="toggleMenu">
+            <p>X</p>
+          </span>
+      <!--</transition-group>-->
+        </div>
     </div>
   </div>
 </template>
@@ -114,6 +128,7 @@ export default defineComponent({
       top: 0;
       left: 0;
       backdrop-filter: blur(40px);
+      pointer-events: auto;
     }
 
     .logos {
@@ -147,7 +162,7 @@ export default defineComponent({
         }
 
         .menu-item {
-          $margin: 2.5vh;
+          $margin: 1.5vh;
           height: 80px;
           width: 320px;
 

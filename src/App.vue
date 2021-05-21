@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 import EarthViewer from '@/components/EarthViewer.vue';
 import Overlay from '@/components/Overlay.vue';
@@ -10,12 +10,18 @@ export default defineComponent({
     EarthViewer,
     Overlay,
   },
+  setup() {
+    const envClass = computed(() => process.env.NODE_ENV);
+    return { envClass };
+  },
 });
 </script>
 
 <template>
+  <div class="env" :class="envClass">
     <overlay />
     <earth-viewer />
+  </div>
 </template>
 
 <style lang="scss">
@@ -31,6 +37,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: white;
 
+  .env {
+    &.production {
+      cursor: none;
+      user-select: none;
+    }
+  }
+
   p {
     font-size: 20px;
     line-height: 30px;
@@ -40,9 +53,9 @@ body {
   }
 
   h1 {
-    font-size: 130px;
+    font-size: 100px;
     font-weight: 700;
-    line-height: 157px;
+    line-height: 100px;
     font-style: normal;
     margin: 0;
   }

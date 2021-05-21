@@ -1,8 +1,13 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
+import PlayButton from '@/components/PlayButton.vue';
+
 export default defineComponent({
   name: 'Card',
+  components: {
+    PlayButton,
+  },
   props: {
     card: {},
     category: {
@@ -19,6 +24,25 @@ export default defineComponent({
 
         const activeItem = Math.floor(scrollTop / (scrollHeight
           / (props.card as any).media.length));
+
+        if (mediaContainer.value) {
+          const videoElements = mediaContainer.value.getElementsByClassName('video-element');
+          if (videoElements) {
+            Array.from(videoElements).forEach((videoElement) => {
+              const playPromise = (videoElement as HTMLVideoElement).play();
+              const play = mediaContainer.value.children[activeItem].getElementsByClassName('play')[0];
+              if (play) play.classList.add('invisible');
+              if (videoElement !== mediaContainer.value.children[activeItem].getElementsByClassName('video-element')[0]) {
+                if (playPromise !== undefined) {
+                  playPromise.then(() => {
+                    (videoElement as HTMLVideoElement).pause();
+                    (videoElement as HTMLVideoElement).currentTime = 0;
+                  });
+                }
+              }
+            });
+          }
+        }
 
         if (scrollIndicatorList.value) {
           const indicators = Array.from(scrollIndicatorList.value.children);
@@ -37,7 +61,16 @@ export default defineComponent({
         const video = mediaContainer.value.getElementsByClassName(videoId)[0] as HTMLVideoElement;
         const videoPlayButton = mediaContainer.value.getElementsByClassName(`play-${videoId}`)[0] as HTMLVideoElement;
         videoPlayButton.classList.add('invisible');
-        video.play();
+        return video.play();
+      }
+      return undefined;
+    };
+    const pauseVideo = (videoId: string) => {
+      if (mediaContainer.value) {
+        const video = mediaContainer.value.getElementsByClassName(videoId)[0] as HTMLVideoElement;
+        const videoPlayButton = mediaContainer.value.getElementsByClassName(`play-${videoId}`)[0] as HTMLVideoElement;
+        videoPlayButton.classList.remove('invisible');
+        video.pause();
       }
     };
     return {
@@ -45,6 +78,7 @@ export default defineComponent({
       mediaScroll,
       mediaContainer,
       playVideo,
+      pauseVideo,
     };
   },
 });
@@ -74,58 +108,23 @@ export default defineComponent({
           </div>
         </div>
         <div class="media">
+          <span class="scroll-indicator-list" ref="scrollIndicatorList">
+            <span class="indicator"
+              :class="card.media.indexOf(media) === 0 ? 'active' : ''"
+              v-for="media in card.media" :key="media.title" />
+          </span>
           <div class="container" @scroll="mediaScroll" ref="mediaContainer">
-            <span class="scroll-indicator-list" ref="scrollIndicatorList">
-              <span class="indicator" v-for="media in card.media" :key="media.title" />
-            </span>
             <div class="item" v-for="media in card.media" :key="media.title">
               <img v-if="media.type==='img'" :src="require(`@/assets/cards/img/${media.title}`)"/>
               <div v-else class="video">
-                <video :src="require(`@/assets/cards/vid/${media.title}`)"
+                <video class="video-element" :src="require(`@/assets/cards/vid/${media.title}`)"
+                  @click="pauseVideo(media.title)"
                   :class="media.title"
-                  playsinline />
-                <span class="play" @click="playVideo(media.title)" :class="`play-${media.title}`">
-                  <svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g opacity="0.8" filter="url(#filter0_bii)">
-                    <circle cx="40.0156"
-                      cy="40.4219"
-                      r="38.5" fill="#303030" fill-opacity="0.7" stroke="#00FF75" stroke-width="3"/>
-                    </g>
-                    <path
-                      d="M37.0047 33.8557L45.527 41.7754L37.0047 49.695L37.0047 33.8557Z"
-                      fill="white" stroke="white" stroke-width="3" stroke-linecap="round"/>
-                    <defs>
-                    <filter id="filter0_bii"
-                      x="-49.9844" y="-49.5781"
-                      width="180" height="180"
-                      filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feGaussianBlur in="BackgroundImage" stdDeviation="25"/>
-                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
-                    <feBlend mode="normal"
-                      in="SourceGraphic"
-                      in2="effect1_backgroundBlur" result="shape"/>
-                    <feColorMatrix in="SourceAlpha"
-                      type="matrix"
-                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                    <feOffset dx="1" dy="1"/>
-                    <feGaussianBlur stdDeviation="1"/>
-                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                    <feColorMatrix type="matrix"
-                      values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0"/>
-                    <feBlend mode="normal" in2="shape" result="effect2_innerShadow"/>
-                    <feColorMatrix in="SourceAlpha"
-                      type="matrix"
-                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                    <feOffset dx="-1" dy="-1"/>
-                    <feGaussianBlur stdDeviation="0.5"/>
-                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                    <feColorMatrix type="matrix"
-                      values="0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0 0.45098 0 0 0 0.5 0"/>
-                    <feBlend mode="normal" in2="effect2_innerShadow" result="effect3_innerShadow"/>
-                    </filter>
-                    </defs>
-                  </svg>
+                  playsinline
+                  muted />
+                <span class="play invisible"
+                  @click="playVideo(media.title)" :class="`play-${media.title}`">
+                  <play-button />
                 </span>
               </div>
             </div>
@@ -138,16 +137,21 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .card-container {
-  padding-left: 192px;
-  padding-right: 192px;
   &:nth-child(3) {
-    padding-left: 632px; }
-  &:last-of-type { padding-right: 632px; }
+    padding-left: 474px; }
 
-  scroll-snap-align: center;
+  &:last-of-type {
+  padding-right: 474px; }
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 2901px;
+  min-width: 2901px;
 
   .card {
-    height: 1180px;
+    height: 1000px;
     width: 2576px;
     min-width: 2576px;
 
@@ -257,6 +261,8 @@ export default defineComponent({
         width: 60%;
         height: 100%;
 
+        position: relative;
+
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -276,6 +282,8 @@ export default defineComponent({
           scroll-snap-type: y mandatory;
 
           background: none;
+
+          display: block;
           .item, img, .video, video {
             width: 100%;
             object-fit: contain;
@@ -295,34 +303,34 @@ export default defineComponent({
               display: none;
             }
           }
+        }
+        .scroll-indicator-list {
+          position: absolute;
 
-          .scroll-indicator-list {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 5%;
-            height: 100%;
+          top: 0;
+          left: 3%;
+          width: 5%;
+          height: 100%;
 
-            z-index: 99;
+          z-index: 99;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
-            .indicator {
-              border-radius: 100%;
-              width: 25px;
-              height: 25px;
-              border: 3px solid #00FF75;
+          .indicator {
+            border-radius: 100%;
+            width: 25px;
+            height: 25px;
+            border: 3px solid #00FF75;
 
-              margin-bottom: 10px;
+            margin-bottom: 10px;
 
-              transition: background-color 0.1s ease;
+            transition: background-color 0.1s ease;
 
-              &.active {
-                background-color: #00FF75;
-              }
+            &.active {
+              background-color: #00FF75;
             }
           }
         }
