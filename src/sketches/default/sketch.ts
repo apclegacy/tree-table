@@ -13,7 +13,7 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
   const resolution = process.env.NODE_ENV === 'development' ? 0.25 : 1;
 
   const viewDistance = 1500;
-  const earthRadius = 600;
+  const earthRadius = 400;
 
   p.setup = () => {
     // init
