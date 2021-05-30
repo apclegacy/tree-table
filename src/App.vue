@@ -1,13 +1,13 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 
-import EarthViewer from '@/components/EarthViewer.vue';
+import SketchContainer from '@/components/SketchContainer.vue';
 import Overlay from '@/components/Overlay.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    EarthViewer,
+    SketchContainer,
     Overlay,
   },
   setup() {
@@ -20,7 +20,7 @@ export default defineComponent({
 <template>
   <div class="env" :class="envClass">
     <overlay />
-    <earth-viewer />
+    <sketch-container />
   </div>
 </template>
 
