@@ -6,7 +6,7 @@ import {
 import useContent from '@/modules/useContent';
 
 import Card from '@/components/Card.vue';
-import scrollArrow from '@/components/SwipeControl.vue';
+import scrollArrow from '@/components/ui/SwipeControl.vue';
 
 export default defineComponent({
   name: 'Category',

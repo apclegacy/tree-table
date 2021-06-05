@@ -1,7 +1,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 
-import SketchContainer from '@/components/SketchContainer.vue';
+import SketchContainer from '@/components/sketch/Container.vue';
 import Overlay from '@/components/Overlay.vue';
 
 export default defineComponent({

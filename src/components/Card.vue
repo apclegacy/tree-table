@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-import PlayButton from '@/components/PlayButton.vue';
+import PlayButton from '@/components/ui/PlayButton.vue';
 
 export default defineComponent({
   name: 'Card',
