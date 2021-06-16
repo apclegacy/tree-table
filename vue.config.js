@@ -6,5 +6,12 @@ module.exports = {
       .use()
       .loader('file-loader')
       .end();
+
+    config.module
+      .rule('csv')
+      .test(/\.(csv)$/)
+      .use()
+      .loader('file-loader')
+      .end();
   },
 };

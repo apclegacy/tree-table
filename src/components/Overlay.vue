@@ -3,6 +3,8 @@ import {
   computed, defineComponent, ref, watchEffect,
 } from 'vue';
 
+import { activeSketch, Sketch } from '@/modules/useSketch';
+
 import Category from '@/components/Category.vue';
 
 export default defineComponent({
@@ -41,6 +43,9 @@ export default defineComponent({
       setOpenCategory,
 
       closeMenu,
+
+      Sketch,
+      activeSketch,
     };
   },
 });
@@ -51,7 +56,7 @@ export default defineComponent({
     <transition name="pop-backdrop">
       <div class="backdrop" v-if="menuClass" @click="closeMenu"/>
     </transition>
-    <div class="logos">
+    <div class="logos" v-show="activeSketch !== Sketch.WorldWide">
       <img src="../assets/logos/eth.png" alt="eth crowther lab">
       <img src="../assets/logos/zhdk.png" alt="zhdk">
     </div>

@@ -180,3 +180,5 @@ function updateCummulativePercentage() {
 
     console.log(`cummulativePercentage: ${cummulativePercentage}`);
 }
+
+export { updateCummulativePercentage, updatePercentage }

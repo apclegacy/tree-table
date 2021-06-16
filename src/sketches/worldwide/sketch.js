@@ -1,14 +1,13 @@
-    // written by Andrés Villa Torres + Florian Bruggisser + Luke Franzke
-    // tracking IR Technology by Florian Bruggisser and Luke Franzke
-    // Interaction Design Group ZHdK
-    // updated 26 oct 2020 
-
-    // references
-    // reference https://github.com/bohnacker/p5js-screenPosition
-    // https://github.com/processing/p5.js/issues/1553 -> solving the 2d Projection of 3d points
-    // https://www.keene.edu/campus/maps/tool/ -> drawing earth maps and converting them into latitude longitude
+import { handleTouch, handleEnd, handleMove } from './interactionHandler.js'
+import { updateCummulativePercentage, updatePercentage } from './projectDrawDown.js'
+import addScreenPositionFunction from './addScreenPositionFunction.js'
+import utils from './utils.js'
+import visualizer from './visualizer.js'
 
 const worldWideSketch = (height, width, parent) => ((p) => {
+
+    const { toCartesian } = utils(p)
+    const { drawCylinder } = visualizer(p)
 
     let earthImg, sky, cloudImg;
     let cloudEnabled = true;
@@ -35,7 +34,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
 
     let zurich
     let cdmx
-    // apply rotations of the textured sphere for accurate UV projection of the earth map
+    // apply rotations of the textured p.sphere for accurate UV projection of the earth map
     let rMX = -90 /* -90 */
     let rMY = 90 /* 90 */
     let rMZ = 0
@@ -75,44 +74,37 @@ const worldWideSketch = (height, width, parent) => ((p) => {
 
     let textureGuiTriangleAmountDisplay;
 
-    const preload = () => {
-        earthImg = loadImage('../imgs/earth_3d_noclouds_mono5-hires.jpg')
-        cloudImg = loadImage('../imgs/clouds_min.png');
-        earthMap = loadTable('assets/maps/earth.csv', '', '')
-        loadData('assets/data/future_cities.csv')
+    p.preload = () => {
+        earthImg = p.loadImage(require('../../assets/sketches/worldwide/imgs/earth_3d_noclouds_mono5-hires.jpg'))
+        cloudImg = p.loadImage(require('../../assets/sketches/worldwide/imgs/clouds_min.png'));
+        earthMap = p.loadTable(require('../../assets/sketches/worldwide/maps/earth.csv'), '', '')
+        loadData(require('../../assets/sketches/worldwide/data/future_cities.csv'))
         
-        co2 = loadImage('assets/data/co2_emissions.png')
-        refrst = loadImage('assets/data/geodata_ref_potential.png')
-        // futureCitiesTable = loadTable('assets/data/future_cities.csv','','')
+        co2 = p.loadImage(require('../../assets/sketches/worldwide/data/co2_emissions.png'))
+        refrst = p.loadImage(require('../../assets/sketches/worldwide/data/geodata_ref_potential.png'))
+        // futureCitiesTable = p.loadTable('assets/data/future_cities.csv','','')
 
-        textureGuiTriangleAmountDisplay = loadImage('../imgs/guiElements/trianlge_amount_display.png');
-        food = loadImage('../icons/food.svg');
-        energy = loadImage('../icons/energy.svg');
-        buildings = loadImage('../icons/buildings.svg');
-        industry = loadImage('../icons/industry.svg');
-        landsinks = loadImage('../icons/landsinks.svg');
-        transportation = loadImage('../icons/transportation.svg');
+        textureGuiTriangleAmountDisplay = p.loadImage(require('../../assets/sketches/worldwide/imgs/guiElements/trianlge_amount_display.png'));
+        /* food = p.loadImage('../icons/food.svg');
+        energy = p.loadImage('../icons/energy.svg');
+        buildings = p.loadImage('../icons/buildings.svg');
+        industry = p.loadImage('../icons/industry.svg');
+        landsinks = p.loadImage('../icons/landsinks.svg');
+        transportation = p.loadImage('../icons/transportation.svg'); */
 
-        socket.on('connected', function (data) {
+        /* socket.on('connected', function (data) {
             console.log('new client connected id:' + data.id)
-        })
+        }) */
 
-        myFont = loadFont('assets/SUIGBI__.ttf')
-
-        //openFullscreen()
-        init()
+        myFont = p.loadFont(require('../../assets/sketches/worldwide/SUIGBI__.TTF'))
     }
 
-    function resize() {
-        init()
-    }
-
-    function setup() {
-        canvas = createCanvas(width, height, WEBGL)
+    p.setup = () => {
+        canvas = p.createCanvas(width, height, p.WEBGL)
         canvas.parent(parent)
-        noStroke()
-        textFont(myFont)
-        imageMode(CENTER);
+        p.noStroke()
+        p.textFont(myFont)
+        p.imageMode(p.CENTER);
         document.getElementById("restart").addEventListener("click", () => {
             resetProjectDrawdown()
         });
@@ -121,14 +113,14 @@ const worldWideSketch = (height, width, parent) => ((p) => {
             setAllProjectDrawdown();
         });
 
-        colorBlue = color(0, 0, 255);
+        colorBlue = p.color(0, 0, 255);
 
         // resizing / downscaling the resolution of the image-data
-        co2.resize(windowWidth / 12, windowHeight / 12)
-        refrst.resize(windowWidth / 8, windowHeight / 8)
+        co2.resize(p.windowWidth / 12, p.windowHeight / 12)
+        refrst.resize(p.windowWidth / 8, p.windowHeight / 8)
 
         if (!easycamIntialized) {
-            easycam = new Dw.EasyCam(this._renderer, {
+            easycam = p.createEasyCam({
                 distance: 1500,
                 center: [0, 0, 0]
             })
@@ -144,11 +136,11 @@ const worldWideSketch = (height, width, parent) => ((p) => {
 
         updateCummulativePercentage();
 
-        let fov = PI / 3
+        let fov = p.PI / 3
         let near = 200
         let far = 80000
 
-        addScreenPositionFunction(this)
+        addScreenPositionFunction(p)
 
         // CREATING A RANDOM ARRAY OF POINTS AROUND THE GLOBE
         //  replace with csv real points or Points of Interest
@@ -170,8 +162,8 @@ const worldWideSketch = (height, width, parent) => ((p) => {
                 pOI2.push(toCartesian(curr_lat[i], curr_lon[i], r + 25));
             }
         }
-        tPS = createVector()
-        tPE = createVector()
+        tPS = p.createVector()
+        tPE = p.createVector()
 
         // SETTING RANDOM LOCATION FOR INTERACTIVE 3D POINT(S) EXAMPLE
         let lat = 47.3769;
@@ -189,7 +181,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
         tPE = toCartesian(lat, lon, r + 50);
 
         //let testPoint = screenPosition(-tPS.x, tPS.y, tPS.z)
-        listenMessages()
+        // listenMessages()
 
         // here we are calling the function dataFromTIFFtoArray
         // which you can find on the file sketch_extend.js inside the same js folder
@@ -208,26 +200,26 @@ const worldWideSketch = (height, width, parent) => ((p) => {
         updatePercentage();
     }
 
-    const draw = () => {
-        background(bckColor)
+    p.draw = () => {
+        p.background(bckColor)
 
-        document.getElementById("frameRateDisplay").innerText = frameRate();
+        document.getElementById("frameRateDisplay").innerText = p.frameRate();
 
-        let user = createVector(mouseX, mouseY)
+        let user = p.createVector(p.mouseX, p.mouseY)
         show3D()
         if(flagCO2Data){
-            visualizeDataFromTIFF(pntsFromTIFF_co2,flagDataVisStyleCO2, color(50,140, 255, 100), 'co2')
+            visualizeDataFromTIFF(pntsFromTIFF_co2,flagDataVisStyleCO2, p.color(50,140, 255, 100), 'co2')
         }
         if(flagRfrsData){
-            visualizeDataFromTIFF(pntsFromTIFF_refrst,flagDataVisStyleRfrst, color(0,255,100), 'reforestation')
+            visualizeDataFromTIFF(pntsFromTIFF_refrst,flagDataVisStyleRfrst, p.color(0,255,100), 'reforestation')
         }
 
         show2d()
         showPointsOfInterest(cities.length - 2)
         showCityCylinders();
 
-        showFlatMap(pointsEarth, color(0, 255, 0))
-        showVectorMap(pointsEarth, screenPointsEarth, color(255, 255, 255))
+        showFlatMap(pointsEarth, p.color(0, 255, 0))
+        showVectorMap(pointsEarth, screenPointsEarth, p.color(255, 255, 255))
         easycam.setCenter([0, 0, 0], 0.0);
 
     }
@@ -238,7 +230,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
     function showCityCylinders() {
         if (pOIFlag) {
             for (let i = 0; i < cities.length - 1; i++) {
-                drawCylinder(pOI[i], pOI2[i], color(0, 255, 0));
+                drawCylinder(pOI[i], pOI2[i], p.color(0, 255, 0));
             }
         }
     }
@@ -248,8 +240,8 @@ const worldWideSketch = (height, width, parent) => ((p) => {
             let lR = 400
             let lLat = asin(pOI[i].z / lR)
             let lLong = atan2(pOI[i].y, -pOI[i].x)
-            lLat = lLat * 90 / PI * 10 // scaling
-            lLong = lLong * 180 / PI * 10 // scaling
+            lLat = lLat * 90 / p.PI * 10 // scaling
+            lLong = lLong * 180 / p.PI * 10 // scaling
             //drawLine(lLong, lLat, 0, lLong, lLat, 50, colorBlue)
         }
     }*/
@@ -260,54 +252,52 @@ const worldWideSketch = (height, width, parent) => ((p) => {
 
     function show3D() {
         if (threeDviewFlag) {
-            ambientLight(60, 60, 60)
+            p.ambientLight(60, 60, 60)
             let v1 = easycam.getPosition(500)
-            pointLight(255, 255, 255, v1[0], v1[1] + 300, v1[2])
-            pointLight(250, 250, 250, v1[0], v1[1] + 1000, v1[2])
-            texture(earthImg)
-            noStroke()
+            p.pointLight(255, 255, 255, v1[0], v1[1] + 300, v1[2])
+            p.pointLight(250, 250, 250, v1[0], v1[1] + 1000, v1[2])
+            p.texture(earthImg)
+            p.noStroke()
             // rotating earth in order to match coordinate system location
-            push()
-            rotateX(radians(rMX))
-            rotateY(radians(rMY))
-            rotateZ(radians(rMZ))
+            p.push()
+            p.rotateX(p.radians(rMX))
+            p.rotateY(p.radians(rMY))
+            p.rotateZ(p.radians(rMZ))
             // fill(0,0,100)
             // drawing EARTH Polygon
-            sphere(r, 20, 20)
-            pop()
+            p.sphere(r, 20, 20)
+            p.pop()
 
             if (cloudEnabled) {
-                push();
-                rotateX(millis() * 0.00002);
-                texture(cloudImg);
-                sphere(r + 5, 20, 20);
-                pop();
+                p.push();
+                p.rotateX(p.millis() * 0.00002);
+                p.texture(cloudImg);
+                p.sphere(r + 5, 20, 20);
+                p.pop();
             }
         }
     }
 
     function show2d() {
-        let testPoint = screenPosition(tPS.x, tPS.y, tPS.z)
-        let testPoint2 = screenPosition(tPE.x, tPE.y, tPE.z)
-        let user = createVector(mouseX - windowWidth / 2, mouseY - windowHeight / 2)
+        let testPoint = p.screenPosition(tPS.x, tPS.y, tPS.z)
+        let testPoint2 = p.screenPosition(tPE.x, tPE.y, tPE.z)
+        let user = p.createVector(p.mouseX - p.windowWidth / 2, p.mouseY - p.windowHeight / 2)
         // in case the touch display or device is available use the touchX instead
-        if (isTouch) {
-            user = createVector(touchX - windowWidth / 2, touchY - windowHeight / 2)
+        if (p.isTouch) {
+            user = p.createVector(touchX - p.windowWidth / 2, touchY - p.windowHeight / 2)
         }
         // console.log(user.x , user.y)
-        let testPoint2Ref = createVector(testPoint2.x, testPoint2.y)
+        let testPoint2Ref = p.createVector(testPoint2.x, testPoint2.y)
         easycam.beginHUD()
 
-        drawEvents();
-
-        if (isTouch) {
-            fill(0, 0, 255, 100)
-            circle(touchX, touchY, 50)
+        if (p.isTouch) {
+            p.fill(0, 0, 255, 100)
+            p.circle(touchX, touchY, 50)
         }
-        fill(255, 0, 0)
-        stroke(255, 0, 0)
-        strokeWeight(0.5)
-        //line(-testPoint.x + windowWidth / 2, testPoint.y + windowHeight / 2, -testPoint2.x + windowWidth / 2, testPoint2.y + windowHeight / 2)
+        p.fill(255, 0, 0)
+        p.stroke(255, 0, 0)
+        p.strokeWeight(0.5)
+        //line(-testPoint.x + p.windowWidth / 2, testPoint.y + p.windowHeight / 2, -testPoint2.x + p.windowWidth / 2, testPoint2.y + p.windowHeight / 2)
 
         if(trackedDevices.length>0){
             trackedDevices.forEach( element => {
@@ -353,9 +343,9 @@ const worldWideSketch = (height, width, parent) => ((p) => {
     }
 
     function windowResized() {
-        resizeCanvas(windowWidth, windowHeight, true)
+        resizeCanvas(p.windowWidth, p.windowHeight, true)
         if (easycamIntialized) {
-            easycam.setViewport([0, 0, windowWidth, windowHeight])
+            easycam.setViewport([0, 0, p.windowWidth, p.windowHeight])
         }
         resize()
     }
@@ -392,10 +382,10 @@ const worldWideSketch = (height, width, parent) => ((p) => {
                     if (deltas[i] < 10.25 + step && !shaped) {
                         beginShape()
                         shaped = true
-                        vertex(screenMapPoints[i].x + windowWidth / 2, screenMapPoints[i].y + windowHeight / 2)
+                        vertex(screenMapPoints[i].x + p.windowWidth / 2, screenMapPoints[i].y + p.windowHeight / 2)
                     } else {
                         if (shaped && deltas[fixI] < 10.25 + step) {
-                            vertex(screenMapPoints[i].x + windowWidth / 2, screenMapPoints[i].y + windowHeight / 2)
+                            vertex(screenMapPoints[i].x + p.windowWidth / 2, screenMapPoints[i].y + p.windowHeight / 2)
                         } else {
                             if (deltas[fixI] > 10.25 + step) {
                                 endShape()
@@ -422,8 +412,8 @@ const worldWideSketch = (height, width, parent) => ((p) => {
                 let lR = 400
                 let lLat = asin(mapPoints[i].z / lR)
                 let lLong = atan2(mapPoints[i].y, -mapPoints[i].x)
-                lLat = lLat * 90 / PI * scaleY // scaling
-                lLong = lLong * 180 / PI * scaleX // scaling
+                lLat = lLat * 90 / p.PI * scaleY // scaling
+                lLong = lLong * 180 / p.PI * scaleX // scaling
                 // mapping longitude from -180 - 180º to the other way around
                 if (lLong <= -55) {
                     lLong = map(lLong, -(180 * scaleX), 0, 0, (180 * scaleX))
@@ -462,57 +452,57 @@ const worldWideSketch = (height, width, parent) => ((p) => {
             for (let i = 0; i < amount; i++) {
                 testPoints[i] = screenPosition(pOI[i].x, pOI[i].y, pOI[i].z)
             }
-            let user = createVector(mouseX - windowWidth / 2, mouseY - windowHeight / 2)
+            let user = createVector(p.mouseX - p.windowWidth / 2, p.mouseY - p.windowHeight / 2)
             // in case the touch display or device is available use the touchX instead
             if (isTouch) {
-                user = createVector(touchX - windowWidth / 2, touchY - windowHeight / 2)
+                user = createVector(touchX - p.windowWidth / 2, touchY - p.windowHeight / 2)
             }
             // similar to pushMatrix()
             easycam.beginHUD()
             for (let i = 0; i < amount; i++) {
                 if (user.dist(testPoints[i]) < 10) {
                     fill(255, 180, 255)
-                    noStroke()
-                    circle(testPoints[i].x + windowWidth / 2, testPoints[i].y + windowHeight / 2, 15)
+                    p.noStroke()
+                    circle(testPoints[i].x + p.windowWidth / 2, testPoints[i].y + p.windowHeight / 2, 15)
                     let lat = Math.asin(pOI[i].z / r)
                     let lon = Math.atan2(pOI[i].y, -pOI[i].x)
-                    lat = lat * 180 / Math.PI
-                    lon = lon * 180 / Math.PI
+                    lat = lat * 180 / Math.p.PI
+                    lon = lon * 180 / Math.p.PI
                     textSize(12)
                     let latLon = 'lat : ' + lat.toFixed(3) + ' , lon : ' + lon.toFixed(3);
-                    text(cities[i + 1] + " , " + latLon, testPoints[i].x + windowWidth / 2 + 10, testPoints[i].y + windowHeight / 2 + 5)
+                    text(cities[i + 1] + " , " + latLon, testPoints[i].x + p.windowWidth / 2 + 10, testPoints[i].y + p.windowHeight / 2 + 5)
                 } else {
                     fill(200, 180, 200)
-                    noStroke()
-                    circle(testPoints[i].x + windowWidth / 2, testPoints[i].y + windowHeight / 2, 2)
+                    p.noStroke()
+                    circle(testPoints[i].x + p.windowWidth / 2, testPoints[i].y + p.windowHeight / 2, 2)
                 }
             }
             fill(255, 100, 100)
             if (user.dist(tZurich) < 25) {
                 let lat = Math.asin(zurich.z / r)
                 let lon = Math.atan2(zurich.y, zurich.x)
-                lat = lat * 180 / PI
-                lon = lon * 180 / PI
+                lat = lat * 180 / p.PI
+                lon = lon * 180 / p.PI
                 textSize(16)
                 let latLon = 'ZURICH, LAT : ' + lat.toFixed(3) + ' , LON : ' + lon.toFixed(3) + ' , Z pos : ' + tZurich.z
-                if (mouseX > windowWidth / 2) {
-                    text(latLon, tZurich.x + windowWidth / 2 - 240, tZurich.y + windowHeight / 2 + 25)
+                if (p.mouseX > p.windowWidth / 2) {
+                    text(latLon, tZurich.x + p.windowWidth / 2 - 240, tZurich.y + p.windowHeight / 2 + 25)
                 } else {
-                    text(latLon, tZurich.x + windowWidth / 2 + 20, tZurich.y + windowHeight / 2 + 25)
+                    text(latLon, tZurich.x + p.windowWidth / 2 + 20, tZurich.y + p.windowHeight / 2 + 25)
                 }
-                circle(tZurich.x + windowWidth / 2, tZurich.y + windowHeight / 2, 25)
+                circle(tZurich.x + p.windowWidth / 2, tZurich.y + p.windowHeight / 2, 25)
             } else {
-                circle(tZurich.x + windowWidth / 2, tZurich.y + windowHeight / 2, 15)
+                circle(tZurich.x + p.windowWidth / 2, tZurich.y + p.windowHeight / 2, 15)
             }
             fill(100, 100, 255)
-            circle(tCDMX.x + windowWidth / 2, tCDMX.y + windowHeight / 2, 5)
+            circle(tCDMX.x + p.windowWidth / 2, tCDMX.y + p.windowHeight / 2, 5)
             // popMatrix()
             easycam.endHUD()
         }
     }
 
     function loadData(path) {
-        futureCitiesData = loadTable(path, '', '')
+        futureCitiesData = p.loadTable(path, '', '')
 
         // int entriesCount =0;
         // for (TableRow row : futureCities.rows()) {
@@ -537,6 +527,90 @@ const worldWideSketch = (height, width, parent) => ((p) => {
         // pOIs = new PointOfInterest[cities.size()];
         // multiplePOI();
     }
-
+    function dataFromTIFFtoArray(_img,  _pntsFromTIFF, _scale) {
+        _img.loadPixels()
+        let step = 2;
+        console.log(_img.width , _img.height)
+        for(let x = 0; x < _img.width; x+=step) {
+          for(let y = 0; y < _img.height; y+=step) {
+            let [r, g, b] = _img.get(x, y)
+        //     // let c = _img.pixels[i*4]
+      
+            let brghtnss = ( r + g + b ) / 3 
+        //     // let x = i % _img.width
+        //     // let y = (i-x)/_img.width
+  
+            //     // mapping values from x y - longitude and latitude
+            let lon = p.map(x,0, _img.width,-180,180);
+            let lat = p.map(y,0, _img.height,90,-90);
+  
+            //console.log(`${lat}:${lon}`);
+  
+            // log data on the console
+            // console.log(lon , lat , r , g , b, brghtnss)
+            // creating datapoint object and pushing it to the arraylist in case
+            _pntsFromTIFF.push(new DataPointGeoTIFF(lat, lon, brghtnss, _scale ))
+          }
+        }
+        _img.updatePixels()
+  
+      }
+      // function iterates through the objects inside the corresponding array 
+      // and calls the function display(...) from each object
+      function visualizeDataFromTIFF(_pntsFromTIFF, _visFlag, _c, type){
+        _pntsFromTIFF.forEach(element => {
+            element.display(_visFlag,_c, type)
+        })
+      }
+      // a class to store each Pixel as data point
+      class DataPointGeoTIFF {
+  
+        // parameters: lon lat are location values in degrees,  _value corresponds to brightness, and scale the factor affecting the size in the visualization
+        constructor(_lat, _lon,  _value,  _scale){
+            this.lon = _lon
+            this.lat = _lat
+            // value stands for the actual color of the pixel, the function brightness() extracts
+            // the 'whiteness' of the pixel
+            this.value = _value
+            this.loc3D = p.createVector(0,0,0)
+            this.scale = _scale
+            this.radius = 400 + 5
+  
+            //this.pointWeight = map(this.value,0,255,1.2,8) *map(this.value,0,255,1.2,8) * this.scale;
+  
+  
+            this.loc3D = toCartesian(this.lat, this.lon, this.radius);
+            this.updateValue();
+        }
+  
+        updateValue() {
+            this.pointWeight = p.map(this.value, 0, 255, 0, 30) * 5 * p.abs(p.cummulativePercentage / 100 - 1);
+            this.loc3Dend = toCartesian(this.lat, this.lon, this.radius + this.pointWeight);
+        }
+  
+        // first parameter is a boolean for the visualization style and second one is the display color
+        display(visStyle,c, type = 'co2'){
+          if(this.value>0){
+  
+              if (type === 'co2') {
+                  this.updateValue();
+              }
+  
+            if(visStyle){
+                //drawLineFromVector(this.loc3D, this.loc3Dend, c, 1);
+                drawCylinder(this.loc3D, this.loc3Dend, c, p.map(this.value, 0, 255, 2, 5));
+                //drawLine(this.loc3D.x, this.loc3D.y, this.loc3D.z, this.loc3Dend.x, this.loc3Dend.y, this.loc3Dend.z, c);
+            }else{
+              p.strokeWeight(pointWeight)
+              p.stroke(c)
+              p.point(-this.loc3D.x,this.loc3D.y,this.loc3D.z)
+            }
+          }else{
+            // do something else  when the value (brightness is 0 or black or no information)
+          }
+        }
+  
+      } 
 }
+);
 export default worldWideSketch;

@@ -1,4 +1,5 @@
 <script lang="ts">
+/* eslint-disable max-len */
 // this Component contains all CSS and HTML required by the Worldwide Sketch.
 // since this is dumb migration this is ignored by eslint.
 import { defineComponent } from 'vue';
@@ -15,7 +16,7 @@ export default defineComponent({
       <p id="projectDrawDownInfoDescription">
         Production of electricity must move away from fossil fuels, as quickly as possible. A spectrum of solutions can help, from small-scale/distributed to large-scale/centralized. Some solutions harvest photons from the sun. Others tap nature’s generous kinetic energy—the movement of wind and water. Still others use an alternate source of heat, such as geothermal or nuclear, for the same basic steam-turbine process.
       </p>
-      <img src="imgs/guiElements/qrCodes/buildings.png" id="projectDrawDownInfoQrCode">
+      <img src="../../assets/sketches/worldwide/imgs/guiElements/qrCodes/buildings.png" id="projectDrawDownInfoQrCode">
     </div>
 
     <div id="testLabel">
@@ -113,37 +114,37 @@ export default defineComponent({
             <div id="foodPercentageDisplay" class="inline">
                 <p>demo</p>
             </div>
-            <img class="positionthatimg" id="corn" src="icons/food.svg" width="50px">
+            <img class="positionthatimg" id="corn" src="../../assets/sketches/worldwide/icons/food.svg" width="50px">
         </div>
         <div>
             <div id="industryPercentageDisplay" class="inline">
                 <p>demo</p>
             </div>
-            <img  id="industryimg" class="positionthatimg" src="icons/industry.svg" width="50px">
+            <img  id="industryimg" class="positionthatimg" src="../../assets/sketches/worldwide/icons/industry.svg" width="50px">
         </div>
         <div>
             <div id="electricityPercentageDisplay" class="inline">
                 <p>demo</p>
             </div>
-            <img id="energyimg" class="positionthatimg" src="icons/energy.svg" width="50px">
+            <img id="energyimg" class="positionthatimg" src="../../assets/sketches/worldwide/icons/energy.svg" width="50px">
         </div>
         <div>
             <div id="landSinksPercentageDisplay" class="inline">
                 <p>demo</p>
             </div>
-            <img id="landimg" class="positionthatimg" src="icons/landsinks.svg" width="50px">
+            <img id="landimg" class="positionthatimg" src="../../assets/sketches/worldwide/icons/landsinks.svg" width="50px">
         </div>
         <div>
             <div id="buildingsPercentageDisplay" class="inline">
                 <p>demo</p>
             </div>
-            <img id="buildingimg" class="positionthatimg" src="icons/buildings.svg" width="50px">
+            <img id="buildingimg" class="positionthatimg" src="../../assets/sketches/worldwide/icons/buildings.svg" width="50px">
         </div>
         <div>
             <div id="transportationPercentageDisplay" class="inline">
                 <p>demo</p>
             </div>
-            <img  class="positionthatimg" id="truck" src="icons/transportation.svg" width="50px">
+            <img  class="positionthatimg" id="truck" src="../../assets/sketches/worldwide/icons/transportation.svg" width="50px">
         </div>
         <div id="restart" style="margin-bottom: 0px">
             <p>RESET</p>
@@ -159,19 +160,20 @@ export default defineComponent({
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @font-face {
     font-family: Sui Generis Bold Italic;
-    src: url('../../assets/sketches/worldwide/SUIGBI___.ttf')
+    src: url('../../assets/sketches/worldwide/SUIGBI__.TTF')
   }
 
   @font-face {
     font-family: Sui Generis Italic;
-    src: url('../../assets/sketches/worldwide/SUIGI___.ttf');
+    src: url('../../assets/sketches/worldwide/SUIGI___.TTF');
   }
 
   .worldwide {
     position: absolute;
+    background: none;
     padding: 0;
     margin: 0;
     top: 0;
@@ -438,5 +440,9 @@ export default defineComponent({
       right: 2rem;
       text-align: right;
       z-index: 100004;
+  }
+
+  .positionthatimg {
+      width: 50px;
   }
 </style>

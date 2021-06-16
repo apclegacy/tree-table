@@ -1,11 +1,17 @@
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import WorldWide from '@/components/sketch/Worldwide.vue';
 import {
-  Sketch, setContainer, useSketch,
+  defineComponent, onMounted, ref,
+} from 'vue';
+import {
+  Sketch, setContainer, useSketch, activeSketch,
 } from '@/modules/useSketch';
 
 export default defineComponent({
   name: 'SketchContainer',
+  components: {
+    WorldWide,
+  },
   setup() {
     const sketchContainer = ref({} as HTMLElement);
 
@@ -16,6 +22,8 @@ export default defineComponent({
     // return the ref to the virtual dom
     return {
       sketchContainer,
+      activeSketch,
+      Sketch,
     };
   },
 });
@@ -23,6 +31,7 @@ export default defineComponent({
 
 <template>
   <div class="sketch-container" ref="sketchContainer" />
+  <world-wide v-if="activeSketch===Sketch.WorldWide" />
 </template>
 
 <style lang="scss" scoped>

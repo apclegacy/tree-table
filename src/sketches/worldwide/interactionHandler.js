@@ -163,3 +163,4 @@ function selectSectorByDegree(rotation) {
         projectTitle.innerText = getActiveSectorProjectTitle();
     }
 }
+export { handleTouch, handleEnd, handleMove }
