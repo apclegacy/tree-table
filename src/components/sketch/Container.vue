@@ -1,6 +1,8 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
-import { Sketch, setContainer, useSketch } from '@/modules/useSketch';
+import {
+  Sketch, setContainer, useSketch,
+} from '@/modules/useSketch';
 
 export default defineComponent({
   name: 'SketchContainer',
@@ -9,7 +11,7 @@ export default defineComponent({
 
     onMounted(() => {
       setContainer(sketchContainer.value);
-      useSketch(Sketch.Default);
+      useSketch(Sketch.WorldWide);
     });
     // return the ref to the virtual dom
     return {

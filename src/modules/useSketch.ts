@@ -2,12 +2,15 @@ import P5 from 'p5';
 import defaultSketch from '@/sketches/default/sketch';
 import testSketch from '@/sketches/test/sketch';
 
+import worldWideSketch from '@/sketches/worldwide/sketch';
+
 const sketches = [
   defaultSketch,
   testSketch,
+  worldWideSketch,
 ];
 
-enum Sketch { Default, Test }
+enum Sketch { Default, Test, WorldWide }
 
 let sketchContainer: HTMLElement;
 
@@ -21,4 +24,6 @@ const useSketch = (sketchId: number) => new P5(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).p5 = P5;
 
-export { Sketch, setContainer, useSketch };
+export {
+  Sketch, setContainer, useSketch,
+};
