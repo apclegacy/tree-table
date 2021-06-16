@@ -28,7 +28,6 @@ export default defineComponent({
     const closeMenu = (event: MouseEvent) => {
       const element = event.target as HTMLElement;
       if (element) {
-        console.log(element.classList);
         if (!element.classList.contains('menu-item')) toggleMenu();
       }
     };
@@ -126,6 +125,8 @@ export default defineComponent({
 
     pointer-events: none;
 
+    z-index: 200;
+
     .backdrop {
       width: 100%;
       height: 100%;
@@ -134,12 +135,13 @@ export default defineComponent({
       left: 0;
       backdrop-filter: blur(40px);
       pointer-events: auto;
+      z-index: 50;
     }
 
     .logos {
       padding: 3vh 0 0 3vh;
       position: absolute;
-      z-index: 99;
+      z-index: 100;
       top: 0;
       img{
         float: left;
@@ -155,6 +157,8 @@ export default defineComponent({
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
+
+      z-index: 200;
 
       .menu-items {
         display: flex;

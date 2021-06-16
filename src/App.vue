@@ -19,8 +19,8 @@ export default defineComponent({
 
 <template>
   <div class="env" :class="envClass">
-    <overlay />
     <sketch-container />
+    <overlay />
   </div>
 </template>
 
