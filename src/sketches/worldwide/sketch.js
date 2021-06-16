@@ -8,7 +8,7 @@
     // https://github.com/processing/p5.js/issues/1553 -> solving the 2d Projection of 3d points
     // https://www.keene.edu/campus/maps/tool/ -> drawing earth maps and converting them into latitude longitude
 
-const worldWideSketch = (height, width, parent) => {
+const worldWideSketch = (height, width, parent) => ((p) => {
 
     let earthImg, sky, cloudImg;
     let cloudEnabled = true;
