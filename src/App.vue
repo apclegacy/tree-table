@@ -1,7 +1,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 
-import SketchContainer from '@/components/SketchContainer.vue';
+import SketchContainer from '@/components/sketch/Container.vue';
 import Overlay from '@/components/Overlay.vue';
 
 export default defineComponent({
@@ -19,8 +19,8 @@ export default defineComponent({
 
 <template>
   <div class="env" :class="envClass">
-    <overlay />
     <sketch-container />
+    <overlay />
   </div>
 </template>
 

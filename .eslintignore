@@ -1,2 +1,8 @@
 public
 helpers
+
+components/sketch
+!Container.vue
+
+sketches/
+!sketches/default
