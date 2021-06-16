@@ -1,19 +1,17 @@
 import { ref } from 'vue';
 import P5 from 'p5';
 import defaultSketch from '@/sketches/default/sketch';
-import testSketch from '@/sketches/test/sketch';
 
 import worldWideSketch from '@/sketches/worldwide/sketch';
 
 const sketches = [
   defaultSketch,
-  testSketch,
   worldWideSketch,
 ];
 
 const activeSketch = ref(0);
 
-enum Sketch { Default, Test, WorldWide }
+enum Sketch { Default, WorldWide }
 
 let sketchContainer: HTMLElement;
 
