@@ -6,6 +6,7 @@ import {
 import {
   Sketch, setContainer, useSketch, activeSketch,
 } from '@/modules/useSketch';
+import useOsc from '@/modules/useOsc';
 
 export default defineComponent({
   name: 'SketchContainer',
@@ -18,6 +19,8 @@ export default defineComponent({
     onMounted(() => {
       setContainer(sketchContainer.value);
       useSketch(Sketch.WorldWide);
+      const { oscPort } = useOsc();
+      oscPort.open();
     });
     // return the ref to the virtual dom
     return {
