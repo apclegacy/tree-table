@@ -4,8 +4,20 @@
 
 /**
  * Saves the state of the tokens and it's tasks.
+ * 
+
  */
+
+ import Osc from '@/modules/Osc'
+ import trackedDevice from './TrackedDevice'
+ import projectDd from './projectDrawDown'
+
+const interactionHandler = (p, trackedDevices, textureGuiTriangleAmountDisplay) => {
+
+const { projectDrawDown, activeSector, setActiveSector, getActiveSectorProjectTitle, getActiveSectorProjectDescription, setAmountOfActiveSector } = projectDd();
+
 let tokens = {}
+const TrackedDevice = trackedDevice(p, textureGuiTriangleAmountDisplay);
 
 let tokenActions = ['sectorSelect', 'amountSelect', 'graph'];
 
@@ -97,49 +109,50 @@ function mouseClicked() {
 
 // LISTEN FOR NEW TRACKED DEVICES AND UPDATES
 function listenMessages(){
-    socket.on('addDevice', function(data){
-        let thisDevice = new TrackedDevice()
-        thisDevice.uniqueId = data.id
-        thisDevice.x = data.x * windowWidth
-        thisDevice.y = data.y * windowHeight
-        thisDevice.rotation = data.rot
+    const { wsPort } = Osc();
+        wsPort.on('addDevice', function(data){
+            let thisDevice = new TrackedDevice()
+            thisDevice.uniqueId = data.id
+            thisDevice.x = data.x * p.windowWidth
+            thisDevice.y = data.y * p.windowHeight
+            thisDevice.rotation = data.rot
 
-        let openActions = getOpenActions();
-        if (openActions && openActions.length > 0) {
-            thisDevice.action = openActions[0];
-        } else {
-            thisDevice.action = undefined;
-        }
+            let openActions = getOpenActions();
+            if (openActions && openActions.length > 0) {
+                thisDevice.action = openActions[0];
+            } else {
+                thisDevice.action = undefined;
+            }
 
-        trackedDevices.push(thisDevice);
-    })
-    socket.on('updateDevice', function(data){
-        let id = data.id
-        trackedDevices.forEach( element => {
-            if(element.uniqueId === id){
-                element.x = data.x * windowWidth
-                element.y = data.y * windowHeight
-                if (element.action === 'sectorSelect') {
-                    selectSectorByDegree(data.rot);
-                } else if (element.action === 'amountSelect') {
-                    setAmountOfActiveSector(Math.round(element.rotation), Math.round(data.rot));
+            trackedDevices.push(thisDevice);
+        })
+        wsPort.on('updateDevice', function(data){
+            let id = data.id
+            trackedDevices.forEach( element => {
+                if(element.uniqueId === id){
+                    element.x = data.x * p.windowWidth
+                    element.y = data.y * p.windowHeight
+                    if (element.action === 'sectorSelect') {
+                        selectSectorByDegree(data.rot);
+                    } else if (element.action === 'amountSelect') {
+                        setAmountOfActiveSector(Math.round(element.rotation), Math.round(data.rot), p);
+                    }
+
+                    element.rotation = data.rot
                 }
-
-                element.rotation = data.rot
-            }
+            })
         })
-    })
-    socket.on('removeDevice', function(data){
-        let id = data.id
-        trackedDevices.forEach( function(element,index) {
-            if(element.uniqueId == id ){
-                trackedDevices.splice(index,1)
-            }
-        })
+        wsPort.on('removeDevice', function(data){
+            let id = data.id
+            trackedDevices.forEach( function(element,index) {
+                if(element.uniqueId == id ){
+                    trackedDevices.splice(index,1)
+                }
+            })
 
-        delete tokens[id];
-        destroyHTML(data.id)
-    })
+            delete tokens[id];
+            destroyHTML(data.id)
+        })
 }
 
 function switchTokenAction() {
@@ -148,13 +161,13 @@ function switchTokenAction() {
 }
 
 function selectSectorByDegree(rotation) {
-    let index = round(map(rotation, 0, 360, 0, Object.keys(projectDrawDown).length - 1));
+    let index = p.round(p.map(rotation, 0, 360, 0, Object.keys(projectDrawDown).length - 1));
     let newSector = Object.keys(projectDrawDown)[index];
 
     if (newSector != activeSector) {
-        activeSector = newSector;
+        setActiveSector(newSector);
         let projectDescription = document.getElementById('projectDrawDownInfoDescription');
-        let title = document.querySelector('#projectDrawDownInfo h3');
+        let title = document.querySelector('#projectDrawDownInfoTitle');
         title.innerText = activeSector;
         projectDescription.innerHTML = getActiveSectorProjectDescription();
         let projectQRCode = document.getElementById('projectDrawDownInfoQrCode')
@@ -163,4 +176,9 @@ function selectSectorByDegree(rotation) {
         projectTitle.innerText = getActiveSectorProjectTitle();
     }
 }
-export { handleTouch, handleEnd, handleMove }
+
+
+return { handleTouch, handleEnd, handleMove, listenMessages }
+}
+
+export default interactionHandler

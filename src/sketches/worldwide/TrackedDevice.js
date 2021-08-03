@@ -1,8 +1,20 @@
 // *** CLASS FOR THE TRACKED DEVICE *** //
 
+import label from './Label';
+import tokenHexagon from './tokenHexagon';
+import projectDd from './projectDrawDown.js'
+
+const trackedDevice = (p, textureGuiTriangleAmountDisplay) => {
+const { displayHexPlusLabels } = tokenHexagon(p)
+
+const { getActivePercentageOfActiveSector } = projectDd();
+
+
 const RADIUSSHOWAMOUNT = 220; //40
 const PIE_WEIGHT = 150; //20
 const SIZE_TRIANGLE_AMOUNT_DISPLAY = 30; //10
+
+const { Label } = label(p);
 
 class TrackedDevice {
     constructor(){
@@ -13,23 +25,23 @@ class TrackedDevice {
         this.rotation = 0.0
         this.intensity = 0.0
         this.dead = false
-        this.smoothPosition = createVector(0.0, 0.0)
+        this.smoothPosition = p.createVector(0.0, 0.0)
         this.smoothRotation = 0.0
         this.inRange = false
         this.angle = 0
         this.sizeL = 180
         this.thisLabel = new Label()
-        this.oldPos = createVector(0, 0)
+        this.oldPos = p.createVector(0, 0)
     }
 
     update() {
-        let currPos = createVector(this.x, this.y)
+        let currPos = p.createVector(this.x, this.y)
         let delta = currPos.dist(this.oldPos)
         let alpha = 0.1
         this.smoothRotation = this.easeFloat2((360 - this.rotation), this.smoothRotation, 0.85)
         this.smoothPosition.x = this.easeFloat2(this.x, this.smoothPosition.x, alpha)
         this.smoothPosition.y = this.easeFloat2(this.y, this.smoothPosition.y, alpha)
-        this.angle = Math.atan2(this.smoothPosition.y - windowHeight / 2, this.smoothPosition.x - windowWidth / 2) * 180 / Math.PI
+        this.angle = Math.atan2(this.smoothPosition.y - p.windowHeight / 2, this.smoothPosition.x - p.windowWidth / 2) * 180 / Math.PI
         this.oldPos.x = this.smoothPosition.x
         this.oldPos.y = this.smoothPosition.y
     }
@@ -65,18 +77,18 @@ class TrackedDevice {
     calculateRange() {
         this.update()
         // CONDITION DEVICE OUT OF DRAWING RANGE
-        if (this.smoothPosition.x > windowWidth || this.smoothPosition.x < 0 || this.smoothPosition.y > windowHeight || this.smoothPosition.y < 0) {
+        if (this.smoothPosition.x > p.windowWidth || this.smoothPosition.x < 0 || this.smoothPosition.y > p.windowHeight || this.smoothPosition.y < 0) {
             // uncomment this to draw a line between the center of the drawing area and the center of the tracked device
             // strokeWeight(2)
             // stroke(0,255,0)
             // line(windowWidth/4,windowHeight/2, this.smoothPosition.x,this.smoothPosition.y)
-            push()
-            translate(windowWidth / 2, height / 2)
-            rotate(radians(this.angle))
+            p.push()
+            p.translate(p.windowWidth / 2, height / 2)
+            p.rotate(p.radians(this.angle))
             let sizeT = 30
-            let thisTriangle = new Triangle(windowWidth / 2 - sizeT, -sizeT, sizeT)
+            let thisTriangle = new Triangle(p.windowWidth / 2 - sizeT, -sizeT, sizeT)
             thisTriangle.show()
-            pop()
+            p.pop()
 
             this.inRange = false
         } else {
@@ -105,22 +117,30 @@ class TrackedDevice {
         return radians
     }
     showAmountSelect() {
-        noFill();
-        stroke(255);
-        strokeWeight(5);
-        circle(this.smoothPosition.x, this.smoothPosition.y, RADIUSSHOWAMOUNT);
+        if(textureGuiTriangleAmountDisplay) {
+        p.noFill();
+        p.stroke(255);
+        p.strokeWeight(5);
+        p.circle(this.smoothPosition.x, this.smoothPosition.y, RADIUSSHOWAMOUNT);
 
-        let rotation = map(getActivePercentageOfActiveSector(), 0, 100, 0, TWO_PI);
+        let rotation = p.map(getActivePercentageOfActiveSector(), 0, 100, 0, p.TWO_PI);
         let sizePie = RADIUSSHOWAMOUNT + PIE_WEIGHT;
 
-        push()
-        translate(this.smoothPosition.x, this.smoothPosition.y)
-        arc(0, 0, sizePie,  sizePie, 0, rotation);
-        fill(255);
-        textSize(30);
-        text(getActivePercentageOfActiveSector() + "%", RADIUSSHOWAMOUNT, 10);
-        rotate(rotation + PI / 2);
-        image(textureGuiTriangleAmountDisplay, 0, - RADIUSSHOWAMOUNT + PIE_WEIGHT / 2 , SIZE_TRIANGLE_AMOUNT_DISPLAY, SIZE_TRIANGLE_AMOUNT_DISPLAY);
-        pop()
+        p.push()
+        p.translate(this.smoothPosition.x, this.smoothPosition.y)
+        p.arc(0, 0, sizePie,  sizePie, 0, rotation);
+        p.fill(255);
+        p.textSize(30);
+        p.text(getActivePercentageOfActiveSector() + "%", RADIUSSHOWAMOUNT, 10);
+        p.rotate(rotation + p.PI / 2);
+        p.image(textureGuiTriangleAmountDisplay, 0, - RADIUSSHOWAMOUNT + PIE_WEIGHT / 2 , SIZE_TRIANGLE_AMOUNT_DISPLAY, SIZE_TRIANGLE_AMOUNT_DISPLAY);
+        p.pop()
+        }
     }
 }
+
+return TrackedDevice;
+
+}
+
+export default trackedDevice;

@@ -1,10 +1,18 @@
-import { handleTouch, handleEnd, handleMove } from './interactionHandler.js'
-import { updateCummulativePercentage, updatePercentage } from './projectDrawDown.js'
+import projectDd from './projectDrawDown.js'
+import interactionHandler  from './interactionHandler.js'
 import addScreenPositionFunction from './addScreenPositionFunction.js'
 import utils from './utils.js'
 import visualizer from './visualizer.js'
 
 const worldWideSketch = (height, width, parent) => ((p) => {
+
+    let trackedDevices = []
+
+    let textureGuiTriangleAmountDisplay;
+
+    const { handleTouch, handleEnd, handleMove, listenMessages } = interactionHandler(p, trackedDevices, textureGuiTriangleAmountDisplay);
+
+    const { updateCummulativePercentage, updatePercentage, projectDrawDown, activeSector, resetProjectDrawdown, setAllProjectDrawdown } = projectDd();
 
     const { toCartesian } = utils(p)
     const { drawCylinder } = visualizer(p)
@@ -22,7 +30,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
 
     let tPS, tPE // testPointStart , testPointEnd of Spike 
     let canvas
-    let trackedDevices = []
+
     let threeDviewFlag = true
     let vectorMapFlag = false
     let pOIFlag = false
@@ -71,8 +79,6 @@ const worldWideSketch = (height, width, parent) => ((p) => {
 
     /*  full screen */
     let elem = document.documentElement
-
-    let textureGuiTriangleAmountDisplay;
 
     p.preload = () => {
         earthImg = p.loadImage(require('../../assets/sketches/worldwide/imgs/earth_3d_noclouds_mono5-hires.jpg'))
@@ -181,7 +187,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
         tPE = toCartesian(lat, lon, r + 50);
 
         //let testPoint = screenPosition(-tPS.x, tPS.y, tPS.z)
-        // listenMessages()
+        listenMessages()
 
         // here we are calling the function dataFromTIFFtoArray
         // which you can find on the file sketch_extend.js inside the same js folder

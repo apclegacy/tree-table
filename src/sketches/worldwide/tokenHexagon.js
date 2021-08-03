@@ -1,3 +1,8 @@
+import projectDd from './projectDrawDown'
+
+const { activeSector } = projectDd()
+
+const tokenHexagon = (p) => {
 
 let firstDiv
 let secondDiv
@@ -42,17 +47,17 @@ function displayHexPlusLabels(posX,posY,rotation){
 }
 
 function hexagonShape(posX, posY){
-	push();
+	p.push();
     let size = 100
-    beginShape()
-    noFill()
-    stroke(255)
-    strokeWeight(5)
+    p.beginShape()
+    p.noFill()
+    p.stroke(255)
+    p.strokeWeight(5)
     for (let side = 0 ; side < 7; side++) {
-        vertex(posX + size * Math.cos(side * 2 * Math.PI / 6), posY+ size * Math.sin(side * 2 * Math.PI / 6))
+        p.vertex(posX + size * Math.cos(side * 2 * Math.PI / 6), posY+ size * Math.sin(side * 2 * Math.PI / 6))
     }
-    endShape(CLOSE)
-	pop();
+    p.endShape(p.CLOSE)
+	p.pop();
 }
 
 function hexagonLabel(rotation){
@@ -107,3 +112,8 @@ function hexagonLabel(rotation){
 	}
 }
 
+return { displayHexPlusLabels };
+
+}
+
+export default tokenHexagon;

@@ -1,3 +1,5 @@
+const label = (p) => {
+
 class Label {
     constructor(x,y,size, rotation){
         this.x =0
@@ -52,27 +54,33 @@ class Label {
 
         let offX=120
         let offY=0
-        push()
-        strokeWeight(5)
-        stroke(255,255,100,this.opacity)
+        P.push()
+        P.strokeWeight(5)
+        P.stroke(255,255,100,this.opacity)
         // fill(100,0,0,this.opacity)
-        noFill()
-        translate(this.x,this.y)
-        rotate(radians(this.rotation))
-        beginShape()
-        vertex(offX,offY)
-        vertex(offX+peak, offY-peak)
-        vertex(offX+peak,offY-this.size/3)
-        vertex(offX+peak+this.size, offY-this.size/3)
-        vertex(offX+peak+this.size,offY+this.size/3)
-        vertex(offX+peak, offY+this.size/3)
-        vertex(offX+peak,offY+peak)
-        endShape(CLOSE)
-        textSize(16)
-        fill(255,255,100,this.opacity)
-        textAlign(CENTER,CENTER)
-        text(txtContent[int(map(this.rotation,1,360,-1,4))],offX +30 , offY - this.size/4, this.size-25, this.size/2 )
-        pop()
+        P.noFill()
+        P.translate(this.x,this.y)
+        P.rotate(radians(this.rotation))
+        P.beginShape()
+        P.vertex(offX,offY)
+        P.vertex(offX+peak, offY-peak)
+        P.vertex(offX+peak,offY-this.size/3)
+        P.vertex(offX+peak+this.size, offY-this.size/3)
+        P.vertex(offX+peak+this.size,offY+this.size/3)
+        P.vertex(offX+peak, offY+this.size/3)
+        P.vertex(offX+peak,offY+peak)
+        P.endShape(p.CLOSE)
+        P.textSize(16)
+        P.fill(255,255,100,this.opacity)
+        P.textAlign(p.CENTER,p.CENTER)
+        P.text(txtContent[p.int(p.map(this.rotation,1,360,-1,4))],offX +30 , offY - this.size/4, this.size-25, this.size/2 )
+        P.pop()
 
     }
 }
+
+return { Label };
+
+}
+
+export default label;

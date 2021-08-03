@@ -1,3 +1,11 @@
+const projectDd = () => {
+
+let activeSector = 'electricity';
+
+const setActiveSector = (sector) => {
+    activeSector = sector;
+}
+
 //project drawdown data in GIGATONS CO^2 average value
 //projectDrawDown.food.activePercentage
 let projectDrawDown = {
@@ -111,12 +119,12 @@ function getActiveSectorProjectTitle() {
     return projectDrawDown[activeSector].title;
 }
 
-let activeSector = 'electricity';
+
 let cummulativePercentage = 0.0;
 
 //clock wise count up / counter clock count down
-function setAmountOfActiveSector(oldRotation, newRotation) {
-    if (abs(oldRotation-newRotation) > 2) {
+function setAmountOfActiveSector(oldRotation, newRotation, p) {
+    if (p.abs(oldRotation-newRotation) > 2) {
         if ((newRotation < oldRotation || oldRotation < 100 && newRotation > 250) && getActivePercentageOfActiveSector() < 100) {
             projectDrawDown[activeSector].activePercentage = getActivePercentageOfActiveSector() + 1;
             updateCummulativePercentage();
@@ -181,4 +189,20 @@ function updateCummulativePercentage() {
     console.log(`cummulativePercentage: ${cummulativePercentage}`);
 }
 
-export { updateCummulativePercentage, updatePercentage }
+
+
+return { updateCummulativePercentage, 
+    updatePercentage, 
+    projectDrawDown, 
+    activeSector, 
+    setActiveSector, 
+    getActiveSectorProjectDescription, 
+    getActiveSectorProjectTitle,
+    setAmountOfActiveSector,
+    resetProjectDrawdown,
+    setAllProjectDrawdown,
+    getActivePercentageOfActiveSector }
+
+}
+
+export default projectDd;
