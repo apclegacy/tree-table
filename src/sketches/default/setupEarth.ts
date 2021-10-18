@@ -13,6 +13,8 @@ const earth = (p: p5, earthRadius: number) => {
     cloudTexture = p.loadImage(cloudTextureSrc);
   };
 
+  const cloudOffset = 5; // distance from globe to clouds
+
   let rotation = 1;
   const drawEarth = () => {
     // earth rotation
@@ -35,12 +37,13 @@ const earth = (p: p5, earthRadius: number) => {
     p.push();
     p.texture(cloudTexture);
     p.rotateY(4.7);
-    p.sphere(earthRadius + 5);
+    p.sphere(earthRadius + cloudOffset);
     p.pop();
   };
 
   return {
     drawEarth,
+    cloudOffset,
   };
 };
 

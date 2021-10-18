@@ -12,14 +12,25 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
   // 1080p in dev and 4k in build
   const resolution = process.env.NODE_ENV === 'development' ? 0.25 : 1;
 
-  const viewDistance = 1500;
-  const earthRadius = 600;
+  const viewDistance = 1300;
+  const earthRadius = 400;
+
+  // setup objects
+  const { drawEarth, cloudOffset } = setupEarth(p, earthRadius);
+  const { drawPointsOfInterest, pointsOfInterestSize } = setupPointsOfInterest(p, earthRadius);
 
   p.setup = () => {
     // init
     p.createCanvas(width, height, p.WEBGL);
-    p.pixelDensity(resolution);
     p.setAttributes('antialias', true);
+    // set resolution
+    p.pixelDensity(resolution);
+    // perspective
+    p.perspective(p.PI / 3.5,
+      width / height,
+      viewDistance - (earthRadius + cloudOffset + pointsOfInterestSize),
+      viewDistance);
+    // no right click
     document.oncontextmenu = () => false;
 
     // camera
@@ -27,10 +38,6 @@ const defaultSketch = (height: number, width: number) => ((p: p5) => {
     easyCam.setDistanceMin(viewDistance);
     easyCam.setDistanceMax(viewDistance);
   };
-
-  // setup objects
-  const { drawEarth } = setupEarth(p, earthRadius);
-  const { drawPointsOfInterest } = setupPointsOfInterest(p, earthRadius);
 
   p.draw = () => {
     p.background(0);

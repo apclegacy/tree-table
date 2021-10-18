@@ -22,12 +22,14 @@ const pointsOfInterest = (p: p5, earthRadius: number) => {
   const beijing = getVector(39.916668, 116.383331);
   const saoPaolo = getVector(-23.550520, -46.633308);
 
+  const pointsOfInterestSize = earthRadius / 40;
+
   // draw Points Of Interest
   const drawPOI = (position: Vector) => {
     p.push();
     p.translate(position.x, position.y, position.z);
     p.emissiveMaterial(0, 255, 117);
-    p.sphere(earthRadius / 40, earthRadius / 40, 40);
+    p.sphere(pointsOfInterestSize, pointsOfInterestSize, 25);
     p.pop();
   };
 
@@ -41,6 +43,7 @@ const pointsOfInterest = (p: p5, earthRadius: number) => {
   };
   return {
     drawPointsOfInterest,
+    pointsOfInterestSize,
   };
 };
 

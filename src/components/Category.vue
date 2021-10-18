@@ -6,7 +6,7 @@ import {
 import useContent from '@/modules/useContent';
 
 import Card from '@/components/Card.vue';
-import scrollArrow from '@/components/SwipeControl.vue';
+import scrollArrow from '@/components/ui/SwipeControl.vue';
 
 export default defineComponent({
   name: 'Category',
@@ -118,7 +118,8 @@ export default defineComponent({
             v-for="card in cards"
             :card="card"
             :key="card.title + cards.indexOf(card)"
-            :category="title" />
+            :category="title"
+            @closeMenu="$emit('closeMenu')" />
         </div>
       <!--</transition>-->
     </div>
@@ -157,7 +158,8 @@ export default defineComponent({
     }
     .arrow {
       position: absolute;
-      height: 1180px;
+      height: 1000px;
+      max-height: 1000px;
       width: 316px;
       &.previous {
         left: 316px;
