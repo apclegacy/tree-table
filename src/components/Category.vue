@@ -118,7 +118,8 @@ export default defineComponent({
             v-for="card in cards"
             :card="card"
             :key="card.title + cards.indexOf(card)"
-            :category="title" />
+            :category="title"
+            @closeMenu="$emit('closeMenu')" />
         </div>
       <!--</transition>-->
     </div>

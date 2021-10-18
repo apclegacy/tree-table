@@ -14,7 +14,8 @@
         },
         "description": {
           "title": "Reforestation Projects",
-          "text": "The globe in the background show diverse projects around the world helping the reforestation progress in cooperation with the Crowther Lab.\n\nClick on the button below to get to the interactive visualization that shows more information about each project."
+          "text": "The globe in the background show diverse projects around the world helping the reforestation progress in cooperation with the Crowther Lab.\n\nClick on the button below to get to the interactive visualization that shows more information about each project.",
+          "backToDefault": true
         },
         "media": [
           {
@@ -35,7 +36,8 @@
         },
         "description": {
           "title": "About the Projects",
-          "text": "The exercise was to create an application for the multitouch table where the user can experience the potential of global reforestation.\n\nBy using the tokens and changing various parameters, the user should be able to influence the overall situation. For this purpose we should use the reforestation data gathered by the Crowther Lab, as well as other data that would be relevant for our project."
+          "text": "The exercise was to create an application for the multitouch table where the user can experience the potential of global reforestation.\n\nBy using the tokens and changing various parameters, the user should be able to influence the overall situation. For this purpose we should use the reforestation data gathered by the Crowther Lab, as well as other data that would be relevant for our project.",
+          "backToDefault": true
         },
         "media": [
           {
@@ -55,7 +57,8 @@
         },
         "description": {
           "title": "About the Studies",
-          "text": "Students of the bachelor's degree study Interaction Design at ZHdK learn to design and realize digital products and systems such as smartphone apps, social media platforms, interactive objects, materials and environments.\n\nThey acquire basic digital craftsmanship and develop a sound understanding of user experience, 2D and 3D media and sonic interaction."
+          "text": "Students of the bachelor's degree study Interaction Design at ZHdK learn to design and realize digital products and systems such as smartphone apps, social media platforms, interactive objects, materials and environments.\n\nThey acquire basic digital craftsmanship and develop a sound understanding of user experience, 2D and 3D media and sonic interaction.",
+          "backToDefault": true
         },
         "media": [
           {
@@ -70,27 +73,6 @@
     "title": "Interactive Projects",
     "cards": [
       {
-        "title": "Above and Below",
-        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
-        "people": {
-          "title": "Students",
-          "names": [
-            "Celina Springer",
-            "Sonia Tao"
-          ]
-        },
-        "description": {
-          "title": "How it works",
-          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
-        },
-        "media": [
-          {
-            "type": "img",
-            "title": "05_Interaktion.jpg"
-          }
-        ]
-      },
-      {
         "title": "WW",
         "lead": "In the project WW the user can change the used potential of different co2 reduction projects.",
         "people": {
@@ -102,33 +84,13 @@
         },
         "description": {
           "title": "How it works",
-          "text": "With the so called tokens the user can select a Project Drawdown sector and change its used potential. With this interaction the potential can be made visible. The user realised how much reduction each sector can provide. But in the end every action counts to reduce the global emissions to an acceptable level."
+          "text": "With the so called tokens the user can select a Project Drawdown sector and change its used potential. With this interaction the potential can be made visible. The user realised how much reduction each sector can provide. But in the end every action counts to reduce the global emissions to an acceptable level.",
+          "sketch": "1"
         },
         "media": [
           {
             "type": "img",
             "title": "MW_DW_Image_9.png"
-          }
-        ]
-      },
-      {
-        "title": "Reforest",
-        "lead": "Making climate change visible — by visualizing projected GHG emissions on a global scale and proposing reforestation as a solution.",
-        "people": {
-          "title": "Students",
-          "names": [
-            "Alec Nikolov",
-            "Nemo Brigatti"
-          ]
-        },
-        "description": {
-          "title": "How it works",
-          "text": "Interactive Visualisation with the goal of informing about the problems of climate change, visualising its impacts and showcase certain solution scenarios which could improve the outcome of the climate crisis we are facing. The data provided is based on research by the Crowther lab and showcases the importance of investing in nature as a precious resource and basis of our existence.\n\nThe user can navigate through the map and change the reforestation parameter to view its compensation effect on global CO2 emissions."
-        },
-        "media": [
-          {
-            "type": "img",
-            "title": "07_Detail_Hand_Interaction.jpg"
           }
         ]
       }

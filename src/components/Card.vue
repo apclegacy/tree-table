@@ -2,11 +2,15 @@
 import { defineComponent, ref } from 'vue';
 
 import PlayButton from '@/components/ui/PlayButton.vue';
+import SketchButton from '@/components/ui/SketchButton.vue';
+
+import { useSketch } from '@/modules/useSketch';
 
 export default defineComponent({
   name: 'Card',
   components: {
     PlayButton,
+    SketchButton,
   },
   props: {
     card: {},
@@ -15,7 +19,7 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const scrollIndicatorList = ref({} as HTMLElement);
     const mediaContainer = ref({} as HTMLElement);
     const mediaScroll = (event: Event) => {
@@ -65,6 +69,7 @@ export default defineComponent({
       }
       return undefined;
     };
+
     const pauseVideo = (videoId: string) => {
       if (mediaContainer.value) {
         const video = mediaContainer.value.getElementsByClassName(videoId)[0] as HTMLVideoElement;
@@ -73,12 +78,25 @@ export default defineComponent({
         video.pause();
       }
     };
+
+    const switchSketch = () => {
+      useSketch(1);
+      emit('closeMenu');
+    };
+
+    const defaultSketch = () => {
+      useSketch(0);
+      emit('closeMenu');
+    };
+
     return {
       scrollIndicatorList,
       mediaScroll,
       mediaContainer,
       playVideo,
       pauseVideo,
+      switchSketch,
+      defaultSketch,
     };
   },
 });
@@ -104,6 +122,16 @@ export default defineComponent({
             <div class="column border">
               <h2>{{ card.description.title }}</h2>
               <p>{{ card.description.text }}</p>
+              <sketch-button
+                :backToDefault="false"
+                v-if="card.description.sketch"
+                class="sketch-button"
+                @click="switchSketch()"/>
+              <sketch-button
+              :backToDefault="true"
+              v-if="card.description.backToDefault"
+              class="sketch-button"
+              @click="defaultSketch()"/>
             </div>
           </div>
         </div>
@@ -230,6 +258,11 @@ export default defineComponent({
                 white-space: pre-wrap;
 
                 max-width: 80%;
+
+              }
+              .sketch-button {
+                margin-top: 9%;
+                margin-left: 12% !important;
               }
             }
 

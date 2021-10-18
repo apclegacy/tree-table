@@ -84,13 +84,15 @@ export default defineComponent({
           :openCategory="openCategory"
           :key="`about-${menuClass}`"
           :style="{'--position': 3}"
-          @setOpenCategory="setOpenCategory(Categories.About)" />
+          @setOpenCategory="setOpenCategory(Categories.About)"
+          @closeMenu="toggleMenu" />
         <category v-show="menuOpen" :title="'Interactive Projects'" :class="menuClass"
           :category="Categories.InteractiveProjects"
           :openCategory="openCategory"
           :key="`interactive-${menuClass}`"
           :style="{'--position': 2}"
-          @setOpenCategory="setOpenCategory(Categories.InteractiveProjects)" />
+          @setOpenCategory="setOpenCategory(Categories.InteractiveProjects)"
+          @closeMenu="toggleMenu" />
         <category v-show="menuOpen" :title="'Projects'" :class="menuClass"
           :category="Categories.Projects"
           :openCategory="openCategory"

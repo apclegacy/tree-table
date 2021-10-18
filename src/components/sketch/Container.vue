@@ -17,7 +17,7 @@ export default defineComponent({
 
     onMounted(() => {
       setContainer(sketchContainer.value);
-      useSketch(Sketch.WorldWide);
+      useSketch(Sketch.Default);
     });
     // return the ref to the virtual dom
     return {
