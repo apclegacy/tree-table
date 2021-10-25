@@ -74,7 +74,7 @@
     "cards": [
       {
         "title": "WW",
-        "lead": "In the project WW the user can change the used potential of different co2 reduction projects.",
+        "lead": "In the project WW the user can change the used potential of different co2 reduction projects....",
         "people": {
           "title": "Students",
           "names": [
@@ -100,7 +100,7 @@
     "title": "Projects",
     "cards": [
       {
-        "title": "Dev Project 1",
+        "title": "Above and Below",
         "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
         "people": {
           "title": "Students",
@@ -116,134 +116,130 @@
         "media": [
           {
             "type": "img",
-            "title": "01_WholeScreen.jpg"
-          },
-          {
-            "type": "video",
-            "title": "reforest.mp4"
-          },
-          {
-            "type": "img",
             "title": "05_Interaktion.jpg"
           },
           {
             "type": "video",
-            "title": "ww.mp4"
-          },          
+            "title": "above_cut.mp4"
+          },
           {
             "type": "img",
-            "title": "05_Interaktion.jpg"
+            "title": "08_visualisation_information_on_latitude.png"
+          },
+          {
+            "type": "img",
+            "title": "02_Prozess_visualisation.jpg"
           }
         ]
       },
       {
-        "title": "Dev Project 2",
-        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "title": "Reforest",
+        "lead": "Making climate change visible — by visualising projected GHG emissions on a global scale and proposing reforestation as a solution.",
         "people": {
           "title": "Students",
           "names": [
-            "Celina Springer",
-            "Sonia Tao"
+            "Alec Nikolov",
+            "Nemo Brigatti"
           ]
         },
         "description": {
           "title": "How it works",
-          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+          "text": "Visualising the climate change's impacts and showcasing certain solution scenarios which could improve the outcome of the climate crisis we are facing.\n\nThe user can navigate through the map and change the reforestation parameter to view its compensation effect on global CO2 emissions."
         },
         "media": [
           {
             "type": "img",
-            "title": "01_WholeScreen.jpg"
+            "title": "02_WholeScreen_Interaction.jpg"
           },
           {
             "type": "video",
-            "title": "reforest.mp4"
+            "title": "reforest_cut.mp4"
           },
           {
             "type": "img",
-            "title": "05_Interaktion.jpg"
+            "title": "07_Detail_Hand_Interaction.jpg"
           },
           {
-            "type": "video",
-            "title": "ww.mp4"
+            "type": "img",
+            "title": "06_Detail_Two_Hands_Interaction.jpg"
           },          
           {
             "type": "img",
-            "title": "05_Interaktion.jpg"
+            "title": "05_Detail.jpg"
           }
         ]
       },
       {
-        "title": "Dev Project 3",
-        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "title": "treeable",
+        "lead": "The project treeable visualizes the emissions of CO2 by the top 10 countries as well as the globally reforestation potential by pointing out the top 6 countries.",
         "people": {
           "title": "Students",
           "names": [
-            "Celina Springer",
-            "Sonia Tao"
+            "Alessia Wiss ",
+            "Baran Güneysel"
           ]
         },
         "description": {
           "title": "How it works",
-          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+          "text": "The user can interactively and playfully learn more about the reforestation potential and CO2 emissions. By turning the tokens, the user can explore the top 10 countries of CO2 Emissions and the top 6 countries with the biggest potential for reforestation. It gets parallel visualized on the global map. It should showcase one of the solutions that we have, to stop climate change."
         },
         "media": [
           {
             "type": "img",
-            "title": "01_WholeScreen.jpg"
+            "title": "Treeable_02.jpg"
           },
           {
             "type": "video",
-            "title": "reforest.mp4"
+            "title": "treeable_cut.mp4"
           },
           {
             "type": "img",
-            "title": "05_Interaktion.jpg"
+            "title": "Treeable_06.jpg"
           },
           {
-            "type": "video",
-            "title": "ww.mp4"
+            "type": "img",
+            "title": "Treeable_01.jpg"
           },          
           {
             "type": "img",
-            "title": "05_Interaktion.jpg"
+            "title": "Treeable_04.jpg"
           }
         ]
       },
       {
-        "title": "Dev Project 4",
-        "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
+        "title": "Tree O Two",
+        "lead": "Interactive Visualisation of CO2-Emission Data and Reforestation Potential around the Globe on a Touchtable.",
         "people": {
           "title": "Students",
           "names": [
-            "Celina Springer",
-            "Sonia Tao"
+            "Daniela Spühler",
+            "Andreas Waldburger"
           ]
         },
         "description": {
           "title": "How it works",
-          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+          "text": "By moving the tokens on the table you can investigate on different areas on the world, by turning the tokens you can size the area which is shown. Tree O two connects the shown areas of CO2Emissions and Reforestation-potential and predicts the impact which it has on the global temperature."
         },
         "media": [
           {
             "type": "img",
-            "title": "01_WholeScreen.jpg"
+            "title": "11_overview_display.jpg"
           },
           {
             "type": "video",
-            "title": "reforest.mp4"
+            "title": "treeotwo_cut.mp4"
           },
           {
             "type": "img",
-            "title": "05_Interaktion.jpg"
+            "title": "07_closeup_interaction.jpg"
           },
           {
-            "type": "video",
-            "title": "ww.mp4"
+            "type": "img",
+            "title": "01_overview_interaction.jpg"
           },          
           {
             "type": "img",
-            "title": "05_Interaktion.jpg"
+            "title": "13_closeup_tokens.jpg"
           }
         ]
       }
