@@ -108,6 +108,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
     p.setup = () => {
         canvas = p.createCanvas(width, height, p.WEBGL)
         canvas.parent(parent)
+        p.pixelDensity(0.25)
         p.noStroke()
         p.textFont(myFont)
         p.imageMode(p.CENTER);
