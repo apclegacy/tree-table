@@ -1,4 +1,4 @@
-import { projectDd } from './projectDrawDown.js'
+import { projectDd, cummulativePercentage } from './projectDrawDown.js'
 import interactionHandler  from './interactionHandler.js'
 import addScreenPositionFunction from './addScreenPositionFunction.js'
 import utils from './utils.js'
@@ -590,7 +590,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
         }
   
         updateValue() {
-            this.pointWeight = p.map(this.value, 0, 255, 0, 30) * 5 * p.abs(p.cummulativePercentage / 100 - 1);
+            this.pointWeight = p.map(this.value, 0, 255, 0, 30) * 5 * p.abs(cummulativePercentage / 100 - 1);
             this.loc3Dend = toCartesian(this.lat, this.lon, this.radius + this.pointWeight);
         }
   

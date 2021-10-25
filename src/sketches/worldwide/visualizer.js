@@ -1,7 +1,7 @@
 const visualizer = (p) => {
 
 // render cylinder
-const drawCylinder = (startPoint, endPoint, c, radius = 5) => {
+const drawCylinder = (startPoint, endPoint, c, radius = 5) => { 
     p.push();
     p.fill(c);
 

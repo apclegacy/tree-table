@@ -1,5 +1,7 @@
 let activeSector = 'electricity';
 
+let cummulativePercentage = 0.0;
+
 const projectDd = () => {
 
 const setActiveSector = (sector) => {
@@ -119,9 +121,6 @@ function getActiveSectorProjectTitle() {
     return projectDrawDown[activeSector].title;
 }
 
-
-let cummulativePercentage = 0.0;
-
 //clock wise count up / counter clock count down
 function setAmountOfActiveSector(oldRotation, newRotation, p) {
     if (p.abs(oldRotation-newRotation) > 2) {
@@ -205,4 +204,4 @@ return { updateCummulativePercentage,
 
 }
 
-export { projectDd, activeSector };
+export { projectDd, activeSector, cummulativePercentage };
