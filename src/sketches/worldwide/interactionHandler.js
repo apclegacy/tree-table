@@ -21,6 +21,8 @@ const TrackedDevice = trackedDevice(p, textureGuiTriangleAmountDisplay);
 
 let tokenActions = ['sectorSelect', 'amountSelect', 'graph'];
 
+let touchX, touchY
+
 let touchCount = 0
 let ongoingTouches = []
 let isTouch = false
@@ -178,7 +180,7 @@ function selectSectorByDegree(rotation) {
 }
 
 
-return { handleTouch, handleEnd, handleMove, listenMessages }
+return { handleTouch, handleEnd, handleMove, listenMessages, touchX, touchY }
 }
 
 export default interactionHandler

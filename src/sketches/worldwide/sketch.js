@@ -10,7 +10,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
 
     let textureGuiTriangleAmountDisplay;
 
-    const { handleTouch, handleEnd, handleMove, listenMessages } = interactionHandler(p, trackedDevices, textureGuiTriangleAmountDisplay);
+    const { handleTouch, handleEnd, handleMove, listenMessages, touchX, touchY } = interactionHandler(p, trackedDevices, textureGuiTriangleAmountDisplay);
 
     const { updateCummulativePercentage, updatePercentage, projectDrawDown, activeSector, resetProjectDrawdown, setAllProjectDrawdown } = projectDd();
 
@@ -48,8 +48,8 @@ const worldWideSketch = (height, width, parent) => ((p) => {
     let rMZ = 0
 
     let easycamIntialized = false
-    let touchX = 0,
-        touchY = 0
+    /* let touchX = 0,
+        touchY = 0 */
 
     let earthMap
     let screenPointsEarth = []
