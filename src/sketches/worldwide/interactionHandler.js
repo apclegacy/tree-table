@@ -121,7 +121,7 @@ function listenMessages(){
             if (openActions && openActions.length > 0) {
                 thisDevice.action = openActions[0];
             } else {
-                thisDevice.action = undefined;
+                thisDevice.action = openActions[1];
             }
 
             trackedDevices.push(thisDevice);
