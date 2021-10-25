@@ -1,6 +1,6 @@
-const projectDd = () => {
-
 let activeSector = 'electricity';
+
+const projectDd = () => {
 
 const setActiveSector = (sector) => {
     activeSector = sector;
@@ -205,4 +205,4 @@ return { updateCummulativePercentage,
 
 }
 
-export default projectDd;
+export { projectDd, activeSector };

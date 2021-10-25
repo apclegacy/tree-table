@@ -1,6 +1,4 @@
-import projectDd from './projectDrawDown'
-
-const { activeSector } = projectDd()
+import { activeSector } from './projectDrawDown'
 
 const tokenHexagon = (p) => {
 

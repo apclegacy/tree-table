@@ -10,7 +10,7 @@
 
  import Osc from '@/modules/Osc'
  import trackedDevice from './TrackedDevice'
- import projectDd from './projectDrawDown'
+ import { projectDd } from './projectDrawDown'
 
 const interactionHandler = (p, trackedDevices, textureGuiTriangleAmountDisplay) => {
 
@@ -21,8 +21,6 @@ const TrackedDevice = trackedDevice(p, textureGuiTriangleAmountDisplay);
 
 let tokenActions = ['sectorSelect', 'amountSelect', 'graph'];
 
-let touchX, touchY
-
 let touchCount = 0
 let ongoingTouches = []
 let isTouch = false
@@ -31,22 +29,22 @@ function handleTouch(evt){
     touchCount++
     let touches = evt.changedTouches;
     // console.log("touch started at : " + evt.touches[0].clientX + " , " + evt.touches[0].clientY)
-    touchX = evt.touches[0].clientX
-    touchY = evt.touches[0].clientY
+    p.touchX = evt.touches[0].clientX
+    p.touchY = evt.touches[0].clientY
 
 }
 
 function handleEnd(evt) {
     isTouch=false
     // console.log("touch ended at : " + evt.changedTouches[0].pageX + " , " + evt.changedTouches[0].pageY )
-    touchX = evt.changedTouches[0].pageX
-    touchY = evt.changedTouches[0].pageY
+    p.touchX = evt.changedTouches[0].pageX
+    p.touchY = evt.changedTouches[0].pageY
 }
 
 function handleMove(evt) {
     // console.log("touch moved at : " + evt.changedTouches[0].pageX + " , " + evt.changedTouches[0].pageY )
-    touchX = evt.changedTouches[0].pageX
-    touchY = evt.changedTouches[0].pageY
+    p.touchX = evt.changedTouches[0].pageX
+    p.touchY = evt.changedTouches[0].pageY
 }
 
 function ongoingTouchIndexById(idToFind) {
@@ -163,6 +161,7 @@ function switchTokenAction() {
 }
 
 function selectSectorByDegree(rotation) {
+
     let index = p.round(p.map(rotation, 0, 360, 0, Object.keys(projectDrawDown).length - 1));
     let newSector = Object.keys(projectDrawDown)[index];
 
@@ -180,7 +179,7 @@ function selectSectorByDegree(rotation) {
 }
 
 
-return { handleTouch, handleEnd, handleMove, listenMessages, touchX, touchY }
+return { handleTouch, handleEnd, handleMove, listenMessages }
 }
 
 export default interactionHandler

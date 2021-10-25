@@ -2,7 +2,7 @@
 
 import label from './Label';
 import tokenHexagon from './tokenHexagon';
-import projectDd from './projectDrawDown.js'
+import { projectDd } from './projectDrawDown.js'
 
 const trackedDevice = (p, textureGuiTriangleAmountDisplay) => {
 const { displayHexPlusLabels } = tokenHexagon(p)

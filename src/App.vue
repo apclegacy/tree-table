@@ -39,7 +39,7 @@ body {
 
   .env {
     &.production {
-      cursor: none;
+      cursor: pointer;
       user-select: none;
     }
   }
