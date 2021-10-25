@@ -8,7 +8,7 @@ const worldWideSketch = (height, width, parent) => ((p) => {
 
     let trackedDevices = []
 
-    let textureGuiTriangleAmountDisplay;
+    const textureGuiTriangleAmountDisplay = p.loadImage(require('../../assets/sketches/worldwide/imgs/guiElements/trianlge_amount_display.png'));
 
     const { handleTouch, handleEnd, handleMove, listenMessages } = interactionHandler(p, trackedDevices, textureGuiTriangleAmountDisplay);
 
@@ -90,7 +90,6 @@ const worldWideSketch = (height, width, parent) => ((p) => {
         refrst = p.loadImage(require('../../assets/sketches/worldwide/data/geodata_ref_potential.png'))
         // futureCitiesTable = p.loadTable('assets/data/future_cities.csv','','')
 
-        textureGuiTriangleAmountDisplay = p.loadImage(require('../../assets/sketches/worldwide/imgs/guiElements/trianlge_amount_display.png'));
         /* food = p.loadImage('../icons/food.svg');
         energy = p.loadImage('../icons/energy.svg');
         buildings = p.loadImage('../icons/buildings.svg');
