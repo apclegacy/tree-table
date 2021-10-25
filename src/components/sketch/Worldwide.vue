@@ -171,7 +171,16 @@ export default defineComponent({
     src: url('../../assets/sketches/worldwide/SUIGI___.TTF');
   }
 
+  #allTo100 {
+    pointer-events: auto !important;
+  }
+
+  #restart {
+    pointer-events: auto !important;
+  }
+
   .worldwide {
+    pointer-events: none;
     position: absolute;
     background: none;
     padding: 0;
