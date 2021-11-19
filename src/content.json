@@ -91,6 +91,18 @@
           {
             "type": "img",
             "title": "MW_DW_Image_9.png"
+          },
+          {
+            "type": "video",
+            "title": "ww_cut.mp4"
+          },
+          {
+            "type": "img",
+            "title": "MW_DW_Image_12.png"
+          },
+          {
+            "type": "img",
+            "title": "MW_DW_Image_13.png"
           }
         ]
       }
@@ -175,7 +187,7 @@
         "people": {
           "title": "Students",
           "names": [
-            "Alessia Wiss ",
+            "Alessia Wiss",
             "Baran Güneysel"
           ]
         },
@@ -203,6 +215,43 @@
           {
             "type": "img",
             "title": "Treeable_04.jpg"
+          }
+        ]
+      },
+      {
+        "title": "CO-CO-CO2",
+        "lead": "Playful interactive visualization of CO2 emissions and the reforestation potential around the globe displayed on the Multi Touch Table.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Aathmigan Jeegatheswaran",
+            "Kilian Ettlinger"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": " The visualization is constructed in a 4-way grid and each frame displays a different dataset. By placing the token anywhere in one of the frames, the values of the belonging dataset can be increased or decreased by rotating the token."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "aj6.png"
+          },
+          {
+            "type": "video",
+            "title": "cococo2_cut.mp4"
+          },
+          {
+            "type": "img",
+            "title": "aj8.png"
+          },
+          {
+            "type": "img",
+            "title": "aj3.jpeg"
+          },          
+          {
+            "type": "img",
+            "title": "aj10.png"
           }
         ]
       },
@@ -241,6 +290,226 @@
             "type": "img",
             "title": "13_closeup_tokens.jpg"
           }
+        ]
+      },
+      {
+        "title": "forty-seven",
+        "lead": "A program that runs on an interactive screen where users can explore the reforestation potential, as well as various CO2 emission factors in the world.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Gian-Carlo Huber",
+            "Ramona Rüttimann"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "The user can control three different indicators, including the reforestation potential and the CO2 factors industry and electricity. By turning the tokens, one increases the number of factors, points on the map increase and become darker."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "Final_Product_09.jpg"
+          },
+          {
+            "type": "video",
+            "title": "fourtyseven_cut.mp4"
+          },
+          {
+            "type": "img",
+            "title": "Final_Product_02.jpg"
+          },
+          {
+            "type": "img",
+            "title": "Final_Product_03.jpg"
+          }         
+        ]
+      },
+      {
+        "title": "Act Now!",
+        "lead": "We created a visualization that runs on an interactive Screen, to show which remarkable changes could happen if we would start to reforest.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Kimon Apeltsotou",
+            "Nicola Delany"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "The contrasts, reforestation and CO2 emissions can be easy distinguished by complementary colour contrast and shape. The user can switch back and forth between the years 2020 - 2050, intended to communicate the CO2 added annually."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "Videodemonstration_1.png"
+          },
+          {
+            "type": "video",
+            "title": "actnow_cut.mp4"
+          },
+          {
+            "type": "img",
+            "title": "Animation_3.png"
+          },
+          {
+            "type": "img",
+            "title": "Videodemonstration_3.png"
+          },
+          {
+            "type": "img",
+            "title": "Animation_1.png"
+          }         
+        ]
+      },
+      {
+        "title": "One Two Tree",
+        "lead": "An interactive interface on a multitouch table where people can learn more about the impact of a forest on climate change.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Sophie Anderhub",
+            "Andreas Bütler",
+            "Pascal Jeker",
+            "Paméla Schmidinger"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "We transformed the multitouch screen into an explorative world map. People are picked up from the first interaction with the token and the table. On the one hand through the dynamic structure of the interface and on the other hand, they are given specific information  at the beginning they are given information about their chosen location."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "InteractiveTable_Location.jpg"
+          },
+          {
+            "type": "video",
+            "title": "onetwotree_cut.mp4"
+          },
+          {
+            "type": "img",
+            "title": "InteractiveTable_Totale_1.jpg"
+          },
+          {
+            "type": "img",
+            "title": "InteractiveTable_InUse.jpg"
+          },
+          {
+            "type": "img",
+            "title": "InteractiveTable_Bubbles_2.jpg"
+          }         
+        ]
+      },
+      {
+        "title": "Plants for Climate",
+        "lead": "We created an interactive table that teaches the user why and where we need to plant trees.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Damaris Büchner",
+            "Fabian Frey",
+            "Sonjoi Nielsen",
+            "Anurag Rao",
+            "Tamara Trabucco"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "With a wooden token that can be moved over the table as an input device one can explore an interactive map of the world to find the perfect spots to plant a different kinds of trees. The goal is to plant as many trees as possible and reduce the CO2 in the world."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "plants1.png"
+          },
+          {
+            "type": "video",
+            "title": "plantsforclimate_cut.mp4"
+          },
+          {
+            "type": "img",
+            "title": "plants2.png"
+          },
+          {
+            "type": "img",
+            "title": "plants3.png"
+          }         
+        ]
+      },
+      {
+        "title": "Treevement",
+        "lead": "An interactive touch display that allows users to experience the potential of global reforestation in the fight against climate change.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Roman Engler",
+            "Tim Fuchs",
+            "Yao Liu",
+            "Yangzom Sharlhey",
+            "Zoë Urand"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "Using tracking objects, users can explore how a lack of action will negatively impact the climate and the world’s ecosystems. In addition, users can plant trees in a mini time trial game to better understand their individual impact."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "02_interfaceTrackingObject.jpg"
+          },
+          {
+            "type": "video",
+            "title": "treevement.mp4"
+          },
+          {
+            "type": "img",
+            "title": "06_trackingObject.jpg"
+          },
+          {
+            "type": "img",
+            "title": "01_userTouchDisplay.jpg"
+          }         
+        ]
+      },
+      {
+        "title": "FUTURE FOREST",
+        "lead": "We designed a playful approach for people to receive more information about climate change and what positive impact one newly planted tree could have.",
+        "people": {
+          "title": "Students",
+          "names": [
+            "Andreas Fürer",
+            "Andy Kirk",
+            "Shafira Maharani Nabiila Nugroho",
+            "Danuka Ana Tomas"
+          ]
+        },
+        "description": {
+          "title": "How it works",
+          "text": "If the tree-token will be placed on the screen, information about NGO’s in different biomes appeare. As it is an addaptive layout it is not important where visitor choose to place the token. By rotating the tree-token people can browse through the projects. Following the red line to the globe one can find the place of the projects on the world. Every project and its diverse biom is illustrated in an isometric view."
+        },
+        "media": [
+          {
+            "type": "img",
+            "title": "Fullscreen_Prototype.png"
+          },
+          {
+            "type": "video",
+            "title": "futureforest_cut.mp4"
+          },
+          {
+            "type": "img",
+            "title": "Token_3.png"
+          },
+          {
+            "type": "img",
+            "title": "Token_Content_2_3.png"
+          },
+          {
+            "type": "img",
+            "title": "Globe_Zoom.png"
+          }         
         ]
       }
     ]
