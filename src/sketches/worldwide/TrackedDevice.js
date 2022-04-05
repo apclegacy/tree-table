@@ -82,13 +82,13 @@ class TrackedDevice {
             // strokeWeight(2)
             // stroke(0,255,0)
             // line(windowWidth/4,windowHeight/2, this.smoothPosition.x,this.smoothPosition.y)
-            p.push()
+            /*p.push()
             p.translate(p.windowWidth / 2, p.height / 2)
             p.rotate(p.radians(this.angle))
             let sizeT = 30
-            let thisTriangle = new Triangle(p.windowWidth / 2 - sizeT, -sizeT, sizeT)
+            let thisTriangle = new p.Triangle(p.windowWidth / 2 - sizeT, -sizeT, sizeT)
             thisTriangle.show()
-            p.pop()
+            p.pop()*/
 
             this.inRange = false
         } else {

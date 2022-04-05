@@ -73,7 +73,7 @@ export default defineComponent({
         <span v-if="!menuOpen" class="menu-item menu-toggle" :class="menuClass"
           :key="`toggle-${menuClass}`"
           @click="toggleMenu">
-          <p>Menu</p>
+          <h2>Menu</h2>
         </span>
       <!--</transition-group>-->
         </div>

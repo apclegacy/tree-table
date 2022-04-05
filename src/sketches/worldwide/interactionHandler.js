@@ -19,7 +19,7 @@ const { projectDrawDown, activeSector, setActiveSector, getActiveSectorProjectTi
 let tokens = {}
 const TrackedDevice = trackedDevice(p, textureGuiTriangleAmountDisplay);
 
-let tokenActions = ['sectorSelect', 'amountSelect', 'graph'];
+let tokenActions = ['sectorSelect', 'amountSelect'];
 
 let touchCount = 0
 let ongoingTouches = []
@@ -117,19 +117,25 @@ function listenMessages(){
             thisDevice.y = data.y * p.windowHeight
             thisDevice.rotation = data.rot
 
-            let openActions = getOpenActions();
-            if (openActions && openActions.length > 0) {
-                thisDevice.action = openActions[0];
+            trackedDevices.push(thisDevice)
+            
+            if(trackedDevices.length === 1) {
+                trackedDevices[trackedDevices.length - 1].action = tokenActions[0]
             } else {
-                thisDevice.action = openActions[1];
+                trackedDevices.forEach(dev => { dev.action = '' })
+                trackedDevices[trackedDevices.length - 1].action = tokenActions[1]
+                trackedDevices[trackedDevices.length - 2].action = tokenActions[0]
             }
+            
+            console.log(trackedDevices)
 
-            trackedDevices.push(thisDevice);
         })
         wsPort.on('updateDevice', function(data){
             let id = data.id
+            let deviceFound = false;
             trackedDevices.forEach( element => {
                 if(element.uniqueId === id){
+                    deviceFound = true;
                     element.x = data.x * p.windowWidth
                     element.y = data.y * p.windowHeight
                     if (element.action === 'sectorSelect') {
@@ -141,6 +147,23 @@ function listenMessages(){
                     element.rotation = data.rot
                 }
             })
+            if(!deviceFound) {
+                let thisDevice = new TrackedDevice()
+                thisDevice.uniqueId = data.id
+                thisDevice.x = data.x * p.windowWidth
+                thisDevice.y = data.y * p.windowHeight
+                thisDevice.rotation = data.rot
+
+                trackedDevices.push(thisDevice);
+
+                if(trackedDevices.length === 1) {
+                    trackedDevices[trackedDevices.length - 1].action = tokenActions[0]
+                } else {
+                    trackedDevices.forEach(dev => { dev.action = '' })
+                    trackedDevices[trackedDevices.length - 1].action = tokenActions[1]
+                    trackedDevices[trackedDevices.length - 2].action = tokenActions[0]
+                }
+            }
         })
         wsPort.on('removeDevice', function(data){
             let id = data.id
@@ -171,8 +194,8 @@ function selectSectorByDegree(rotation) {
         let title = document.querySelector('#projectDrawDownInfoTitle');
         title.innerText = activeSector;
         projectDescription.innerHTML = getActiveSectorProjectDescription();
-        let projectQRCode = document.getElementById('projectDrawDownInfoQrCode')
-        projectQRCode.src = `imgs/guiElements/qrCodes/${activeSector}.png`;
+        /*let projectQRCode = document.getElementById('projectDrawDownInfoQrCode')
+        projectQRCode.src = import(`../../assets/sketches/worldwide/imgs/guiElements/qrCodes/${activeSector}.png`);*/
         let projectTitle = document.getElementById('projectDrawDownInfoTitle');
         projectTitle.innerText = getActiveSectorProjectTitle();
     }

@@ -16,7 +16,7 @@ export default defineComponent({
       <p id="projectDrawDownInfoDescription">
         Production of electricity must move away from fossil fuels, as quickly as possible. A spectrum of solutions can help, from small-scale/distributed to large-scale/centralized. Some solutions harvest photons from the sun. Others tap nature’s generous kinetic energy—the movement of wind and water. Still others use an alternate source of heat, such as geothermal or nuclear, for the same basic steam-turbine process.
       </p>
-      <img src="../../assets/sketches/worldwide/imgs/guiElements/qrCodes/buildings.png" id="projectDrawDownInfoQrCode">
+      <!--<img src="../../assets/sketches/worldwide/imgs/guiElements/qrCodes/buildings.png" id="projectDrawDownInfoQrCode">-->
     </div>
 
     <div id="testLabel">
