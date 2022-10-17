@@ -2,6 +2,7 @@
 node_modules
 /dist
 /src/assets
+tree-table-0.85
 
 # local env files
 .env.local
