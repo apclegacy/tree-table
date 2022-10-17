@@ -3,10 +3,12 @@ import P5 from 'p5';
 import defaultSketch from '@/sketches/default/sketch';
 
 import worldWideSketch from '@/sketches/worldwide/sketch';
+import aboveAndBelowSketch from '@/sketches/aboveandbelow/sketch';
 
 const sketches = [
   defaultSketch,
   worldWideSketch,
+  aboveAndBelowSketch,
 ];
 
 const sketchState = reactive({
@@ -15,7 +17,7 @@ const sketchState = reactive({
 
 const activeSketch = ref(0);
 
-enum Sketch { Default, WorldWide }
+enum Sketch { Default, WorldWide, AboveAndBelow }
 
 const setContainer = (element: HTMLElement) => { sketchState.sketchContainer = element; };
 

@@ -105,12 +105,7 @@
             "title": "MW_DW_Image_13.png"
           }
         ]
-      }
-    ]
-  },
-  {
-    "title": "Projects",
-    "cards": [
+      },
       {
         "title": "Above and Below",
         "lead": "Above and Below shows up multiple graphs that visualise where and how the carbon is stored throughout the world.",
@@ -123,7 +118,8 @@
         },
         "description": {
           "title": "How it works",
-          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way."
+          "text": "Comparing how the stocks looked in 2000, to the predicted and potential calculated futures in 2050.\n\nUsing the tokens one can explore the direct impact we can have on the malleable future and how this effects the temperature in a direct way.",
+          "sketch": "2"
         },
         "media": [
           {
@@ -143,7 +139,12 @@
             "title": "02_Prozess_visualisation.jpg"
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "title": "Projects",
+    "cards": [
       {
         "title": "Reforest",
         "lead": "Making climate change visible — by visualising projected GHG emissions on a global scale and proposing reforestation as a solution.",

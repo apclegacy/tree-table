@@ -55,7 +55,8 @@ export default defineComponent({
     <transition name="pop-backdrop">
       <div class="backdrop" v-if="menuClass" @click="closeMenu"/>
     </transition>
-    <div class="logos" v-show="activeSketch !== Sketch.WorldWide">
+    <div class="logos" v-show="activeSketch !== Sketch.WorldWide"
+      :class="activeSketch === Sketch.AboveAndBelow ? 'lower' : ''">
       <img src="../assets/logos/eth.png" alt="eth crowther lab">
       <img src="../assets/logos/zhdk.png" alt="zhdk">
     </div>
@@ -255,5 +256,9 @@ export default defineComponent({
       //transition-delay: calc(0.01s * (1 - var(--position)) + calc(0.1s * (4 - var(--position))));
     }
     &-enter-from, &-leave-to  { opacity: 0; }
+  }
+
+  .lower {
+    margin-top: 1850px;
   }
 </style>

@@ -148,6 +148,7 @@ function listenMessages(){
                 }
             })
             if(!deviceFound) {
+                console.log(deviceFound)
                 let thisDevice = new TrackedDevice()
                 thisDevice.uniqueId = data.id
                 thisDevice.x = data.x * p.windowWidth

@@ -79,8 +79,13 @@ export default defineComponent({
       }
     };
 
-    const switchSketch = () => {
+    const worldwideSketch = () => {
       useSketch(1);
+      emit('closeMenu');
+    };
+
+    const aboveAndBelowSketch = () => {
+      useSketch(2);
       emit('closeMenu');
     };
 
@@ -95,7 +100,8 @@ export default defineComponent({
       mediaContainer,
       playVideo,
       pauseVideo,
-      switchSketch,
+      worldwideSketch,
+      aboveAndBelowSketch,
       defaultSketch,
     };
   },
@@ -124,9 +130,14 @@ export default defineComponent({
               <p>{{ card.description.text }}</p>
               <sketch-button
                 :backToDefault="false"
-                v-if="card.description.sketch"
+                v-if="card.description.sketch == 1"
                 class="sketch-button"
-                @click="switchSketch()"/>
+                @click="worldwideSketch"/>
+               <sketch-button
+              :backToDefault="false"
+              v-if="card.description.sketch == 2"
+              class="sketch-button"
+              @click="aboveAndBelowSketch"/>
               <sketch-button
               :backToDefault="true"
               v-if="card.description.backToDefault"
